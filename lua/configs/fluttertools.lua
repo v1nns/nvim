@@ -4,12 +4,12 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 return {
   dev_log = {
     enabled = true,
-    open_cmd = "10new",     -- command to use to open the log buffer
+    open_cmd = "10new", -- command to use to open the log buffer
   },
 
   dev_tools = {
-    autostart = true,              -- autostart devtools server if not detected
-    auto_open_browser = false,     -- Automatically opens devtools in the browser
+    autostart = true, -- autostart devtools server if not detected
+    auto_open_browser = false, -- Automatically opens devtools in the browser
   },
 
   lsp = {

@@ -227,29 +227,29 @@ M.changed_themes = {
 
         --- punctuation
         ["@punctuation.delimiter"] = { fg = "#89ddff" }, -- For delimiters ie: `.`
-        ["@punctuation.bracket"] = { fg = "#a9b1d6" },   -- For brackets and parens.
-        ["@punctuation.special"] = { fg = "#89ddff" },   -- For special punctutation that does not fall in the catagories before.
+        ["@punctuation.bracket"] = { fg = "#a9b1d6" }, -- For brackets and parens.
+        ["@punctuation.special"] = { fg = "#89ddff" }, -- For special punctutation that does not fall in the catagories before.
         ["@punctuation.special.markdown"] = { fg = "#ff9e64", bold = true },
 
         --- literals
-        ["@string.documentation"] = { fg = "#e0af68" },
-        ["@string.regex"] = { fg = "#b4f9f8" },  -- For regexes.
+        ["@string.documentation"] = { fg = "#4caf50" },
+        ["@string.regex"] = { fg = "#b4f9f8" }, -- For regexes.
         ["@string.escape"] = { fg = "#bb9af7" }, -- For escape characters within a string.
 
         --- functions
         ["@constructor"] = { fg = "#7aa2f7" }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-        ["@parameter"] = { fg = "#e0af68" },   -- For parameters of a function.
+        ["@parameter"] = { fg = "#e0af68" }, -- For parameters of a function.
         -- ["@parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
         --- keywords
         ["@keyword"] = { fg = "#9d7cd8", bold = true }, -- For keywords that don't fall in previous categories.
         -- ["@keyword.coroutine"] = { }, -- For keywords related to coroutines.
-        ["@keyword.function"] = { fg = "#bb9af7" },     -- For keywords used to define a fuction.
+        ["@keyword.function"] = { fg = "#bb9af7" }, -- For keywords used to define a fuction.
 
-        ["@label"] = { fg = "#7aa2f7" },                -- For labels: `label:` in C and `:label:` in Lua.
+        ["@label"] = { fg = "#7aa2f7" }, -- For labels: `label:` in C and `:label:` in Lua.
 
         --- identifiers
-        ["@variable"] = { fg = "#9abdf5" },         -- Any variable name that does not have another highlight.
+        ["@variable"] = { fg = "#9abdf5" }, -- Any variable name that does not have another highlight.
         ["@variable.builtin"] = { fg = "#f7768e" }, -- Variable names that are defined by the languages, like `this` or `self`.
 
         --- text
@@ -260,8 +260,8 @@ M.changed_themes = {
         },
         ["@text.reference"] = { fg = "#1abc9c" },
         ["@text.todo.unchecked"] = { fg = "#7aa2f7" }, -- For brackets and parens.
-        ["@text.todo.checked"] = { fg = "#73daca" },   -- For brackets and parens.
-        ["@text.uri"] = { fg = "#2ac3de" },            -- For URIs.
+        ["@text.todo.checked"] = { fg = "#73daca" }, -- For brackets and parens.
+        ["@text.uri"] = { fg = "#2ac3de" }, -- For URIs.
         -- ["@text.warning"] = { fg = "#24283b", bg = c.warning },
         -- ["@text.danger"] = { fg = "#24283b", bg = c.error },
 

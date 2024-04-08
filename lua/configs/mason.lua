@@ -18,6 +18,9 @@ return {
     "shfmt",
     "shellcheck",
 
+    -- bash
+    "bash-language-server",
+
     -- cmake
     "cmake-language-server",
     "cmakelang",
@@ -28,5 +31,6 @@ return {
 
     -- python
     "autopep8",
+    "python-lsp-server",
   },
 }

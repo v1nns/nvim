@@ -1,4 +1,4 @@
-local resession = require "resession"
+local session = require "resession"
 
 local M = {}
 
@@ -25,7 +25,7 @@ M.setup_autocommands = function()
       -- only load the session if nvim was started with no args
       if vim.fn.argc(-1) == 0 then
         -- Save these to a different directory, so our manual sessions don't get polluted
-        resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+        session.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
       end
 
       -- enable treesitter-based folding
@@ -49,7 +49,7 @@ M.setup_autocommands = function()
       -- exclude some paths to avoid saving any session
       if vim.fn.getcwd() ~= vim.env.HOME and string.find(vim.fn.getcwd(), "/tmp/") == nil then
         -- save session
-        resession.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
+        session.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
       end
     end,
   })
@@ -247,10 +247,10 @@ M.setup_commands = function()
           if cursor_position > 0 then
             size = size - cursor_position
             line = string.rep(" ", cursor_position)
-                -- TODO: replace '/*' with info from vim.bo.comments
-                .. "/* "
-                .. string.rep("-", size)
-                .. " */"
+              -- TODO: replace '/*' with info from vim.bo.comments
+              .. "/* "
+              .. string.rep("-", size)
+              .. " */"
           else
             line = "/* " .. string.rep("*", size) .. " */"
           end

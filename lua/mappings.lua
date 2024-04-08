@@ -12,6 +12,8 @@ end, { desc = "recent folders" })
 
 -- navigation
 map("n", "<leader>w", "<cmd> HopWord <CR>", { desc = "word motion" })
+map("n", "j", "gj", { desc = "move line downward" })
+map("n", "k", "gk", { desc = "move line upward" })
 map("n", "<A-j>", "5gj", { desc = "move lines 5x downwards" })
 map("n", "<A-k>", "5gk", { desc = "move lines 5x upwards" })
 map("n", "<A-h>", "b", { desc = "move back a word" })
@@ -95,8 +97,7 @@ map("n", "<C-g>m", "<cmd> GitMessenger <CR>", { desc = "show commit message from
 
 -- LSP config
 map("n", "<F2>", function()
-  -- TODO: create my own renamer without showing curr_name
-  require "nvchad.lsp.renamer" ()
+  require "ui.renamer"()
 end, { desc = "rename symbol" })
 
 map("n", "gr", "<cmd> TroubleToggle lsp_references<CR>", { desc = "list all symbol references" })
@@ -107,7 +108,7 @@ map("n", "<leader>le", function()
   vim.diagnostic.enable()
 end, { desc = "enable lsp diagnostics" })
 map("n", "<leader>fm", function()
-  require("conform").format { async = true, lsp_fallback = "always" }
+  require("conform").format { async = true, lsp_fallback = true }
 end, { desc = "format code" })
 map("v", "<leader>fm", "gq", { desc = "format code selection" })
 

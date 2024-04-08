@@ -36,7 +36,7 @@ local get_filename = function()
 
   if not isempty(filename) then
     local file_icon, file_icon_color =
-        require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+      require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
     local hl_group = "FileIconColor" .. extension
 
@@ -47,15 +47,15 @@ local get_filename = function()
     end
 
     return "%#WinbarTitle#"
-        .. " "
-        .. "%#"
-        .. hl_group
-        .. "#"
-        .. file_icon
-        .. "%*"
-        .. "%#WinbarTitle#"
-        .. " "
-        .. filename
+      .. " "
+      .. "%#"
+      .. hl_group
+      .. "#"
+      .. file_icon
+      .. "%*"
+      .. "%#WinbarTitle#"
+      .. " "
+      .. filename
   end
 end
 

@@ -3,4 +3,3 @@ return {
   char = "⡇",
   highlight = "VirtColumn",
 }
-

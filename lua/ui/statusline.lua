@@ -19,14 +19,14 @@ return {
       local branch_name = " " .. git_status.head
 
       return "%#GitBranch#"
-          .. branch_name
-          .. "%#DiffAdded#"
-          .. added
-          .. "%#DiffModified#"
-          .. changed
-          .. "%#DiffRemoved#"
-          .. removed
-          .. "%#StText#"
+        .. branch_name
+        .. "%#DiffAdded#"
+        .. added
+        .. "%#DiffModified#"
+        .. changed
+        .. "%#DiffRemoved#"
+        .. removed
+        .. "%#StText#"
     end,
 
     macro = function()

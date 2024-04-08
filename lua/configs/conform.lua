@@ -30,7 +30,7 @@ return {
         "--indent-type",
         "Spaces",
         "--indent-width",
-        "4",
+        "2",
       },
     },
     shfmt = {

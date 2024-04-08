@@ -3,8 +3,7 @@
 ---@param table_path string|string[] Either a `.` separated string of table keys, or a list.
 ---@return any?
 local tbl_access = function(t, table_path)
-  local keys = type(table_path) == "table" and table_path
-      or vim.split(table_path, ".", { plain = true })
+  local keys = type(table_path) == "table" and table_path or vim.split(table_path, ".", { plain = true })
 
   local cur = t
 
@@ -24,8 +23,7 @@ end
 ---@param table_path string|string[] Either a `.` separated string of table keys, or a list.
 ---@param value any
 local tbl_set = function(t, table_path, value)
-  local keys = type(table_path) == "table" and table_path
-      or vim.split(table_path, ".", { plain = true })
+  local keys = type(table_path) == "table" and table_path or vim.split(table_path, ".", { plain = true })
 
   local cur = t
 
@@ -46,8 +44,7 @@ end
 ---@param t table
 ---@param table_path string|string[] Either a `.` separated string of table keys, or a list.
 local tbl_ensure = function(t, table_path)
-  local keys = type(table_path) == "table" and table_path
-      or vim.split(table_path, ".", { plain = true })
+  local keys = type(table_path) == "table" and table_path or vim.split(table_path, ".", { plain = true })
 
   if not tbl_access(t, keys) then
     tbl_set(t, keys, {})

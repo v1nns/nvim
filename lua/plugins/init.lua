@@ -6,6 +6,9 @@ return {
     enabled = false,
   },
 
+  -- use colorizer from norcalli instead of NvChad (attach is not working)
+  { "norcalli/nvim-colorizer.lua", opt = true },
+
   -- replace UI for messages, cmdline and the popupmenu
   {
     "folke/noice.nvim",
@@ -43,10 +46,7 @@ return {
     name = "window-picker",
     event = "VeryLazy",
     version = "2.*",
-    config = function()
-      -- TODO: revisit this
-      require("window-picker").setup()
-    end,
+    opts = true,
   },
 
   -- syntax highlight for coding

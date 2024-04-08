@@ -1,5 +1,5 @@
-local api = require("tabby.module.api")
-local buf_name = require("tabby.feature.buf_name")
+local api = require "tabby.module.api"
+local buf_name = require "tabby.feature.buf_name"
 
 local M = {}
 
@@ -37,7 +37,7 @@ M.setup = function()
           -- tab.is_current() and "󰄲" or "",
           tab.number(),
           tab.name(),
-          tab.close_btn(""),
+          tab.close_btn "",
           line.sep(" ", hl, theme.fill),
           hl = hl,
           margin = " ",
