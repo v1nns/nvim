@@ -145,8 +145,7 @@ M.setup_commands = function()
 
   -- remove trailing spaces from current buffer
   cmd("RemoveTrailingSpace", function()
-    vim.cmd [[%s/\s\+$//e]]
-    vim.cmd [[nohlsearch]]
+    vim.cmd [[%s/\s\+$//e | nohlsearch]]
   end, {})
 
   -- yank current text selection on visual mode

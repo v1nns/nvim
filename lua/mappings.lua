@@ -175,9 +175,3 @@ map(
 map("n", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "add divider line" })
 map("i", "<A-y>", "<ESC><cmd> InsertCommentDivider <CR>", { desc = "add divider line" })
 map("v", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "add divider line" })
-map(
-  "v",
-  "gc",
-  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-  { desc = "toggle comment" }
-)
