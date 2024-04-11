@@ -301,6 +301,13 @@ M.setup_commands = function()
       mapped[mode]()
     end
   end, {})
+
+  -- copy relative path from current buffer
+  cmd("CopyRelativePath", function()
+    local path = vim.fn.expand "%"
+    vim.fn.setreg("+", path)
+    vim.notify('Copied path to clipboard (' .. path .. ')')
+  end, {})
 end
 
 M.get_non_empty_buffers = function()
