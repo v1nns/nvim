@@ -11,7 +11,6 @@ map("n", "<A-r>", function()
 end, { desc = "recent folders" })
 
 -- navigation
-map("n", "<leader>w", "<cmd> HopWord <CR>", { desc = "word motion" })
 map("n", "j", "gj", { desc = "move line downward" })
 map("n", "k", "gk", { desc = "move line upward" })
 map("n", "<A-j>", "5gj", { desc = "move lines 5x downwards" })
@@ -49,6 +48,9 @@ map("n", "<C-S-Right>", "<cmd> winc > <CR>", { desc = "increase width" })
 map("n", "<C-S-Left>", "<cmd> winc < <CR>", { desc = "decrease width" })
 map("n", "<C-S-Up>", "<cmd> winc - <CR>", { desc = "increase height" })
 map("n", "<C-S-Down>", "<cmd> winc + <CR>", { desc = "decrease height" })
+
+-- window resize
+map("n", "<C-w>r", "<cmd> winc = <CR>", { desc = "resize windows equally" })
 
 -- window focus
 map("n", "<C-1>", "<cmd> :1wincmd w <CR>", { desc = "focus window 1" })

@@ -23,7 +23,8 @@ M.add = {
   -- statusline git-branch color
   GitBranch = {
     fg = "#bb9af7",
-    bg = "#1f202b",
+    -- bg = "#1f202b",
+    bg = "#1d1e29",
   },
 
   -- neo-tree
@@ -178,6 +179,11 @@ M.override = {
   DiffChange = { bg = "#242a40", fg = "none" },
   DiffDelete = { bg = "#37222c" },
   DiffText = { bg = "#30404b", fg = "none" },
+
+  -- status line
+  DiffAdded = { bg = "#1d1e29" },
+  DiffModified = { bg = "#1d1e29" },
+  DiffRemoved = { bg = "#1d1e29" },
 
   -- nvchad ui statusline
   St_cwd = { fg = "#2ac3de" },

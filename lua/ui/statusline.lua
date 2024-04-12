@@ -35,7 +35,7 @@ return {
         return ""
       end
 
-      return "%#String#" .. "recording to " .. reg .. "%#StText#"
+      return "%#String#" .. " recording to " .. reg .. "%#StText#"
     end,
 
     cursor = function()
