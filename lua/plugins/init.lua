@@ -178,6 +178,16 @@ return {
     end,
   },
 
+  -- change char for indent and scope
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      indent = { char = "▏", highlight = "IblChar" },
+      scope = { char = "▏", highlight = "IblScopeChar" },
+    },
+  },
+
   -- surround text selections
   {
     "kylechui/nvim-surround",
