@@ -1,3 +1,27 @@
+local buffer_delete = function(state)
+  local node = state.tree:get_node()
+  if node then
+    if node.type == "message" then
+      return
+    end
+
+    local utils = require "neo-tree.utils"
+    local manager = require "neo-tree.sources.manager"
+    local refresh = utils.wrap(manager.refresh, "buffers")
+    local commands = require "commands"
+
+    -- when this is the last buffer, create a new one in order to gracefully close the tab
+    local count = commands.get_non_empty_buffers()
+    if count == 1 then
+      vim.cmd "enew"
+    end
+
+    local force_close = node.type == "terminal" and true or false
+    vim.api.nvim_buf_delete(node.extra.bufnr, { force = force_close, unload = false })
+    refresh()
+  end
+end
+
 return {
   close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = "rounded",
@@ -72,6 +96,10 @@ return {
       nowait = true,
     },
     mappings = {
+      ["h"] = "none",
+      ["l"] = "none",
+      ["j"] = "none",
+      ["k"] = "none",
       ["o"] = { "toggle_node" },
       ["<space>"] = {
         "toggle_node",
@@ -252,6 +280,9 @@ return {
     },
   },
   buffers = {
+    commands = {
+      buffer_delete = buffer_delete,
+    },
     components = {
       name = function(config, node, state)
         -- first call the default name component
@@ -272,8 +303,8 @@ return {
     window = {
       mappings = {
         ["bd"] = "buffer_delete",
-        ["<bs>"] = "navigate_up",
-        -- ["."] = "set_root",
+        ["<bs>"] = "none",
+        ["."] = "none",
       },
     },
   },
