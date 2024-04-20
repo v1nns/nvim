@@ -225,6 +225,7 @@ M.changed_themes = {
         ["@method.call"] = { fg = "#7aa2f7" },
         ["@function"] = { fg = "#7aa2f7" },
         ["@function.call"] = { fg = "#7aa2f7" },
+        ["@function.method.call"] = { fg = "#7aa2f7" },
         ["@constant"] = { fg = "#ff9e64" },
         ["@comment"] = { fg = "#4caf50" },
 
