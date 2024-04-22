@@ -157,6 +157,7 @@ return {
       ["?"] = "show_help",
       ["<"] = "prev_source",
       [">"] = "next_source",
+      ["<bs>"] = "none",
     },
   },
   nesting_rules = {},
@@ -249,6 +250,7 @@ return {
             end
             -- end custom code
 
+            -- TODO: change to expand only all children nodes based on the currently selected
             local id = node:get_id()
             if node.type == "directory" and not node:is_expanded() then
               toggle_directory(state, node)
@@ -343,5 +345,24 @@ return {
   source_selector = {
     winbar = false, -- toggle to show selector on winbar
     statusline = false, -- toggle to show selector on statusline
+  },
+  event_handlers = {
+    {
+      event = "neo_tree_window_after_open",
+      handler = function(args)
+        if args.position == "left" or args.position == "right" then
+          vim.cmd "wincmd ="
+        end
+      end,
+    },
+
+    {
+      event = "neo_tree_window_after_close",
+      handler = function(args)
+        if args.position == "left" or args.position == "right" then
+          vim.cmd "wincmd ="
+        end
+      end,
+    },
   },
 }
