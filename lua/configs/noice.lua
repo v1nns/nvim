@@ -64,6 +64,7 @@ return {
           { find = "; before #%d+" },
           { find = "%d fewer lines" },
           { find = "%d more lines" },
+          { find = "Direction cannot be zero" },
         },
       },
       opts = { skip = true },
