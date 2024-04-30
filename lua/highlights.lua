@@ -188,13 +188,40 @@ M.override = {
   -- nvchad ui statusline
   St_cwd = { fg = "#2ac3de" },
 
-  -- navic breadcrumb
-  NavicText = { fg = "#b4f9f8" },
-
   -- document highlight using LSP
   LspReferenceRead = { bg = "#2f3549", fg = "none" },
   LspReferenceText = { bg = "#2f3549", fg = "none" },
   LspReferenceWrite = { bg = "#2f3549", fg = "none" },
+
+  -- navic breadcrumb
+  NavicText = { bg = "none", fg = "#b4f9f8" },
+  NavicIconsFile = { bg = "none" },
+  NavicIconsModule = { bg = "none" },
+  NavicIconsNamespace = { bg = "none" },
+  NavicIconsPackage = { bg = "none" },
+  NavicIconsClass = { bg = "none" },
+  NavicIconsMethod = { bg = "none" },
+  NavicIconsProperty = { bg = "none" },
+  NavicIconsField = { bg = "none" },
+  NavicIconsConstructor = { bg = "none" },
+  NavicIconsEnum = { bg = "none" },
+  NavicIconsInterface = { bg = "none" },
+  NavicIconsFunction = { bg = "none" },
+  NavicIconsVariable = { bg = "none" },
+  NavicIconsConstant = { bg = "none" },
+  NavicIconsString = { bg = "none" },
+  NavicIconsNumber = { bg = "none" },
+  NavicIconsBoolean = { bg = "none" },
+  NavicIconsArray = { bg = "none" },
+  NavicIconsObject = { bg = "none" },
+  NavicIconsKey = { bg = "none" },
+  NavicIconsNull = { bg = "none" },
+  NavicIconsEnumMember = { bg = "none" },
+  NavicIconsStruct = { bg = "none" },
+  NavicIconsEvent = { bg = "none" },
+  NavicIconsOperator = { bg = "none" },
+  NavicIconsTypeParameter = { bg = "none" },
+  NavicSeparator = { bg = "none" },
 }
 
 M.changed_themes = {
