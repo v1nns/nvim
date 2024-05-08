@@ -20,15 +20,17 @@ return {
     },
   },
 
-  -- disable default file explorer
+  -- use default file explorer again
   {
     "nvim-tree/nvim-tree.lua",
-    enabled = false,
+    cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeOpen", "NvimTreeClose" },
+    opts = require "configs.nvimtree",
   },
 
-  -- instead, use neo-tree as file/buffer/git explorer
+  -- disable neo-tree (performance issues...)
   {
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -100,7 +102,7 @@ return {
   -- language server protocol
   {
     "neovim/nvim-lspconfig",
-    -- lazy = false,
+    event = "VeryLazy",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
@@ -138,11 +140,11 @@ return {
   -- session management + limit buffers scope per tab
   {
     "stevearc/resession.nvim",
-    lazy = false,
+    event = "VeryLazy",
     dependencies = {
       {
         "tiagovla/scope.nvim",
-        lazy = false,
+        event = "VeryLazy",
         config = true,
       },
     },
@@ -262,7 +264,7 @@ return {
   -- scrollbar
   {
     "dstein64/nvim-scrollview",
-    lazy = false,
+    event = "VeryLazy",
     init = function()
       require("scrollview").setup()
     end,
@@ -271,7 +273,7 @@ return {
   -- highlight TODO comments
   {
     "folke/todo-comments.nvim",
-    lazy = false,
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },
@@ -310,7 +312,7 @@ return {
   -- disable certain features on big files
   {
     "LunarVim/bigfile.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {},
   },
 
@@ -321,7 +323,7 @@ return {
   -- flutter utilities
   {
     "akinsho/flutter-tools.nvim",
-    lazy = false,
+    event = "VeryLazy",
     after = "nvim-lspconfig",
     dependencies = {
       "nvim-lua/plenary.nvim",

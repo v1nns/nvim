@@ -38,9 +38,11 @@ return {
           telescope.extensions.file_browser.actions.change_cwd(prompt_bufnr)
           telescope.actions.close(prompt_bufnr)
 
-          vim.cmd ":Neotree close"
+          -- vim.cmd ":Neotree close"
+          vim.cmd ":NvimTreeClose"
           vim.cmd "bufdo bd"
-          vim.cmd ":Neotree show"
+          -- vim.cmd ":Neotree show"
+          vim.cmd ":NvimTreeOpen"
         end
       end,
 

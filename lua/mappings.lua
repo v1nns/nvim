@@ -136,9 +136,12 @@ map("n", "<leader>tt", "<cmd> Twilight <CR>", { desc = "Text toggle code dimming
 map("i", "<C-BS>", "<C-W>", { desc = "Text delete previous word" })
 
 -- neotree
-map("n", "<leader>e", "<cmd> Neotree filesystem toggle left <CR>", { desc = "Neotree toggle file tree" })
-map("n", "<leader>b", "<cmd> Neotree buffers toggle left <CR>", { desc = "Neotree toggle buffer tree" })
+-- map("n", "<leader>e", "<cmd> Neotree filesystem toggle left <CR>", { desc = "Neotree toggle file tree" })
+-- map("n", "<leader>b", "<cmd> Neotree buffers toggle left <CR>", { desc = "Neotree toggle buffer tree" })
 -- map("n", "<leader>g", "<cmd>Neotree git_status toggle left <CR>", { desc = "Neotree toggle git status tree" })
+
+-- nvim-tree
+map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "nvim-tree toggle file tree" })
 
 -- telescope
 map(
@@ -150,7 +153,7 @@ map(
 map("n", "<A-p>", "<cmd> Telescope find_files prompt_title=Open\\ file<CR>", { desc = "Telescope open file" })
 map("n", "<C-S-b>", "<cmd> Telescope marks<CR>", { desc = "Telescope open bookmarks" })
 map("n", "<C-S-f>", "<cmd> Telescope live_grep prompt_title=Search\\ all<CR>", { desc = "Telescope search all" })
-map("n", "<leader><Tab>", "<cmd> Telescope buffers<CR>", { desc = "Telescope find buffers" })
+map("n", "<leader>b", "<cmd> Telescope buffers<CR>", { desc = "Telescope find buffers" })
 map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "Telescope search all" })
 map("n", "<C-g>c", "<cmd> Telescope git_commits <CR>", { desc = "Telescope git show commits" })
 map("n", "<C-g>t", "<cmd> Telescope git_status <CR>", { desc = "Telescope git show status" })
@@ -166,3 +169,7 @@ map(
 map("n", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
 map("i", "<A-y>", "<ESC><cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
 map("v", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
+
+-- Disable mappings
+-- local nomap = vim.keymap.del
+-- nomap("n", "<leader>b")

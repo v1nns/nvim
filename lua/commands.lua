@@ -39,7 +39,8 @@ M.setup_autocommands = function()
   autocmd({ "VimLeavePre" }, {
     callback = function()
       vim.cmd ":DiffviewClose"
-      vim.cmd ":tabdo Neotree close"
+      -- vim.cmd ":tabdo Neotree close"
+      vim.cmd ":NvimTreeClose"
 
       -- do not save session if current buffer is a gitcommit
       if vim.bo.filetype == "gitcommit" then
@@ -173,9 +174,10 @@ M.setup_commands = function()
 
   -- close all opened buffers
   cmd("CloseAllBuffers", function()
-    local neotree = require "neo-tree.command"
+    -- local neotree = require "neo-tree.command"
     -- must hide neo-tree before closing all buffers
-    neotree.execute { action = "close" }
+    -- neotree.execute { action = "close" }
+    vim.cmd ":NvimTreeClose"
 
     -- close all buffers
     local count = 0
@@ -189,9 +191,6 @@ M.setup_commands = function()
     else
       vim.cmd ":windo bd"
     end
-
-    -- show neo-tree again (filesystem is default option)
-    -- neotree.execute({ action = "show" })
   end, {})
 
   -- wrap text at column X (or value is asked)
@@ -306,7 +305,7 @@ M.setup_commands = function()
   cmd("CopyRelativePath", function()
     local path = vim.fn.expand "%"
     vim.fn.setreg("+", path)
-    vim.notify('Copied path to clipboard (' .. path .. ')')
+    vim.notify("Copied path to clipboard (" .. path .. ")")
   end, {})
 end
 

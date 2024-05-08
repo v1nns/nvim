@@ -59,7 +59,7 @@ return {
       return false
     end
 
-    -- disable completion in nvchad renamer
+    -- disable completion in LSP renamer
     local name = vim.api.nvim_buf_get_name(bufnr)
     if (name == nil or name == "") and (ft == nil or name == "") then
       return false
