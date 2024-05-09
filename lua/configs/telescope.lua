@@ -148,6 +148,21 @@ return {
         },
       },
     },
+    buffers = {
+      mappings = {
+        i = {
+          ["<C-d>"] = function(prompt_bufnr)
+            local action_state = require "telescope.actions.state"
+            local current_picker = action_state.get_current_picker(prompt_bufnr)
+
+            current_picker:delete_selection(function(selection)
+              local ok = pcall(vim.api.nvim_buf_delete, selection.bufnr, { force = true })
+              return ok
+            end)
+          end,
+        },
+      },
+    },
   },
   extensions = {
     file_browser = require "configs.filebrowser",
