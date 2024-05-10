@@ -1,4 +1,3 @@
--- TODO: revisit this
 local M = {}
 
 M.pick_window = function()
@@ -11,7 +10,14 @@ M.pick_window = function()
     local ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 
     -- must filter it manually, otherwise window-picker will recognize it unproperly
-    if ft ~= "neo-tree" then
+    if
+      ft ~= "neo-tree"
+      and ft ~= "NvimTree"
+      and ft ~= "nvdash"
+      and ft ~= "noice"
+      and ft ~= "notify"
+      and ft ~= "scrollview"
+    then
       count = count + 1
     end
   end
@@ -22,7 +28,7 @@ M.pick_window = function()
 
   local options = {
     hint = "floating-big-letter",
-    prompt_message = "",
+    show_prompt = false,
 
     selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
 
