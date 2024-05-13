@@ -15,6 +15,9 @@ map("n", "<A-k>", "5gk", { desc = "Navigation move cursor to line 5x upward" })
 map("n", "<A-h>", "b", { desc = "Navigation move cursor back a word" })
 map("n", "<A-l>", "w", { desc = "Navigation move cursor forward a word" })
 
+map("v", "j", "gj", { desc = "Navigation move cursor to line downward" })
+map("v", "k", "gk", { desc = "Navigation move cursor to line upward" })
+
 -- jumplist
 map("n", "<A-Left>", "<C-O>zz", { desc = "Jumplist move back" })
 map("n", "<A-Right>", "<C-I>zz", { desc = "Jumplist move forward" })
