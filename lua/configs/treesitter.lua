@@ -15,6 +15,7 @@ return {
     "python",
     "cmake",
     "make",
+    "regex",
     -- "comment",
     "yaml",
     "yang",

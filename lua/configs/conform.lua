@@ -1,5 +1,5 @@
 return {
-  lsp_fallback = true,
+  lsp_fallback = false,
   -- Define all formatters
   formatters_by_ft = {
     cmake = { "cmake_format" },
@@ -7,7 +7,7 @@ return {
     lua = { "stylua" },
     javascript = { { "prettierd", "prettier" } },
     python = { "autopep8" },
-    sh = { "beautysh" },
+    sh = { "shfmt" },
   },
   -- Set up format-on-save
   format_on_save = nil,
