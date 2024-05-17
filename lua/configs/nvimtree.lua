@@ -75,6 +75,8 @@ local on_attach = function(bufnr)
   vim.keymap.set("n", "Y", api.fs.copy.relative_path, opts "Copy Relative Path")
   vim.keymap.set("n", "gy", api.fs.copy.absolute_path, opts "Copy Absolute Path")
   vim.keymap.set("n", "ge", api.fs.copy.basename, opts "Copy Basename")
+
+  vim.keymap.set("n", "s", api.node.run.system, opts "Run System")
 end
 
 return {
