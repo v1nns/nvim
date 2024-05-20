@@ -5,8 +5,6 @@ local browse_files = function(opts)
   local Path = require "plenary.path"
   local async_oneshot_finder = require "telescope.finders.async_oneshot_finder"
 
-  vim.print "tnc"
-
   opts = opts or {}
 
   -- returns copy with properly set cwd for entry maker
