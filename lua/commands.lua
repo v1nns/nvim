@@ -114,10 +114,13 @@ M.setup_autocommands = function()
       "mason",
       "Trouble",
       "Lazy",
+      "DiffviewFiles",
     },
     callback = function()
-      -- disable ruler (aka virtual column)
-      -- require("virt-column").setup_buffer({ virtcolumn = "" })
+      if package.loaded["virt-column"] then
+        -- disable ruler (aka virtual column)
+        require("virt-column").setup_buffer { virtcolumn = "" }
+      end
 
       -- disable quickscope highlight
       vim.b.qs_local_disable = 1
