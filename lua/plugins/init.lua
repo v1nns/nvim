@@ -331,4 +331,11 @@ return {
     },
     opts = require "configs.fluttertools",
   },
+
+  -- tmux navigation
+  {
+    "alexghergh/nvim-tmux-navigation",
+    event = "VeryLazy",
+    opts = require "configs.tmuxnavigation",
+  },
 }
