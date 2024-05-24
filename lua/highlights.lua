@@ -120,6 +120,10 @@ M.add = {
   -- "DiffChange:DiffAdd",
   -- "DiffText:DiffAddText",
   DiffAddText = { bg = "#1c5458", fg = "none" },
+
+  -- noice
+  NoiceCmdlinePopupBorder = { fg = "#7dcfff" },
+  NoiceCmdlinePopupTitle = { fg = "#7dcfff", bold = true },
 }
 
 M.override = {
