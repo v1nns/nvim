@@ -79,13 +79,13 @@ map("n", "<leader>9", "<cmd> tabn 9 <CR>", { desc = "Tab go to tab 9" })
 map("n", "<leader>0", "<cmd> tabn 0 <CR>", { desc = "Tab go to tab 0" })
 
 -- git integration
-map("n", "<C-g>b", "<cmd> Gitsigns toggle_current_line_blame<CR>", { desc = "Git toggle blame" })
-map("n", "<C-g>s", "<cmd> Gitsigns preview_hunk<CR>", { desc = "Git show current hunk" })
-map("n", "<C-g>p", "<cmd> Gitsigns prev_hunk<CR>", { desc = "Git go to previous hunk" })
-map("n", "<C-g>n", "<cmd> Gitsigns next_hunk<CR>", { desc = "Git go to next hunk" })
-map("n", "<C-g>u", "<cmd> Gitsigns reset_hunk<CR>", { desc = "Git undo current hunk" })
-map("n", "<C-g>a", "<cmd> Gitsigns stage_hunk<CR>", { desc = "Git stage current hunk" })
-map("n", "<C-g>r", "<cmd> Gitsigns undo_stage_hunk<CR>", { desc = "Git unstage current hunk" })
+map("n", "<C-g>b", "<cmd> Gitsigns toggle_current_line_blame <CR>", { desc = "Git toggle blame" })
+map("n", "<C-g>s", "<cmd> Gitsigns preview_hunk <CR>", { desc = "Git show current hunk" })
+map("n", "<C-g>p", "<cmd> Gitsigns prev_hunk <CR>", { desc = "Git go to previous hunk" })
+map("n", "<C-g>n", "<cmd> Gitsigns next_hunk <CR>", { desc = "Git go to next hunk" })
+map("n", "<C-g>u", "<cmd> Gitsigns reset_hunk <CR>", { desc = "Git undo current hunk" })
+map("n", "<C-g>a", "<cmd> Gitsigns stage_hunk <CR>", { desc = "Git stage current hunk" })
+map("n", "<C-g>r", "<cmd> Gitsigns undo_stage_hunk <CR>", { desc = "Git unstage current hunk" })
 map("n", "<C-g>d", "<cmd> Gitsigns diffthis <CR>", { desc = "Git show diff on current buffer" })
 map("n", "<C-g>m", "<cmd> GitMessenger <CR>", { desc = "Git show commit message from current line" })
 map("n", "<leader>g", function()
@@ -104,7 +104,7 @@ end, { desc = "Git toggle diff view" })
 map("n", "<F2>", function()
   require "ui.renamer"()
 end, { desc = "LSP rename symbol" })
-map("n", "gr", "<cmd> TroubleToggle lsp_references<CR>", { desc = "LSP list all symbol references" })
+map("n", "gr", "<cmd> TroubleToggle lsp_references <CR>", { desc = "LSP list all symbol references" })
 map("n", "<leader>ld", function()
   vim.diagnostic.disable()
 end, { desc = "LSP disable lsp diagnostics" })
@@ -131,8 +131,8 @@ map(
 )
 
 -- text actions
-map("n", "<A-Down>", "<cmd> :m .+1<CR>==", { desc = "Text move line upwards" })
-map("n", "<A-Up>", "<cmd> :m .-2<CR>==", { desc = "Text move line downwards" })
+map("n", "<A-Down>", "<cmd> :m .+1 <CR>==", { desc = "Text move line upwards" })
+map("n", "<A-Up>", "<cmd> :m .-2 <CR>==", { desc = "Text move line downwards" })
 map("n", "<leader>fw", "<cmd> WrapTextAtColumn <CR>", { desc = "Text wrap paragraph" })
 map("v", "<leader>fw", "<cmd> WrapTextAtColumn <CR>", { desc = "Text wrap text selection" })
 map("n", "<leader>tt", "<cmd> Twilight <CR>", { desc = "Text toggle code dimming" })
@@ -150,13 +150,13 @@ map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "nvim-tree toggle fi
 map(
   "n",
   "<A-o>",
-  "<cmd> Telescope file_browser path=$HOME prompt_title=Open\\ folder<CR>",
+  "<cmd> Telescope file_browser path=$HOME prompt_title=Open\\ folder <CR>",
   { desc = "Telescope open folder" }
 )
-map("n", "<A-p>", "<cmd> Telescope find_files prompt_title=Open\\ file<CR>", { desc = "Telescope open file" })
-map("n", "<C-S-b>", "<cmd> Telescope marks<CR>", { desc = "Telescope open bookmarks" })
-map("n", "<C-S-f>", "<cmd> Telescope live_grep prompt_title=Search\\ all<CR>", { desc = "Telescope search all" })
-map("n", "<leader>b", "<cmd> Telescope buffers<CR>", { desc = "Telescope find buffers" })
+map("n", "<A-p>", "<cmd> Telescope find_files prompt_title=Open\\ file <CR>", { desc = "Telescope open file" })
+map("n", "<C-S-b>", "<cmd> Telescope marks <CR>", { desc = "Telescope open bookmarks" })
+map("n", "<C-S-f>", "<cmd> Telescope live_grep prompt_title=Search\\ all <CR>", { desc = "Telescope search all" })
+map("n", "<leader>b", "<cmd> Telescope buffers <CR>", { desc = "Telescope find buffers" })
 map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "Telescope search all" })
 map("n", "<C-g>c", "<cmd> Telescope git_commits <CR>", { desc = "Telescope git show commits" })
 map("n", "<C-g>t", "<cmd> Telescope git_status <CR>", { desc = "Telescope git show status" })
@@ -172,6 +172,10 @@ map(
 map("n", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
 map("i", "<A-y>", "<ESC><cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
 map("v", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
+
+-- word wrap
+map("n", "<leader>we", "<cmd> set wrap <CR>", { desc = "Util enable word wrapping" })
+map("n", "<leader>wd", "<cmd> set nowrap <CR>", { desc = "Util disable word wrapping" })
 
 -- Disable mappings
 -- local nomap = vim.keymap.del
