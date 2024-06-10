@@ -27,11 +27,15 @@ vim.opt.virtualedit = "all"
 
 if vim.g.neovide then
   -- Put anything you want to happen only in Neovide here
-  vim.o.guifont = "Hack Nerd Font Mono:h10:#h-normal"
+  vim.o.guifont = "JetBrainsMono NF:h11.5"
   vim.g.neovide_refresh_rate = 144
 
   vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_bottom = 0
   vim.g.neovide_padding_right = 0
   vim.g.neovide_padding_left = 0
+
+  vim.g.neovide_cursor_antialiasing = true
+  vim.g.neovide_font_hinting = "none"
+  vim.g.neovide_font_edging = "subpixelantialias"
 end
