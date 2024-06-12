@@ -19,6 +19,15 @@ vim.opt.sessionoptions = "buffers,tabpages,globals,curdir,folds,globals,help,tab
 -- allow virtual editing in all modes
 vim.opt.virtualedit = "all"
 
+-- enable treesitter-based folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldcolumn = "0"
+vim.opt.foldtext = ""
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = -1
+vim.opt.foldnestmax = 3
+
 -- to stabilize buffer content on windows (this change breaks :Telescope highlight)
 -- vim.opt.splitkeep="screen"
 
