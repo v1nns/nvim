@@ -115,6 +115,7 @@ map("n", "<leader>fm", function()
   require("conform").format { async = true, lsp_fallback = true }
 end, { desc = "LSP format code" })
 map("v", "<leader>fm", "gq", { desc = "LSP format code selection" })
+map("n", "<leader>q", "<cmd> Trouble diagnostics <CR>", { desc = "LSP show diagnostics" })
 
 -- search utils
 map(
@@ -168,7 +169,7 @@ map(
   { desc = "Telescope show all marks" }
 )
 
--- comment
+-- comment divider
 map("n", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
 map("i", "<A-y>", "<ESC><cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
 map("v", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "Divider add line" })
