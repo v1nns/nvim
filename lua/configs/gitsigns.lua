@@ -4,33 +4,12 @@ return {
   },
   current_line_blame_formatter = "<abbrev_sha> (<author>, <author_time:%Y-%m-%d>) <summary>",
   signs = {
-    add = { hl = "GitSignDiffAdd", text = "│", numhl = "GitSignsAddNr" },
-    change = {
-      hl = "GitSignDiffChange",
-      text = "│",
-      numhl = "GitSignsChangeNr",
-    },
-    delete = {
-      hl = "GitSignDiffDelete",
-      text = "󰍵",
-      numhl = "GitSignsDeleteNr",
-    },
-    topdelete = {
-      hl = "GitSignDiffDelete",
-      text = "‾",
-      numhl = "GitSignsDeleteNr",
-    },
-    changedelete = {
-      hl = "DiffChangeDelete",
-      text = "~",
-      numhl = "GitSignsChangeNr",
-    },
-    untracked = {
-      hl = "GitSignsAdd",
-      text = "│",
-      numhl = "GitSignsAddNr",
-      linehl = "GitSignsAddLn",
-    },
+    add = { text = "│" },
+    change = { text = "│" },
+    delete = { text = "󰍵" },
+    topdelete = { text = "‾" },
+    changedelete = { text = "~" },
+    untracked = { text = "│" },
   },
   _git_version = "2.43.0",
 }
