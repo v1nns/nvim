@@ -145,7 +145,7 @@ map("i", "<C-BS>", "<C-W>", { desc = "Text delete previous word" })
 -- map("n", "<leader>g", "<cmd>Neotree git_status toggle left <CR>", { desc = "Neotree toggle git status tree" })
 
 -- nvim-tree
-map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "nvim-tree toggle file tree" })
+map("n", "<leader>e", "<cmd> NvimTreeFindFileToggle <CR>", { desc = "nvim-tree toggle file tree" })
 
 -- telescope
 map(

@@ -23,7 +23,14 @@ return {
   -- use default file explorer again
   {
     "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeOpen", "NvimTreeClose" },
+    cmd = {
+      "NvimTreeToggle",
+      "NvimTreeFocus",
+      "NvimTreeOpen",
+      "NvimTreeClose",
+      "NvimTreeFindFile",
+      "NvimTreeFindFileToggle",
+    },
     opts = require "configs.nvimtree",
   },
 
