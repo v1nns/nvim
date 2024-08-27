@@ -179,5 +179,6 @@ map("n", "<leader>we", "<cmd> set wrap <CR>", { desc = "Util enable word wrappin
 map("n", "<leader>wd", "<cmd> set nowrap <CR>", { desc = "Util disable word wrapping" })
 
 -- Disable mappings
--- local nomap = vim.keymap.del
+local nomap = vim.keymap.del
 -- nomap("n", "<leader>b")
+nomap("t", "<C-c>")
