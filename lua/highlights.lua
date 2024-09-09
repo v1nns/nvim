@@ -108,7 +108,7 @@ M.add = {
 
   -- diffview
   DiffviewDiffAddAsDelete = { bg = "#3f2d3d", fg = "none" },
-  DiffviewDiffDelete = { bg = "none", fg = "#3B4252" },
+  DiffviewDiffDelete = { bg = "none", fg = "#3b4252" },
 
   -- Left panel
   -- "DiffChange:DiffAddAsDelete",
@@ -134,6 +134,11 @@ M.override = {
     fg = "#00ccfd",
     -- bg = "#ff34b3",
     -- fg = "#201148",
+  },
+
+  NvDashButtons = {
+    bg = "#16161e",
+    fg = "#7dcfff",
   },
 
   -- default highlight groups
