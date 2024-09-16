@@ -181,3 +181,24 @@ map("n", "<leader>wd", "<cmd> set nowrap <CR>", { desc = "Util disable word wrap
 -- Disable mappings
 -- local nomap = vim.keymap.del
 -- nomap("n", "<leader>b")
+
+-- Mapping based on filetype
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd("FileType", {
+  pattern = "qf",
+  callback = function(event)
+    map(
+      "n",
+      "<C-n>",
+      "<cmd>cn | wincmd p<CR>",
+      { desc = "Navigation move to next reference", buffer = event.buf, silent = true }
+    )
+    map(
+      "n",
+      "<C-p>",
+      "<cmd>cN | wincmd p<CR>",
+      { desc = "Navigation move to previous reference", buffer = event.buf, silent = true }
+    )
+  end,
+})
