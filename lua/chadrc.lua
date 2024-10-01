@@ -8,11 +8,6 @@ local highlights = require "highlights"
 local M = {}
 
 M.ui = {
-  hl_add = highlights.add,
-  hl_override = highlights.override,
-
-  theme = "tokyonight",
-  changed_themes = highlights.changed_themes,
   lsp_semantic_tokens = true,
 
   nvdash = require "ui.nvdash",
@@ -28,6 +23,12 @@ M.ui = {
 }
 
 M.base46 = {
+  theme = "tokyonight",
+
+  hl_add = highlights.add,
+  hl_override = highlights.override,
+  changed_themes = highlights.changed_themes,
+
   integrations = { "navic" },
 }
 
