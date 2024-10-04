@@ -179,8 +179,18 @@ map("n", "<leader>we", "<cmd> set wrap <CR>", { desc = "Util enable word wrappin
 map("n", "<leader>wd", "<cmd> set nowrap <CR>", { desc = "Util disable word wrapping" })
 
 -- Disable mappings
--- local nomap = vim.keymap.del
+local nomap = vim.keymap.del
 -- nomap("n", "<leader>b")
+
+nomap("n", "<C-c>") -- disable default keybind from NvChad
+map("n", "<C-c>", function()
+  local mode = vim.api.nvim_get_mode().mode
+
+  -- do not copy on terminal buffer
+  if mode ~= "nt" and mode ~= "ntT" and mode ~= "t" and mode ~= "!" then
+    vim.cmd "%y+"
+  end
+end, { desc = "General Copy whole file" })
 
 -- Mapping based on filetype
 local autocmd = vim.api.nvim_create_autocmd
