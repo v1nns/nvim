@@ -10,8 +10,6 @@ local M = {}
 M.ui = {
   lsp_semantic_tokens = true,
 
-  nvdash = require "ui.nvdash",
-
   statusline = require "ui.statusline",
 
   tabufline = {
@@ -31,5 +29,7 @@ M.base46 = {
 
   integrations = { "navic" },
 }
+
+M.nvdash = require "ui.nvdash"
 
 return M
