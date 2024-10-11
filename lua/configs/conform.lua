@@ -5,7 +5,7 @@ return {
     cmake = { "cmake_format" },
     cpp = { "clang_format" },
     lua = { "stylua" },
-    javascript = { { "prettierd", "prettier", stop_after_first = true } },
+    javascript = { "prettierd", "prettier", stop_after_first = true },
     python = { "autopep8" },
     sh = { "shfmt" },
   },

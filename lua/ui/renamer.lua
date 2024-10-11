@@ -8,7 +8,12 @@ local function apply(curr, win)
     local params = vim.lsp.util.make_position_params()
     params.newName = new_name
 
-    vim.lsp.buf_request(0, "textDocument/rename", params)
+    -- this is the old method, not good for renaming in a bigger project
+    -- vim.lsp.buf_request(0, "textDocument/rename", params)
+
+    -- rename all occurrences not only in the current buffer
+    vim.lsp.buf.rename(new_name)
+    vim.cmd ":wa"
   end
 end
 
