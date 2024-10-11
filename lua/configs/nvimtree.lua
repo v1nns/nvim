@@ -4,7 +4,7 @@ local open = function()
 
   -- if a directory, use default action to expand/collapse
   if node.nodes then
-    lib.expand_or_collapse(node, nil)
+    node:expand_or_collapse()
     return
   end
 

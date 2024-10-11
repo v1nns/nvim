@@ -305,6 +305,12 @@ M.setup_commands = function()
     vim.fn.setreg("+", path)
     vim.notify("Copied path to clipboard (" .. path .. ")")
   end, {})
+
+  -- install LSP dependencies
+  cmd("MasonInstallAll", function()
+    -- TODO: maybe run this command by default on first init
+    require("nvchad.mason").install_all()
+  end, {})
 end
 
 M.get_non_empty_buffers = function()

@@ -65,6 +65,7 @@ return {
           { find = "%d fewer lines" },
           { find = "%d more lines" },
           { find = "Direction cannot be zero" },
+          { find = "no parser for" },
         },
       },
       opts = { skip = true },
