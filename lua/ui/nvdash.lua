@@ -64,6 +64,7 @@ return {
   },
 
   buttons = {
+    { txt = " ", no_gap = true, rep = true },
     { txt = "  Open folder", keys = "Alt o", cmd = "Telescope file_browser prompt_title=Open\\ folder" },
     { txt = "  Open file", keys = "Alt p", cmd = "Telescope find_files prompt_title=Open\\ file hidden=true" },
     { txt = "  Recent folders", keys = "Alt r", cmd = 'lua require("resession").load(nil, { dir = "dirsession" })' },
