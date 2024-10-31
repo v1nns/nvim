@@ -1,6 +1,12 @@
 local open = function()
-  local lib = require "nvim-tree.lib"
-  local node = lib.get_node_at_cursor()
+  local core = require "nvim-tree.core"
+  local explorer = core.get_explorer()
+
+  if not explorer then
+    return
+  end
+
+  local node = explorer:get_node_at_cursor()
 
   -- if a directory, use default action to expand/collapse
   if node.nodes then
