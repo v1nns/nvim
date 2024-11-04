@@ -1,3 +1,8 @@
+local actions = require "telescope.actions"
+local previewers = require "telescope.previewers"
+local sorters = require("telescope.sorters")
+local state = require("telescope.actions.state")
+
 return {
   defaults = {
     prompt_prefix = "   ",
@@ -20,14 +25,14 @@ return {
       height = 0.80,
       preview_cutoff = 120,
     },
-    file_sorter = require("telescope.sorters").get_fzy_sorter,
+    file_sorter = sorters.get_fzy_sorter,
     file_ignore_patterns = {
       ".cache",
       ".git",
       "node_modules",
       "build",
     },
-    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+    generic_sorter = sorters.get_generic_fuzzy_sorter,
     path_display = { "truncate" },
     winblend = 0,
     border = true,
@@ -43,23 +48,25 @@ return {
     },
     color_devicons = true,
     set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    file_previewer = previewers.vim_buffer_cat.new,
+    grep_previewer = previewers.vim_buffer_vimgrep.new,
+    qflist_previewer = previewers.vim_buffer_qflist.new,
     -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+    buffer_previewer_maker = previewers.buffer_previewer_maker,
     mappings = {
       n = {
-        ["q"] = require("telescope.actions").close,
+        ["q"] = actions.close,
+
+        [":q<cr>"] = actions.close,
 
         ["<C-k>"] = function(prompt_bufnr)
           -- select previous entry
-          require("telescope.actions").move_selection_previous(prompt_bufnr)
+          actions.move_selection_previous(prompt_bufnr)
         end,
 
         ["<C-j>"] = function(prompt_bufnr)
           -- select next entry
-          require("telescope.actions").move_selection_next(prompt_bufnr)
+          actions.move_selection_next(prompt_bufnr)
         end,
 
         ["<C-BS>"] = { "<c-s-w>", type = "command" },
@@ -67,12 +74,12 @@ return {
       i = {
         ["<C-k>"] = function(prompt_bufnr)
           -- select previous entry
-          require("telescope.actions").move_selection_previous(prompt_bufnr)
+          actions.move_selection_previous(prompt_bufnr)
         end,
 
         ["<C-j>"] = function(prompt_bufnr)
           -- select next entry
-          require("telescope.actions").move_selection_next(prompt_bufnr)
+          actions.move_selection_next(prompt_bufnr)
         end,
 
         ["<C-BS>"] = { "<c-s-w>", type = "command" },
@@ -97,8 +104,7 @@ return {
       mappings = {
         i = {
           ["<CR>"] = function(prompt_bufnr)
-            local actions = require "telescope.actions"
-            local entry = require("telescope.actions.state").get_selected_entry()
+            local entry = state.get_selected_entry()
 
             -- Use default action if entry does not contain a path
             if not entry.path then
@@ -136,7 +142,7 @@ return {
       end,
       mappings = {
         i = {
-          ["<CR>"] = require("telescope.actions").select_default + require("telescope.actions").center,
+          ["<CR>"] = actions.select_default + actions.center,
         },
       },
     },
@@ -144,7 +150,7 @@ return {
       symbol_width = 80,
       mappings = {
         i = {
-          ["<CR>"] = require("telescope.actions").select_default + require("telescope.actions").center,
+          ["<CR>"] = actions.select_default + actions.center,
         },
       },
     },
@@ -152,8 +158,7 @@ return {
       mappings = {
         i = {
           ["<C-d>"] = function(prompt_bufnr)
-            local action_state = require "telescope.actions.state"
-            local current_picker = action_state.get_current_picker(prompt_bufnr)
+            local current_picker = state.get_current_picker(prompt_bufnr)
 
             current_picker:delete_selection(function(selection)
               local ok = pcall(vim.api.nvim_buf_delete, selection.bufnr, { force = true })
