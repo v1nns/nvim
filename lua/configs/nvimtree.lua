@@ -25,6 +25,31 @@ local open = function()
   vim.cmd("edit " .. vim.fn.fnameescape(path))
 end
 
+local duplicate_file = function()
+  local core = require "nvim-tree.core"
+  local explorer = core.get_explorer()
+
+  if not explorer then
+    return
+  end
+
+  local node = explorer:get_node_at_cursor()
+
+  -- if a directory, do nothing
+  if node.nodes then
+    return
+  end
+
+  -- get filepath
+  local filepath = node.absolute_path
+  if node.link_to then
+    filepath = node.link_to
+  end
+
+  local command = "!cp " .. filepath .. " " .. filepath .. "1"
+  vim.cmd(command)
+end
+
 local on_attach = function(bufnr)
   local api = require "nvim-tree.api"
 
@@ -81,6 +106,7 @@ local on_attach = function(bufnr)
   vim.keymap.set("n", "Y", api.fs.copy.relative_path, opts "Copy Relative Path")
   vim.keymap.set("n", "gy", api.fs.copy.absolute_path, opts "Copy Absolute Path")
   vim.keymap.set("n", "ge", api.fs.copy.basename, opts "Copy Basename")
+  vim.keymap.set("n", "<C-y>", duplicate_file, opts "Copy Basename")
 
   vim.keymap.set("n", "s", api.node.run.system, opts "Run System")
 end

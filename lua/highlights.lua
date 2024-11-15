@@ -1,6 +1,12 @@
 local M = {}
 
 M.add = {
+  -- nvdash
+  NvDashLazy = {
+    fg = "#ff34b3",
+    -- bg = "#201148",
+  },
+
   -- quickscope highlight colors
   EyelinerPrimary = {
     fg = "#afff5f",

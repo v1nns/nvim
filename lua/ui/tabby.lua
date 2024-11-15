@@ -15,9 +15,15 @@ local options = {
   tab_name = {
     name_fallback = function(tabid)
       local cur_win = api.get_tab_current_win(tabid)
-      local buf_name = vim.fn.bufname(vim.fn.winbufnr(cur_win))
+      local full_name = vim.fn.bufname(vim.fn.winbufnr(cur_win))
 
-      return vim.fn.fnamemodify(buf_name, ":t")
+      local buf_name = vim.fn.fnamemodify(full_name, ":t")
+
+      if buf_name == "" or buf_name == " " then
+        buf_name = "<empty>"
+      end
+
+      return buf_name
     end,
   },
 }
