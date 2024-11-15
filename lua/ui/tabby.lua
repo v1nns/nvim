@@ -1,5 +1,4 @@
 local api = require "tabby.module.api"
-local buf_name = require "tabby.feature.buf_name"
 
 local M = {}
 
@@ -16,9 +15,9 @@ local options = {
   tab_name = {
     name_fallback = function(tabid)
       local cur_win = api.get_tab_current_win(tabid)
-      local buffer = buf_name.get_tail_name(cur_win)
+      local buf_name = vim.fn.bufname(vim.fn.winbufnr(cur_win))
 
-      return buffer
+      return vim.fn.fnamemodify(buf_name, ":t")
     end,
   },
 }

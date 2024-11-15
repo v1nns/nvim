@@ -207,6 +207,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
+    tag = "v3.8.2",
     opts = {
       indent = { char = "▏", highlight = "IblChar" },
       scope = { char = "▏", highlight = "IblScopeChar" },
