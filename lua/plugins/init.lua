@@ -362,4 +362,17 @@ return {
     event = "VeryLazy",
     opts = require "configs.tmuxnavigation",
   },
+
+  -- read/write files with sudo command
+  {
+    "lambdalisue/vim-suda",
+    event = "VeryLazy",
+    cmd = {
+      "SudaRead",
+      "SudaWrite",
+    },
+    init = function()
+      vim.g.suda_smart_edit = 1
+    end,
+  },
 }
