@@ -32,5 +32,9 @@ return {
     -- python
     "autopep8",
     "python-lsp-server",
+
+    -- rust
+    "rust-analyzer",
+    -- "rustfmt" -- installed through rustup
   },
 }

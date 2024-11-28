@@ -8,6 +8,7 @@ return {
     javascript = { "prettierd", "prettier", stop_after_first = true },
     python = { "autopep8" },
     sh = { "shfmt" },
+    rust = { "rustfmt" },
   },
   -- Set up format-on-save
   format_on_save = nil,
