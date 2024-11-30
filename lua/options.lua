@@ -19,9 +19,11 @@ vim.opt.sessionoptions = "buffers,tabpages,globals,curdir,folds,globals,help,tab
 -- allow virtual editing in all modes
 vim.opt.virtualedit = "all"
 
--- enable treesitter-based folding
+-- use built-in LSP folding
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
+-- enable treesitter-based folding
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldcolumn = "0"
 vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
