@@ -178,7 +178,10 @@ map("v", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "Divider add line"
 map("n", "<leader>we", "<cmd> set wrap <CR>", { desc = "Util enable word wrapping" })
 map("n", "<leader>wd", "<cmd> set nowrap <CR>", { desc = "Util disable word wrapping" })
 
--- Disable mappings
+-- dismiss any noice popup
+map("n", "<Esc>", "<cmd> NoiceDismiss <CR>", { desc = "Noice dismiss popups" })
+
+-- disable mappings
 local nomap = vim.keymap.del
 -- nomap("n", "<leader>b")
 
@@ -192,7 +195,7 @@ map("n", "<C-c>", function()
   end
 end, { desc = "General Copy whole file" })
 
--- Mapping based on filetype
+-- mapping based on filetype
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("FileType", {
