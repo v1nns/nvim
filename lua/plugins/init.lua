@@ -248,14 +248,24 @@ return {
     end,
   },
 
+  -- create predefined window layouts
+  {
+    "folke/edgy.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.opt.laststatus = 3
+      vim.opt.splitkeep = "screen"
+    end,
+    opts = require "configs.edgy",
+  },
+
   -- enhance code diagnostics
   {
     "folke/trouble.nvim",
+    branch = "dev",
     dependencies = "nvim-tree/nvim-web-devicons",
     cmd = "Trouble",
-    init = function()
-      require("trouble").setup()
-    end,
+    opts = { auto_preview = false },
   },
 
   -- smooth scrolling
@@ -374,5 +384,12 @@ return {
     init = function()
       vim.g.suda_smart_edit = 1
     end,
+  },
+
+  -- animation to yank operation
+  {
+    "rachartier/tiny-glimmer.nvim",
+    event = "TextYankPost",
+    opts = require "configs.tinyglimmer"
   },
 }

@@ -104,7 +104,7 @@ end, { desc = "Git toggle diff view" })
 map("n", "<F2>", function()
   require "ui.renamer"()
 end, { desc = "LSP rename symbol" })
-map("n", "gr", "<cmd> TroubleToggle lsp_references <CR>", { desc = "LSP list all symbol references" })
+map("n", "gr", "<cmd> Trouble lsp_references toggle <CR>", { desc = "LSP list all symbol references" })
 map("n", "<leader>ld", function()
   vim.diagnostic.disable()
 end, { desc = "LSP disable lsp diagnostics" })
@@ -115,7 +115,25 @@ map("n", "<leader>fm", function()
   require("conform").format { async = true, lsp_fallback = true }
 end, { desc = "LSP format code" })
 map("v", "<leader>fm", "gq", { desc = "LSP format code selection" })
-map("n", "<leader>q", "<cmd> Trouble diagnostics <CR>", { desc = "LSP show diagnostics" })
+
+-- Trouble
+-- map("n", "<C-S-o>", "<cmd> Trouble symbols toggle <CR>", { desc = "LSP list all symbols " })
+map("n", "<leader>cd", "<cmd> Trouble diagnostics toggle <CR>", { desc = "Trouble show diagnostics" })
+map(
+  "n",
+  "<leader>cD",
+  "<cmd> Trouble diagnostics toggle filter.buf=0 <CR>",
+  { desc = "Trouble show diagnostics per buffer" }
+)
+map("n", "<leader>cs", "<cmd> Trouble symbols toggle focus=true <CR>", { desc = "Trouble lsp show symbols" })
+map(
+  "n",
+  "<leader>cl",
+  "<cmd> Trouble lsp toggle focus=true win.position=right <CR>",
+  { desc = "Trouble toggle lsp menu" }
+)
+map("n", "<leader>co", "<cmd> Trouble loclist toggle <CR>", { desc = "Trouble show location list" })
+map("n", "<leader>cq", "<cmd> Trouble qflist toggle <CR>", { desc = "Trouble show quickfix list" })
 
 -- search utils
 map(
@@ -161,7 +179,6 @@ map("n", "<leader>b", "<cmd> Telescope buffers <CR>", { desc = "Telescope find b
 map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "Telescope search all" })
 map("n", "<C-g>c", "<cmd> Telescope git_commits <CR>", { desc = "Telescope git show commits" })
 map("n", "<C-g>t", "<cmd> Telescope git_status <CR>", { desc = "Telescope git show status" })
-map("n", "<C-S-o>", "<cmd> Telescope lsp_document_symbols <CR>", { desc = "Telescope show lsp symbols" })
 map(
   "n",
   ";",
@@ -179,7 +196,10 @@ map("n", "<leader>we", "<cmd> set wrap <CR>", { desc = "Util enable word wrappin
 map("n", "<leader>wd", "<cmd> set nowrap <CR>", { desc = "Util disable word wrapping" })
 
 -- dismiss any noice popup
-map("n", "<Esc>", "<cmd> NoiceDismiss <CR>", { desc = "Noice dismiss popups" })
+map("n", "<Esc>", function()
+  vim.cmd "NoiceDismiss"
+  vim.cmd "nohlsearch"
+end, { desc = "Noice dismiss popups" })
 
 -- disable mappings
 local nomap = vim.keymap.del
