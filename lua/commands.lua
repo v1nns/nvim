@@ -132,6 +132,75 @@ M.setup_autocommands = function()
       vim.g.git_messenger_popup_content_margins = false
     end,
   })
+
+  -- show cursor line only in active window
+  autocmd({ "InsertLeave", "WinEnter" }, {
+    callback = function()
+      if vim.w.auto_cursorline then
+        vim.wo.cursorline = true
+        vim.w.auto_cursorline = nil
+      end
+    end,
+  })
+
+  -- hide cursor in unfocused window
+  autocmd({ "InsertEnter", "WinLeave" }, {
+    callback = function()
+      if vim.wo.cursorline then
+        vim.w.auto_cursorline = true
+        vim.wo.cursorline = false
+      end
+    end,
+  })
+
+  -- enable window keybindings on terminal pt1
+  autocmd({ "TermOpen" }, {
+    pattern = { "*" },
+    callback = function(event)
+      vim.opt_local.cursorline = false
+      local code_term_esc = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
+      for _, key in ipairs { "h", "j", "k", "l" } do
+        vim.keymap.set("t", "<C-" .. key .. ">", function()
+          local code_dir = vim.api.nvim_replace_termcodes("<C-" .. key .. ">", true, true, true)
+          vim.api.nvim_feedkeys(code_term_esc .. code_dir, "t", true)
+        end, { noremap = true })
+      end
+      if vim.bo.filetype == "" then
+        vim.api.nvim_set_option_value("filetype", "terminal", { buf = event.buf })
+        if vim.g.catgoose_terminal_enable_startinsert == 1 then
+          vim.cmd.startinsert()
+        end
+      end
+    end,
+  })
+
+  -- enable window keybindings on terminal pt2
+  autocmd({ "WinEnter" }, {
+    pattern = { "*" },
+    callback = function()
+      if vim.bo.filetype == "terminal" and vim.g.catgoose_terminal_enable_startinsert then
+        vim.cmd.startinsert()
+      end
+    end,
+  })
+
+  -- fix scrolloff on EOF
+  autocmd({ "CursorMoved", "CursorMovedI", "WinScrolled" }, {
+    callback = function()
+      if vim.api.nvim_win_get_config(0).relative ~= "" then
+        return -- Ignore floating windows
+      end
+
+      local win_height = vim.fn.winheight(0)
+      local scrolloff = math.min(vim.o.scrolloff, math.floor(win_height / 2))
+      local visual_distance_to_eof = win_height - vim.fn.winline()
+
+      if visual_distance_to_eof < scrolloff then
+        local win_view = vim.fn.winsaveview()
+        vim.fn.winrestview { topline = win_view.topline + scrolloff - visual_distance_to_eof }
+      end
+    end,
+  })
 end
 
 -- Commands
