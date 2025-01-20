@@ -50,7 +50,19 @@ vim.opt.foldnestmax = 3
 --   },
 -- }
 
-vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+vim.opt.clipboard = "unnamedplus"
+
+-- make zsh files recognized as sh for bash-ls & treesitter
+vim.filetype.add {
+  extension = {
+    zsh = "sh",
+    sh = "sh",
+  },
+  filename = {
+    [".zshrc"] = "sh",
+    [".zshenv"] = "sh",
+  },
+}
 
 -- to stabilize buffer content on windows (this change breaks :Telescope highlight)
 -- vim.opt.splitkeep="screen"
