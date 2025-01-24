@@ -62,21 +62,6 @@ M.setup_autocommands = function()
     end,
   })
 
-  -- highlight config files
-  autocmd({ "BufEnter", "BufRead" }, { pattern = "*.*conf*", command = "setf dosini" })
-
-  -- highlight rofi theme files
-  autocmd({ "BufEnter", "BufRead" }, { pattern = "*.rasi", command = "setf css" })
-
-  -- highlight c++ files
-  -- autocmd(
-  --     { "BufEnter", "BufRead" },
-  --     {
-  --         pattern = { "*.cc", "*.h", "*.cpp" },
-  --         command = "setf cpp | setlocal spell spelllang=en_us",
-  --     }
-  -- )
-
   -- auto-wrap comments, don't auto insert comment on o/O and enter
   autocmd("FileType", {
     command = "set formatoptions-=cro",

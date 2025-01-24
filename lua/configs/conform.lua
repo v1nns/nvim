@@ -9,6 +9,7 @@ return {
     python = { "autopep8" },
     sh = { "shfmt" },
     rust = { "rustfmt" },
+    yaml = { "yamlfmt" },
   },
   -- Set up format-on-save
   format_on_save = nil,

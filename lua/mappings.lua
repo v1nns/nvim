@@ -201,6 +201,9 @@ map("n", "<Esc>", function()
   vim.cmd "nohlsearch"
 end, { desc = "Noice dismiss popups" })
 
+-- code assistant
+map("n", "<leader>cc", "<cmd> CodeCompanionChat toggle <CR>", { desc = "Code toggle code assistant chat" })
+
 -- disable mappings
 local nomap = vim.keymap.del
 -- nomap("n", "<leader>b")

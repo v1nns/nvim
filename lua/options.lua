@@ -52,7 +52,21 @@ vim.opt.foldnestmax = 3
 
 vim.opt.clipboard = "unnamedplus"
 
--- make zsh files recognized as sh for bash-ls & treesitter
+-- syntax highlight config files
+vim.filetype.add {
+  pattern = {
+    ["*.*conf*"] = "dosini",
+  },
+}
+
+-- syntax highlight rofi theme files
+vim.filetype.add {
+  extension = {
+    rasi = "css",
+  },
+}
+
+-- syntax highlight for zsh files
 vim.filetype.add {
   extension = {
     zsh = "sh",
@@ -63,6 +77,23 @@ vim.filetype.add {
     [".zshenv"] = "sh",
   },
 }
+
+-- syntax highlight for txt files
+vim.filetype.add {
+  extension = {
+    txt = "log",
+  },
+}
+
+-- OLD CONFIG
+-- highlight c++ files
+-- autocmd(
+--     { "BufEnter", "BufRead" },
+--     {
+--         pattern = { "*.cc", "*.h", "*.cpp" },
+--         command = "setf cpp | setlocal spell spelllang=en_us",
+--     }
+-- )
 
 -- to stabilize buffer content on windows (this change breaks :Telescope highlight)
 -- vim.opt.splitkeep="screen"

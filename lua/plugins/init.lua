@@ -357,7 +357,6 @@ return {
   -- flutter utilities
   {
     "akinsho/flutter-tools.nvim",
-    event = "VeryLazy",
     after = "nvim-lspconfig",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -369,14 +368,12 @@ return {
   -- tmux navigation
   {
     "alexghergh/nvim-tmux-navigation",
-    event = "VeryLazy",
     opts = require "configs.tmuxnavigation",
   },
 
   -- read/write files with sudo command
   {
     "lambdalisue/vim-suda",
-    event = "VeryLazy",
     cmd = {
       "SudaRead",
       "SudaWrite",
@@ -390,6 +387,23 @@ return {
   {
     "rachartier/tiny-glimmer.nvim",
     event = "TextYankPost",
-    opts = require "configs.tinyglimmer"
+    opts = require "configs.tinyglimmer",
+  },
+
+  -- code assistant using local LLM
+  {
+    "olimorris/codecompanion.nvim",
+    cmd = {
+      "CodeCompanion",
+      "CodeCompanionActions",
+      "CodeCompanionChat",
+      "CodeCompanionCmd",
+    },
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+      { "nvim-lua/plenary.nvim" },
+      { "hrsh7th/nvim-cmp" },
+    },
+    opts = require "configs.codecompanion",
   },
 }
