@@ -262,7 +262,6 @@ return {
   -- enhance code diagnostics
   {
     "folke/trouble.nvim",
-    branch = "dev",
     dependencies = "nvim-tree/nvim-web-devicons",
     cmd = "Trouble",
     opts = { auto_preview = false },

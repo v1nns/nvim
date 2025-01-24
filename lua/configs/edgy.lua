@@ -45,4 +45,27 @@ return {
   animate = {
     enabled = false,
   },
+
+  keys = {
+    -- increase width
+    ["<C-S-w>"] = function(win)
+      win:resize("width", 2)
+    end,
+    -- decrease width
+    ["<C-S-x>"] = function(win)
+      win:resize("width", -2)
+    end,
+    -- increase height
+    ["<C-S-y>"] = function(win)
+      win:resize("height", 2)
+    end,
+    -- decrease height
+    ["<C-S-z>"] = function(win)
+      win:resize("height", -2)
+    end,
+    -- reset all custom sizing
+    ["<C-w>r"] = function(win)
+      win.view.edgebar:equalize()
+    end,
+  },
 }

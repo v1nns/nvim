@@ -122,14 +122,22 @@ map("n", "<leader>cd", "<cmd> Trouble diagnostics toggle <CR>", { desc = "Troubl
 map(
   "n",
   "<leader>cD",
-  "<cmd> Trouble diagnostics toggle filter.buf=0 <CR>",
+  "<cmd> Trouble diagnostics toggle filter.buf=0 pinned=true <CR>",
   { desc = "Trouble show diagnostics per buffer" }
 )
-map("n", "<leader>cs", "<cmd> Trouble symbols toggle focus=true <CR>", { desc = "Trouble lsp show symbols" })
+map("n", "<leader>cs", "<cmd> Trouble symbols toggle focus=true pinned=true <CR>", { desc = "Trouble lsp show symbols" })
+-- TODO: think about this
+-- map("n", "<leader>cs", function()
+--   vim.cmd ":Trouble symbols toggle focus=true"
+--
+--   vim.api.nvim_win_call(0, function()
+--     vim.cmd "wincmd ="
+--   end)
+-- end, { desc = "Trouble lsp show symbols" })
 map(
   "n",
   "<leader>cl",
-  "<cmd> Trouble lsp toggle focus=true win.position=right <CR>",
+  "<cmd> Trouble lsp toggle focus=true pinned=true win.position=right <CR>",
   { desc = "Trouble toggle lsp menu" }
 )
 map("n", "<leader>co", "<cmd> Trouble loclist toggle <CR>", { desc = "Trouble show location list" })
