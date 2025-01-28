@@ -104,7 +104,6 @@ end, { desc = "Git toggle diff view" })
 map("n", "<F2>", function()
   require "ui.renamer"()
 end, { desc = "LSP rename symbol" })
-map("n", "gr", "<cmd> Trouble lsp_references toggle <CR>", { desc = "LSP list all symbol references" })
 map("n", "<leader>ld", function()
   vim.diagnostic.disable()
 end, { desc = "LSP disable lsp diagnostics" })
@@ -126,6 +125,7 @@ map(
   { desc = "Trouble show diagnostics per buffer" }
 )
 map("n", "<leader>cs", "<cmd> Trouble symbols toggle focus=true pinned=true <CR>", { desc = "Trouble lsp show symbols" })
+map("n", "<leader>cr", "<cmd> Trouble lsp_references toggle focus=true pinned=true <CR>", { desc = "Trouble list all symbol references" })
 -- TODO: think about this
 -- map("n", "<leader>cs", function()
 --   vim.cmd ":Trouble symbols toggle focus=true"
