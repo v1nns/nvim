@@ -20,6 +20,12 @@ return {
     },
   },
 
+  -- override default keys to show whichkey keybinding window
+  {
+    "folke/which-key.nvim",
+    keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g", "z" },
+  },
+
   -- use default file explorer again
   {
     "nvim-tree/nvim-tree.lua",
