@@ -52,7 +52,11 @@ M.setup_autocommands = function()
 
   -- preserve equal size for splitted windows after resize
   autocmd({ "VimResized" }, {
-    command = "wincmd =",
+    callback = function()
+      local current_tab = vim.api.nvim_get_current_tabpage()
+      vim.cmd "tabdo wincmd ="
+      vim.api.nvim_set_current_tabpage(current_tab)
+    end,
   })
 
   -- open nvdash on startup
