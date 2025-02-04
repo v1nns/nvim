@@ -114,9 +114,9 @@ map("n", "<leader>fm", function()
   require("conform").format { async = true, lsp_fallback = true }
 end, { desc = "LSP format code" })
 map("v", "<leader>fm", "gq", { desc = "LSP format code selection" })
+map("n", "<C-S-o>", "<cmd> Telescope lsp_document_symbols <CR>", { desc = "LSP list all symbols " })
 
 -- Trouble
--- map("n", "<C-S-o>", "<cmd> Trouble symbols toggle <CR>", { desc = "LSP list all symbols " })
 map("n", "<leader>cd", "<cmd> Trouble diagnostics toggle <CR>", { desc = "Trouble show diagnostics" })
 map(
   "n",
@@ -124,16 +124,18 @@ map(
   "<cmd> Trouble diagnostics toggle filter.buf=0 pinned=true <CR>",
   { desc = "Trouble show diagnostics per buffer" }
 )
-map("n", "<leader>cs", "<cmd> Trouble symbols toggle focus=true pinned=true <CR>", { desc = "Trouble lsp show symbols" })
-map("n", "<leader>cr", "<cmd> Trouble lsp_references toggle focus=true pinned=true <CR>", { desc = "Trouble list all symbol references" })
--- TODO: think about this
--- map("n", "<leader>cs", function()
---   vim.cmd ":Trouble symbols toggle focus=true"
---
---   vim.api.nvim_win_call(0, function()
---     vim.cmd "wincmd ="
---   end)
--- end, { desc = "Trouble lsp show symbols" })
+map(
+  "n",
+  "<leader>cs",
+  "<cmd> Trouble symbols toggle focus=true pinned=true <CR>",
+  { desc = "Trouble lsp show symbols" }
+)
+map(
+  "n",
+  "<leader>cr",
+  "<cmd> Trouble lsp_references toggle focus=true pinned=true <CR>",
+  { desc = "Trouble list all symbol references" }
+)
 map(
   "n",
   "<leader>cl",
@@ -183,7 +185,12 @@ map(
 map("n", "<A-p>", "<cmd> Telescope find_files prompt_title=Open\\ file <CR>", { desc = "Telescope open file" })
 map("n", "<C-S-b>", "<cmd> Telescope marks <CR>", { desc = "Telescope open bookmarks" })
 map("n", "<C-S-f>", "<cmd> Telescope live_grep prompt_title=Search\\ all <CR>", { desc = "Telescope search all" })
-map("n", "<leader>b", "<cmd> Telescope buffers <CR>", { desc = "Telescope find buffers" })
+map(
+  "n",
+  "<leader>b",
+  "<cmd> Telescope buffers show_all_buffers=true sort_mru=true<CR>",
+  { desc = "Telescope find buffers" }
+)
 map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "Telescope search all" })
 map("n", "<C-g>c", "<cmd> Telescope git_commits <CR>", { desc = "Telescope git show commits" })
 map("n", "<C-g>t", "<cmd> Telescope git_status <CR>", { desc = "Telescope git show status" })

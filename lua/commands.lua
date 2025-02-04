@@ -33,9 +33,9 @@ M.setup_autocommands = function()
   -- close some stuff before exitting and save a session
   autocmd({ "VimLeavePre" }, {
     callback = function()
-      vim.cmd ":DiffviewClose"
+      vim.cmd "DiffviewClose"
       -- vim.cmd ":tabdo Neotree close"
-      vim.cmd ":NvimTreeClose"
+      vim.cmd "NvimTreeClose"
 
       -- do not save session if current buffer is a gitcommit
       if vim.bo.filetype == "gitcommit" then
@@ -220,10 +220,17 @@ M.setup_commands = function()
 
   -- close current active buffer
   cmd("CloseBuffer", function()
-    -- TODO: WIP
-    -- change to previous and delete alternate buffer
-    vim.cmd "bprev"
-    vim.cmd "bdelete #"
+    local count = M.get_non_empty_buffers()
+
+    if count > 1 then
+      -- change to last buffer and delete previous
+      vim.cmd "bprev"
+      vim.cmd "bd #"
+    else
+      -- create new buffer and delete previous
+      vim.cmd "enew"
+      vim.cmd "bd #"
+    end
 
     M.show_dashboard()
   end, {})
@@ -233,7 +240,7 @@ M.setup_commands = function()
     -- local neotree = require "neo-tree.command"
     -- must hide neo-tree before closing all buffers
     -- neotree.execute { action = "close" }
-    vim.cmd ":NvimTreeClose"
+    vim.cmd "NvimTreeClose"
 
     -- close all buffers
     local count = 0
@@ -245,7 +252,7 @@ M.setup_commands = function()
       vim.cmd "%bd"
       M.show_dashboard()
     else
-      vim.cmd ":windo bd"
+      vim.cmd "windo bd"
     end
   end, {})
 
@@ -381,7 +388,7 @@ M.get_non_empty_buffers = function()
 
       -- Do not count new buffer or nvdashboard
       -- NOTE: it looks like neo-tree filesystem does not appear in this list, so we are fine
-      if name ~= nil and name ~= "" and filetype ~= "nvdash" then
+      if name ~= nil and name ~= "" and filetype ~= "" and filetype ~= "nvdash" then
         count_non_empty = count_non_empty + 1
       end
 
@@ -404,7 +411,9 @@ M.show_dashboard = function()
   -- end
 
   if count == 0 then
-    vim.cmd "Nvdash"
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.bo.buflisted = true
+    require("nvchad.nvdash").open(buf)
   end
 end
 
