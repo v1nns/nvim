@@ -233,6 +233,13 @@ map("n", "<C-c>", function()
   end
 end, { desc = "General Copy whole file" })
 
+-- disable default keybind from NvChad for cursor navigation
+nomap("i", "<C-b>")
+
+map("i", "<C-b>", "<C-o>^", { desc = "Navigation move beginning of line" })
+map("v", "<C-b>", "^", { desc = "Navigation move beginning of line" })
+map("v", "<C-e>", "<End>", { desc = "Navigation move end of line" })
+
 -- mapping based on filetype
 local autocmd = vim.api.nvim_create_autocmd
 

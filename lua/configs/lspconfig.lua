@@ -1,4 +1,3 @@
--- TODO: revisit this
 -- lsp configs
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
