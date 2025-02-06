@@ -70,7 +70,7 @@ local on_attach = function(bufnr)
 
   vim.keymap.set("n", "<BS>", api.node.navigate.parent_close, opts "Close Directory")
   vim.keymap.set("n", "E", api.tree.expand_all, opts "Expand All")
-  vim.keymap.set("n", "W", api.tree.collapse_all, opts "Collapse")
+  vim.keymap.set("n", "W", api.tree.collapse_all, opts "Collapse All")
 
   vim.keymap.set("n", "a", api.fs.create, opts "Create File Or Directory")
 

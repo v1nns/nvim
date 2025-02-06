@@ -1,7 +1,7 @@
 require "nvchad.options"
 
 -- to enable cursorline!
-vim.o.cursorlineopt = "both"
+vim.opt.cursorlineopt = "both"
 
 -- enable title
 vim.opt.title = true
@@ -11,7 +11,7 @@ vim.opt.list = true
 vim.opt.listchars = { trail = "~", tab = "» " }
 
 -- change character and highlight group for git diff view
-vim.opt.fillchars = { eob = " ", diff = "⣿" }
+vim.opt.fillchars = { eob = " ", diff = "⣿", foldopen = "", foldclose = "" }
 
 -- set info to be saved with the underlying :mksession
 vim.opt.sessionoptions = "buffers,tabpages,globals,curdir,folds,globals,help,tabpages,terminal,winsize"
@@ -20,15 +20,37 @@ vim.opt.sessionoptions = "buffers,tabpages,globals,curdir,folds,globals,help,tab
 vim.opt.virtualedit = "all"
 
 -- use built-in LSP folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
+-- vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
+
 -- enable treesitter-based folding
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldcolumn = "0"
-vim.opt.foldtext = ""
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldmethod = "expr"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = -1
 vim.opt.foldnestmax = 3
+
+-- custom UI for folding column (to hide folding level)
+local function get_fold(lnum)
+  local fn = vim.fn
+  local fc = vim.opt.fillchars:get()
+
+  if fn.foldlevel(lnum) <= fn.foldlevel(lnum - 1) then
+    return " "
+  end
+  return fn.foldclosed(lnum) == -1 and fc.foldopen or fc.foldclose
+end
+
+_G.get_statuscol = function()
+  if vim.opt_local.signcolumn:get() == "yes" then
+    return "%s%l%= " .. get_fold(vim.v.lnum) .. " "
+  else
+    return ""
+  end
+end
+
+-- to enable this custom UI, change foldcolumn to 1 and uncomment opt.statuscolumn
+vim.opt.foldcolumn = "0"
+-- vim.opt.statuscolumn = "%!v:lua.get_statuscol()"
 
 -- use system clipboard via OSC52 (even in remote SSH session)
 -- local function paste()
