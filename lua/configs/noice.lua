@@ -7,7 +7,12 @@ return {
       ["cmp.entry.get_documentation"] = false,
     },
     hover = { enabled = false },
-    signature = { enabled = false },
+    signature = {
+      enabled = false,
+      auto_open = {
+        enabled = false,
+      },
+    },
   },
   -- you can enable a preset for easier configuration
   presets = {
