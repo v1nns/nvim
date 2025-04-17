@@ -376,6 +376,21 @@ M.setup_commands = function()
     -- TODO: maybe run this command by default on first init
     require("nvchad.mason").install_all()
   end, {})
+
+  -- clear all swap files associated with current project
+  cmd("ClearSwapFiles", function()
+    -- Get default swap directory
+    local swap_dir = vim.fn.stdpath "state" .. "/swap/"
+
+    -- Get current working directory and convert path to swap file format
+    local project_dir = vim.fn.getcwd()
+    local pattern = project_dir:gsub("/", "\\%%")
+
+    -- Construct find command to locate and delete matching swap files
+    local command = 'silent !find "' .. swap_dir .. '" -type f -name "*' .. pattern .. '*.sw[klmnop]" -delete'
+    vim.cmd(command)
+    print(string.format("Deleted swap files for project: %s", project_dir))
+  end, {})
 end
 
 M.get_non_empty_buffers = function()
