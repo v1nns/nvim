@@ -64,7 +64,7 @@ map("n", "<C-0>", "<cmd> :0wincmd w <CR>", { desc = "Window focus window 10" })
 -- tab navigation
 map("n", "<leader>ta", "<cmd> $tabnew <CR>", { desc = "Tab add new tab" })
 map("n", "<leader>tc", function()
-  vim.cmd "CloseAllBuffers"
+  vim.cmd "windo bd"
   vim.cmd "tabclose"
 end, { desc = "Tab close tab" })
 map("n", "<leader>to", "<cmd> tabonly <CR>", { desc = "Tab close other tabs except current" })
