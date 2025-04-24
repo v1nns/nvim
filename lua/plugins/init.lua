@@ -276,6 +276,7 @@ return {
   -- smooth scrolling
   {
     "karb94/neoscroll.nvim",
+    enabled = not vim.g.neovide and true or false,
     keys = { "<C-d>", "<C-u>", "zt", "zz", "zb" },
     config = function()
       require("configs.neoscroll").setup()

@@ -1,5 +1,5 @@
 return {
   virtcolumn = "101",
-  char = "⡇",
+  char = vim.g.neovide and "|" or "⡇",
   highlight = "VirtColumn",
 }

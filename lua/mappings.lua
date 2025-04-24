@@ -63,7 +63,10 @@ map("n", "<C-0>", "<cmd> :0wincmd w <CR>", { desc = "Window focus window 10" })
 
 -- tab navigation
 map("n", "<leader>ta", "<cmd> $tabnew <CR>", { desc = "Tab add new tab" })
-map("n", "<leader>tc", "<cmd> tabclose <CR>", { desc = "Tab close tab" })
+map("n", "<leader>tc", function()
+  vim.cmd "CloseAllBuffers"
+  vim.cmd "tabclose"
+end, { desc = "Tab close tab" })
 map("n", "<leader>to", "<cmd> tabonly <CR>", { desc = "Tab close other tabs except current" })
 map("n", "<leader>tn", "<cmd> tabn <CR>", { desc = "Tab focus next tab" })
 map("n", "<leader>tp", "<cmd> tabp <CR>", { desc = "Tab focus previous tab" })
@@ -105,7 +108,7 @@ map("n", "<F2>", function()
   require "ui.renamer"()
 end, { desc = "LSP rename symbol" })
 map("n", "<leader>ld", function()
-  vim.diagnostic.disable()
+  vim.diagnostic.enable(false)
 end, { desc = "LSP disable lsp diagnostics" })
 map("n", "<leader>le", function()
   vim.diagnostic.enable()
@@ -214,6 +217,7 @@ map("n", "<leader>wd", "<cmd> set nowrap <CR>", { desc = "Util disable word wrap
 map("n", "<Esc>", function()
   vim.cmd "NoiceDismiss"
   vim.cmd "nohlsearch"
+  vim.cmd "CloseTelescope"
 end, { desc = "Noice dismiss popups" })
 
 -- code assistant

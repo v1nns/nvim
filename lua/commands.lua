@@ -391,6 +391,21 @@ M.setup_commands = function()
     vim.cmd(command)
     print(string.format("Deleted swap files for project: %s", project_dir))
   end, {})
+
+  -- Close telescope buffer in the current tab
+  cmd("CloseTelescope", function()
+    local wins = vim.api.nvim_tabpage_list_wins(0)
+
+    for _, win in ipairs(wins) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
+
+      -- Telescope buffers typically have 'TelescopePrompt' or 'TelescopeResults' filetype
+      if string.find(filetype, "Telescope") then
+        vim.cmd [[buf.."bd"]]
+      end
+    end
+  end, {})
 end
 
 M.get_non_empty_buffers = function()

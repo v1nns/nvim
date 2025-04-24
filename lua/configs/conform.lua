@@ -36,7 +36,7 @@ return {
       },
     },
     shfmt = {
-      prepend_args = { "-i", "4" },
+      args = { "-i", "4" },
     },
   },
 }

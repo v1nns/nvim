@@ -6,6 +6,9 @@ vim.opt.cursorlineopt = "both"
 -- enable title
 vim.opt.title = true
 
+-- set window border
+vim.opt.winborder = "rounded"
+
 -- show trailing spaces and tabs
 vim.opt.list = true
 vim.opt.listchars = { trail = "~", tab = "» " }
