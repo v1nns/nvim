@@ -90,14 +90,13 @@ return function()
       api.nvim_buf_delete(buf, { force = true })
 
       if #new_name > 0 and new_name ~= to_rename then
-        -- this is the old method, not good for renaming in a bigger project
-        -- local params = lsp.util.make_position_params(0, "utf-8")
-        -- params = vim.tbl_extend("force", params, { newName = newName })
-        -- lsp.buf_request(0, "textDocument/rename", params)
+        local params = lsp.util.make_position_params(0, "utf-8")
+        params = vim.tbl_extend("force", params, { newName = new_name })
+        lsp.buf_request(0, "textDocument/rename", params)
 
         -- rename all occurrences not only in the current buffer
-        vim.lsp.buf.rename(new_name)
-        vim.cmd ":wa"
+        -- vim.lsp.buf.rename(new_name)
+        -- vim.cmd ":wa"
       end
     end)
   end)
