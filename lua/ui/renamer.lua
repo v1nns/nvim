@@ -1,46 +1,104 @@
-local map = vim.keymap.set
+local lsp = vim.lsp
+local api = vim.api
 
-local function apply(curr, win)
-  local new_name = vim.trim(vim.fn.getline ".")
-  vim.api.nvim_win_close(win, true)
+local function get_text_at_range(range, position_encoding)
+  return api.nvim_buf_get_text(
+    0,
+    range.start.line,
+    lsp.util._get_line_byte_from_position(0, range.start, position_encoding),
+    range["end"].line,
+    lsp.util._get_line_byte_from_position(0, range["end"], position_encoding),
+    {}
+  )[1]
+end
 
-  if #new_name > 0 and new_name ~= curr then
-    local params = vim.lsp.util.make_position_params()
-    params.newName = new_name
+local function get_symbol_to_rename(cb)
+  local cword = vim.fn.expand "<cword>"
+  local clients = lsp.get_clients { bufnr = 0, method = "textDocument/rename" }
 
-    -- this is the old method, not good for renaming in a bigger project
-    -- vim.lsp.buf_request(0, "textDocument/rename", params)
+  if #clients == 0 then
+    cb(cword)
+    return
+  end
 
-    -- rename all occurrences not only in the current buffer
-    vim.lsp.buf.rename(new_name)
-    vim.cmd ":wa"
+  -- Prefer clients that support prepareRename
+  table.sort(clients, function(a, b)
+    return a:supports_method "textDocument/prepareRename" and not b:supports_method "textDocument/prepareRename"
+  end)
+
+  local client = clients[1]
+
+  if client:supports_method "textDocument/prepareRename" then
+    local params = lsp.util.make_position_params(0, client.offset_encoding)
+
+    client:request("textDocument/prepareRename", params, function(err, result, _, _)
+      if err or not result then
+        cb(cword)
+      end
+
+      local symbol_text = cword
+
+      if result.placeholder then
+        symbol_text = result.placeholder
+      elseif result.start then
+        symbol_text = get_text_at_range(result, client.offset_encoding)
+      elseif result.range then
+        symbol_text = get_text_at_range(result.range, client.offset_encoding)
+      end
+
+      cb(symbol_text)
+    end, 0)
+  else
+    cb(cword)
   end
 end
 
 return function()
-  local curr_name = vim.fn.expand "<cword>" .. " "
+  get_symbol_to_rename(function(to_rename)
+    local buf = api.nvim_create_buf(false, true)
 
-  local win = require("plenary.popup").create(curr_name, {
-    title = "",
-    style = "minimal",
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    relative = "cursor",
-    borderhighlight = "RenamerBorder",
-    titlehighlight = "RenamerTitle",
-    focusable = true,
-    width = 25,
-    height = 1,
-    line = "cursor+2",
-    col = "cursor-1",
-  })
+    local winopts = {
+      height = 1,
+      style = "minimal",
+      border = "single",
+      row = 1,
+      col = 1,
+      relative = "cursor",
+      width = #to_rename + 15,
+      title = { { " Renamer ", "@comment.danger" } },
+      title_pos = "center",
+    }
 
-  vim.cmd "normal A"
-  vim.cmd "startinsert"
+    local win = api.nvim_open_win(buf, true, winopts)
+    vim.wo[win].winhl = "Normal:Normal,FloatBorder:Removed"
+    api.nvim_set_current_win(win)
 
-  map({ "i", "n" }, "<Esc>", "<cmd>q<CR>", { buffer = 0 })
+    api.nvim_buf_set_lines(buf, 0, -1, true, { " " .. to_rename })
 
-  map({ "i", "n" }, "<CR>", function()
-    apply(curr_name, win)
-    vim.cmd.stopinsert()
-  end, { buffer = 0 })
+    vim.bo[buf].buftype = "prompt"
+    vim.fn.prompt_setprompt(buf, "")
+    vim.api.nvim_input "A"
+
+    vim.keymap.set({ "i", "n" }, "<Esc>", function()
+      api.nvim_buf_delete(buf, { force = true })
+    end, { buffer = buf })
+
+    vim.keymap.set({ "i", "n" }, "<C-BS>", "<C-u>", { buffer = buf, noremap = true, silent = true })
+
+    vim.fn.prompt_setcallback(buf, function(text)
+      local new_name = vim.trim(text)
+      api.nvim_buf_delete(buf, { force = true })
+
+      if #new_name > 0 and new_name ~= to_rename then
+        -- this is the old method, not good for renaming in a bigger project
+        -- local params = lsp.util.make_position_params(0, "utf-8")
+        -- params = vim.tbl_extend("force", params, { newName = newName })
+        -- lsp.buf_request(0, "textDocument/rename", params)
+
+        -- rename all occurrences not only in the current buffer
+        vim.lsp.buf.rename(new_name)
+        vim.cmd ":wa"
+      end
+    end)
+  end)
 end
