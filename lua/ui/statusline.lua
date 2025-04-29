@@ -40,7 +40,15 @@ return {
 
     cursor = function()
       local wc = vim.fn.wordcount()
-      local selection = wc["visual_chars"] and " (" .. wc["visual_chars"] .. " selected)" or ""
+
+      local selection = ""
+      if wc["visual_chars"] then
+        selection = " ("
+          .. wc["visual_chars"]
+          .. " chars selected, "
+          .. vim.fn.abs(vim.fn.line "." - vim.fn.line "v") + 1
+          .. " lines)"
+      end
 
       return "%#StText#" .. " Ln %l, Col %c" .. selection
     end,
