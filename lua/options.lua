@@ -128,7 +128,7 @@ vim.filetype.add {
 
 if vim.g.neovide then
   -- Put anything you want to happen only in Neovide here
-  vim.o.guifont = "JetBrainsMono NF:h11.5"
+  vim.o.guifont = "JetBrainsMono NF:h9"
   vim.g.neovide_refresh_rate = 144
 
   vim.g.neovide_padding_top = 0

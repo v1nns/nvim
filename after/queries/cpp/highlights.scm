@@ -66,3 +66,18 @@
 
 (break_statement) @keyword
 
+; for boost MSM transition
+(field_declaration
+  (struct_specifier
+    (base_class_clause
+      (qualified_identifier
+        (template_type
+          (template_argument_list
+            (type_descriptor
+              (template_type
+                (template_argument_list
+                  (type_descriptor) @constant
+                  (type_descriptor) @keyword.function
+                  (type_descriptor) @constant
+                  (type_descriptor) @function
+                  (type_descriptor) @text.todo)))))))))

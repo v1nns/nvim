@@ -3,7 +3,21 @@ local utils = require "nvchad.stl.utils"
 return {
   theme = "vscode_colored",
 
-  order = { "mode", "file", "git", "macro", "%=", "lsp_msg", "%=", "cursor", "diagnostics", "lsp", "filetype", "cwd" },
+  order = {
+    "mode",
+    "file",
+    "git",
+    "macro",
+    "%=",
+    "lsp_msg",
+    "%=",
+    "llm",
+    "cursor",
+    "diagnostics",
+    "lsp",
+    "filetype",
+    "cwd",
+  },
 
   modules = {
     git = function()
@@ -36,6 +50,10 @@ return {
       end
 
       return "%#String#" .. " recording to " .. reg .. "%#StText#"
+    end,
+
+    llm = function()
+      return _G.processing_llm and "%#@text.todo#( waiting for LLM response... )%#StText#" or ""
     end,
 
     cursor = function()

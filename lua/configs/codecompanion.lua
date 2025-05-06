@@ -1,4 +1,10 @@
 return {
+  display = {
+    chat = {
+      show_header_separator = true,
+      show_references = true,
+    },
+  },
   adapters = {
     ollama = function()
       return require("codecompanion.adapters").extend("ollama", {
@@ -7,7 +13,7 @@ return {
         },
         schema = {
           model = {
-            default = "deepseek-r1:14b",
+            default = "qwen2.5-coder:14b",
           },
           num_ctx = {
             -- maybe tweak this and test

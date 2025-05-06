@@ -16,10 +16,11 @@ return {
     "cmake",
     "make",
     "regex",
-    -- "comment",
+    "comment",
     "yaml",
     "yang",
     "query",
+    "doxygen",
   },
 
   highlight = {

@@ -190,6 +190,18 @@ M.setup_autocommands = function()
       end
     end,
   })
+
+  -- code companion
+  vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = "CodeCompanionRequest*",
+    callback = function(request)
+      if request.match == "CodeCompanionRequestStarted" then
+        _G.processing_llm = true
+      elseif request.match == "CodeCompanionRequestStreaming" then
+        _G.processing_llm = false
+      end
+    end,
+  })
 end
 
 -- Commands
