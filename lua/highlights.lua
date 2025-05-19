@@ -77,9 +77,8 @@ M.add = {
     fg = "#787c99",
   },
   TabLineFill = {
-    -- bg = "#2f3549",
-    -- bg = "#1a1b26",
     bg = "#16161e",
+    fg = "#787c99",
   },
   TabLineSel = {
     bg = "#444b6a",

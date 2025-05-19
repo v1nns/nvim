@@ -6,7 +6,7 @@ local theme = {
   fill = "TabLineFill",
   head = "TabLine",
   current_tab = "TabLineSel",
-  tab = "TabLine",
+  tab = "TabLineFill",
   win = "TabLine",
   tail = "TabLine",
 }

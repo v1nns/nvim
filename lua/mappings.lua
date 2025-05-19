@@ -68,7 +68,7 @@ end, { desc = "window select window via picker" })
 -- tab navigation
 map("n", "<leader>ta", "<cmd> $tabnew <CR>", { desc = "tab add new tab" })
 map("n", "<leader>tc", function()
-  vim.cmd "windo bd"
+  -- vim.cmd "windo bd"
   vim.cmd "tabclose"
 end, { desc = "tab close tab" })
 map("n", "<leader>to", "<cmd> tabonly <CR>", { desc = "tab close other tabs except current" })

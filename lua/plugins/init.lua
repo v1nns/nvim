@@ -24,6 +24,7 @@ return {
   {
     "folke/which-key.nvim",
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g", "z" },
+    opts = { preset = "modern", show_help = false },
   },
 
   -- use default file explorer again
@@ -70,10 +71,22 @@ return {
     opts = require "configs.treesitter",
   },
 
-  -- code completion
+  -- code completion (currently testing blink.cmp instead of nvim-cmp)
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = require "configs.cmp",
+  -- },
   {
-    "hrsh7th/nvim-cmp",
-    opts = require "configs.cmp",
+    "nvchad/base46",
+    branch = "v3.0",
+    build = function()
+      require("base46").load_all_highlights()
+    end,
+  },
+  { import = "nvchad.blink.lazyspec" },
+  {
+    "Saghen/blink.cmp",
+    opts = require "configs.blink",
   },
 
   -- git integration with buffers
@@ -294,7 +307,7 @@ return {
         mode = { "n", "x", "o" },
         function()
           -- default options: exact mode, multi window, all directions, with a backdrop
-          require("flash").jump()
+          require("flash").jump { prompt = { enabled = false } }
         end,
         desc = "Flash",
       },
