@@ -5,7 +5,7 @@ return {
     cmake = { "cmake_format" },
     cpp = { "clang_format" },
     lua = { "stylua" },
-    javascript = { "prettierd", "prettier", stop_after_first = true },
+    javascript = { "prettier" },
     python = { "autopep8" },
     sh = { "shfmt" },
     rust = { "rustfmt" },
@@ -23,6 +23,9 @@ return {
         "--style",
         "{BasedOnStyle: Google, Standard: c++17, ColumnLimit: 100}",
       },
+    },
+    prettier = {
+      append_args = { "--print-width", "100" },
     },
     stylua = {
       inherit = true,
