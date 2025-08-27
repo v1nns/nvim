@@ -35,7 +35,7 @@ return {
     generic_sorter = sorters.get_generic_fuzzy_sorter,
     path_display = { "truncate" },
     winblend = 0,
-    border = false,
+    border = true,
     borderchars = {
       "─",
       "│",
