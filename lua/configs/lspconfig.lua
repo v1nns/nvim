@@ -3,7 +3,6 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
 local navic = require "nvim-navic"
 
 local symbol_highlight = function(client, bufnr)
@@ -43,7 +42,7 @@ for _, lsp in ipairs(servers) do
     }
   end
 
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     settings = settings,
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
@@ -61,5 +60,6 @@ for _, lsp in ipairs(servers) do
     end,
     on_init = on_init,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(lsp)
 end

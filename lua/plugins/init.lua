@@ -425,4 +425,11 @@ return {
     },
     opts = require "configs.codecompanion",
   },
+
+  -- better quickfix window
+  {
+    "kevinhwang91/nvim-bqf",
+    event = "VeryLazy",
+    ft = "qf",
+  },
 }
