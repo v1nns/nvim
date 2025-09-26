@@ -1,4 +1,4 @@
-local session = require "resession"
+-- local session = require "resession"
 
 local M = {}
 
@@ -16,37 +16,6 @@ M.setup_autocommands = function()
 
       -- force highlights reload
       require("base46").load_all_highlights()
-    end,
-  })
-
-  -- auto load session when neovim is opened
-  autocmd({ "VimEnter" }, {
-    callback = function()
-      -- only load the session if nvim was started with no args
-      if vim.fn.argc(-1) == 0 then
-        -- Save these to a different directory, so our manual sessions don't get polluted
-        session.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
-      end
-    end,
-  })
-
-  -- close some stuff before exitting and save a session
-  autocmd({ "VimLeavePre" }, {
-    callback = function()
-      vim.cmd "DiffviewClose"
-      -- vim.cmd ":tabdo Neotree close"
-      vim.cmd "NvimTreeClose"
-
-      -- do not save session if current buffer is a gitcommit
-      if vim.bo.filetype == "gitcommit" then
-        return
-      end
-
-      -- exclude some paths to avoid saving any session
-      if vim.fn.getcwd() ~= vim.env.HOME and string.find(vim.fn.getcwd(), "/tmp/") == nil then
-        -- save session
-        session.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
-      end
     end,
   })
 
@@ -71,18 +40,6 @@ M.setup_autocommands = function()
     command = "set formatoptions-=cro",
   })
 
-  -- set winbar with breadcrumbs and file path
-  autocmd({
-    "CursorMoved",
-    "BufWinEnter",
-    "BufFilePost",
-    "InsertEnter",
-    "BufWritePost",
-  }, {
-    callback = function()
-      require("ui.winbar").setup()
-    end,
-  })
 
   -- enable line number in telescope previewer
   autocmd("User", { pattern = "TelescopePreviewerLoaded", command = "setlocal number" })
@@ -191,6 +148,27 @@ M.setup_autocommands = function()
     end,
   })
 
+  -- keep the cursor position when yanking
+  local cursorPreYank
+
+  vim.keymap.set({ "n", "x" }, "y", function()
+    cursorPreYank = vim.api.nvim_win_get_cursor(0)
+    return "y"
+  end, { expr = true })
+
+  vim.keymap.set("n", "Y", function()
+    cursorPreYank = vim.api.nvim_win_get_cursor(0)
+    return "yg_"
+  end, { expr = true })
+
+  vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+      if vim.v.event.operator == "y" and cursorPreYank then
+        vim.api.nvim_win_set_cursor(0, cursorPreYank)
+      end
+    end,
+  })
+
   -- code companion
   vim.api.nvim_create_autocmd({ "User" }, {
     pattern = "CodeCompanionRequest*",
@@ -207,10 +185,6 @@ end
 -- Commands
 M.setup_commands = function()
   local cmd = vim.api.nvim_create_user_command
-
-  -- workaround to save session with multitabs (go to last tab before exiting nvim)
-  -- NOTE: after reloading a session, buffers per tab-scoping will not properly work without this
-  vim.cmd [[:cno qa :tablast \| :qa]]
 
   -- remove trailing spaces from current buffer
   cmd("RemoveTrailingSpace", function()
@@ -293,7 +267,8 @@ M.setup_commands = function()
       return
     end
     vim.cmd "tabnew"
-    vim.cmd "TabRename search all"
+    -- TODO: Create a tab rename feature
+    -- vim.cmd "TabRename search all"
     vim.cmd("term rg --no-ignore --hidden -g=!.git " .. tostring(opts.args))
     vim.cmd(string.format([[match Search /%s/]], tostring(opts.args)))
     -- to clear: match none

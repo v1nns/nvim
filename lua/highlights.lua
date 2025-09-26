@@ -142,7 +142,7 @@ M.override = {
   },
 
   NvDashButtons = {
-    bg = "#16161e",
+    -- bg = "#16161e",
     fg = "#7dcfff",
   },
 
@@ -155,7 +155,7 @@ M.override = {
     fg = "#ff2233",
   },
   WinSeparator = {
-    fg = "#16161e",
+    fg = "#7aa2f7",
   },
 
   -- nvimtree
@@ -173,6 +173,9 @@ M.override = {
   },
   NvimTreeGitDirty = {
     fg = "#e0af68",
+  },
+  NvimTreeWinSeparator = {
+    fg = "#7aa2f7",
   },
 
   -- treesitter

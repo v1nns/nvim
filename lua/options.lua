@@ -17,7 +17,7 @@ vim.opt.listchars = { trail = "~", tab = "» " }
 vim.opt.fillchars = { eob = " ", diff = "⣿", foldopen = "", foldclose = "" }
 
 -- set info to be saved with the underlying :mksession
-vim.opt.sessionoptions = "buffers,tabpages,globals,curdir,folds,globals,help,tabpages,terminal,winsize"
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 
 -- allow virtual editing in all modes
 vim.opt.virtualedit = "all"
@@ -128,7 +128,7 @@ vim.filetype.add {
 
 if vim.g.neovide then
   -- Put anything you want to happen only in Neovide here
-  vim.o.guifont = "JetBrainsMono NF:h9"
+  vim.opt.guifont = "JetBrainsMono NF:h9"
   vim.g.neovide_refresh_rate = 144
 
   vim.g.neovide_padding_top = 0

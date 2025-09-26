@@ -6,8 +6,6 @@ return {
     enabled = false,
   },
 
-  -- use colorizer from norcalli instead of NvChad (attach is not working)
-  { "norcalli/nvim-colorizer.lua", opt = true },
 
   -- replace UI for messages, cmdline and the popupmenu
   {
@@ -37,6 +35,10 @@ return {
       "NvimTreeClose",
       "NvimTreeFindFile",
       "NvimTreeFindFileToggle",
+    },
+    version = "*",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
     },
     opts = require "configs.nvimtree",
   },
@@ -181,16 +183,15 @@ return {
 
   -- session management + limit buffers scope per tab
   {
-    "stevearc/resession.nvim",
-    event = "VeryLazy",
+    "rmagatti/auto-session",
+    lazy = false,
     dependencies = {
       {
         "tiagovla/scope.nvim",
-        event = "VeryLazy",
-        config = true,
+        opts = {},
       },
     },
-    opts = require "configs.resession",
+    opts = require "configs.autosession",
   },
 
   -- breadcrumbs using winbar
@@ -198,6 +199,15 @@ return {
     "SmiteshP/nvim-navic",
     dependencies = { "neovim/nvim-lspconfig" },
     opts = require "configs.navic",
+  },
+  {
+    "b0o/incline.nvim",
+    dependencies = "SmiteshP/nvim-navic",
+    event = "VeryLazy",
+    config = function()
+      local opt = require "configs.incline"
+      require("incline").setup(opt)
+    end,
   },
 
   -- set up a virtual column (similar to a ruler in another IDEs)
@@ -253,6 +263,7 @@ return {
   -- tab navigation
   {
     "nanozuki/tabby.nvim",
+    enabled = false,
     init = function()
       require("ui.tabby").setup()
     end,
@@ -292,7 +303,8 @@ return {
     enabled = not vim.g.neovide and true or false,
     keys = { "<C-d>", "<C-u>", "zt", "zz", "zb" },
     config = function()
-      require("configs.neoscroll").setup()
+      local opt = require "configs.neoscroll"
+      require("neoscroll").setup(opt)
     end,
   },
 

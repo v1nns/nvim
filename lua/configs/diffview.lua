@@ -155,7 +155,8 @@ return {
       view.emitter:on("post_layout", post_layout)
       post_layout()
 
-      vim.cmd ":TabRename diff"
+      -- TODO: Create a tab rename feature
+      -- vim.cmd ":TabRename diff"
     end,
   },
 }

@@ -3,9 +3,7 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 
 -- session management
-map("n", "<A-r>", function()
-  require("resession").load(nil, { dir = "dirsession" })
-end, { desc = "session recent folders" })
+map("n", "<A-r>", "<cmd> AutoSession search <CR>", { desc = "session recent folders" })
 
 -- navigation
 map("n", "j", "gj", { desc = "navigation move cursor to line downward" })
@@ -74,16 +72,42 @@ end, { desc = "tab close tab" })
 map("n", "<leader>to", "<cmd> tabonly <CR>", { desc = "tab close other tabs except current" })
 map("n", "<leader>tn", "<cmd> tabn <CR>", { desc = "tab focus next tab" })
 map("n", "<leader>tp", "<cmd> tabp <CR>", { desc = "tab focus previous tab" })
-map("n", "<leader>1", "<cmd> tabn 1 <CR>", { desc = "tab go to tab 1" })
-map("n", "<leader>2", "<cmd> tabn 2 <CR>", { desc = "tab go to tab 2" })
-map("n", "<leader>3", "<cmd> tabn 3 <CR>", { desc = "tab go to tab 3" })
-map("n", "<leader>4", "<cmd> tabn 4 <CR>", { desc = "tab go to tab 4" })
-map("n", "<leader>5", "<cmd> tabn 5 <CR>", { desc = "tab go to tab 5" })
-map("n", "<leader>6", "<cmd> tabn 6 <CR>", { desc = "tab go to tab 6" })
-map("n", "<leader>7", "<cmd> tabn 7 <CR>", { desc = "tab go to tab 7" })
-map("n", "<leader>8", "<cmd> tabn 8 <CR>", { desc = "tab go to tab 8" })
-map("n", "<leader>9", "<cmd> tabn 9 <CR>", { desc = "tab go to tab 9" })
-map("n", "<leader>0", "<cmd> tabn 0 <CR>", { desc = "tab go to tab 0" })
+
+-- util method to check if tab exists before navigating
+local goto_tab = function(id)
+  local _, tabs = "", vim.fn.tabpagenr "$"
+  if id <= tabs then
+    vim.cmd("tabn " .. id)
+  end
+end
+
+map("n", "<leader>1", function()
+  goto_tab(1)
+end, { desc = "tab go to tab 1" })
+map("n", "<leader>2", function()
+  goto_tab(2)
+end, { desc = "tab go to tab 2" })
+map("n", "<leader>3", function()
+  goto_tab(3)
+end, { desc = "tab go to tab 3" })
+map("n", "<leader>4", function()
+  goto_tab(4)
+end, { desc = "tab go to tab 4" })
+map("n", "<leader>5", function()
+  goto_tab(5)
+end, { desc = "tab go to tab 5" })
+map("n", "<leader>6", function()
+  goto_tab(6)
+end, { desc = "tab go to tab 6" })
+map("n", "<leader>7", function()
+  goto_tab(7)
+end, { desc = "tab go to tab 7" })
+map("n", "<leader>8", function()
+  goto_tab(8)
+end, { desc = "tab go to tab 8" })
+map("n", "<leader>9", function()
+  goto_tab(9)
+end, { desc = "tab go to tab 9" })
 
 -- git integration
 map("n", "<C-g>b", "<cmd> Gitsigns toggle_current_line_blame <CR>", { desc = "git toggle blame" })
