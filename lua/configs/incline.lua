@@ -8,9 +8,13 @@ return {
     margin = { horizontal = 0, vertical = 0 },
     overlap = {
       borders = true,
-      statusline = true,
+      statusline = false,
       tabline = false,
       winbar = false,
+    },
+    placement = {
+      horizontal = "right",
+      vertical = "top",
     },
   },
   render = function(props)
@@ -24,8 +28,8 @@ return {
     local res = {
       ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or "",
       " ",
-      { filename, gui = modified and "bold,underline" or "bold" },
-      guibg = "#44406e",
+      { filename, gui = modified and "underline" or "" },
+      guibg = "#24283b",
     }
 
     if props.focused then

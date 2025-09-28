@@ -155,28 +155,16 @@ M.override = {
     fg = "#ff2233",
   },
   WinSeparator = {
-    fg = "#7aa2f7",
+    fg = "#2f3549",
   },
 
   -- nvimtree
-  NvimTreeRootFolder = {
-    fg = "#0db9d7",
-  },
-  NvimTreeSpecialFile = {
-    fg = "#bb9af7",
-  },
-  NvimTreeFolderName = {
-    fg = "#c0caf5",
-  },
-  NvimTreeGitNew = {
-    fg = "#b4f9f8",
-  },
-  NvimTreeGitDirty = {
-    fg = "#e0af68",
-  },
-  NvimTreeWinSeparator = {
-    fg = "#7aa2f7",
-  },
+  NvimTreeRootFolder = { fg = "#0db9d7" },
+  NvimTreeSpecialFile = { fg = "#bb9af7" },
+  NvimTreeFolderName = { fg = "#c0caf5" },
+  NvimTreeGitNew = { fg = "#b4f9f8" },
+  NvimTreeGitDirty = { fg = "#e0af68" },
+  NvimTreeWinSeparator = { fg = "#2f3549" },
 
   -- treesitter
   ["@type.builtin"] = { fg = "#bb9af7" },
@@ -201,6 +189,15 @@ M.override = {
   DiffAdded = { bg = "#1d1e29" },
   DiffModified = { bg = "#1d1e29" },
   DiffRemoved = { bg = "#1d1e29" },
+
+  -- nvchad ui tabufline
+  TbBufOff = { bg = "#16161e", fg = "#565f89" },
+  TbBufOffClose = { bg = "#16161e", fg = "#565f89" },
+  TbBufOffModified = { bg = "#16161e" },
+  TbBufOn = { bg = "#1f202b", fg = "#2ac3de", underline = false, bold = false },
+  TbBufOnClose = { bg = "#1f202b", bold = true },
+  TbBufOnModified = { bg = "#1f202b", underline = false, bold = true },
+  TbFill = { bg = "#16161e", fg = "#2f3549", underline = false },
 
   -- nvchad ui statusline
   St_cwd = { fg = "#2ac3de" },

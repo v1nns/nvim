@@ -121,7 +121,7 @@ vim.filetype.add {
 -- )
 
 -- to stabilize buffer content on windows (this change breaks :Telescope highlight)
--- vim.opt.splitkeep="screen"
+vim.opt.splitkeep="screen"
 
 -- to debug lspconfig, use this below and :LspLog
 -- vim.lsp.set_log_level("debug")

@@ -18,7 +18,7 @@ M.ui = {
     enabled = true,
     order = { "treeOffset", "buffers", "tabs" },
     modules = {
-      -- TODO: move to separate file
+      -- TODO: move to separate file and create logic to control tab naming
       tabs = function()
         local result, tabs = "", vim.fn.tabpagenr "$"
         local btn = require("nvchad.tabufline.utils").btn

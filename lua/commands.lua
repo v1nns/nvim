@@ -29,7 +29,7 @@ M.setup_autocommands = function()
   })
 
   -- open nvdash on startup
-  autocmd({ "UIEnter" }, {
+  autocmd({ "UIEnter", "BufDelete" }, {
     callback = function()
       M.show_dashboard()
     end,
@@ -39,7 +39,6 @@ M.setup_autocommands = function()
   autocmd("FileType", {
     command = "set formatoptions-=cro",
   })
-
 
   -- enable line number in telescope previewer
   autocmd("User", { pattern = "TelescopePreviewerLoaded", command = "setlocal number" })
@@ -204,44 +203,6 @@ M.setup_commands = function()
     }
   end, {})
 
-  -- close current active buffer
-  cmd("CloseBuffer", function()
-    local count = M.get_non_empty_buffers()
-
-    if count > 1 then
-      -- change to last buffer and delete previous
-      vim.cmd "bprev"
-      vim.cmd "bd #"
-    else
-      -- create new buffer and delete previous
-      vim.cmd "enew"
-      vim.cmd "bd #"
-    end
-
-    M.show_dashboard()
-  end, {})
-
-  -- close all opened buffers
-  cmd("CloseAllBuffers", function()
-    -- local neotree = require "neo-tree.command"
-    -- must hide neo-tree before closing all buffers
-    -- neotree.execute { action = "close" }
-    vim.cmd "NvimTreeClose"
-
-    -- close all buffers
-    local count = 0
-    for _, _ in ipairs(vim.api.nvim_list_tabpages()) do
-      count = count + 1
-    end
-
-    if count == 1 then
-      vim.cmd "%bd"
-      M.show_dashboard()
-    else
-      vim.cmd "windo bd"
-    end
-  end, {})
-
   -- wrap text at column X (or value is asked)
   cmd("WrapTextAtColumn", function(opts)
     local column = tonumber(opts.args) or tonumber(vim.fn.input "Column to wrap: ")
@@ -395,42 +356,11 @@ M.setup_commands = function()
   end, {})
 end
 
-M.get_non_empty_buffers = function()
-  local count_non_empty = 0
-
-  for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.fn.buflisted(buffer) ~= 0 then
-      local name = vim.api.nvim_buf_get_name(buffer)
-      local filetype = vim.api.nvim_get_option_value("filetype", { buf = buffer })
-
-      -- Do not count new buffer or nvdashboard
-      -- NOTE: it looks like neo-tree filesystem does not appear in this list, so we are fine
-      if name ~= nil and name ~= "" and filetype ~= "" and filetype ~= "nvdash" then
-        count_non_empty = count_non_empty + 1
-      end
-
-      -- TODO: maybe return table with current buffers
-      -- local buffer_name = vim.api.nvim_buf_get_name(buffer)
-      -- if buffer_name == nil or buffer_name == "" then
-      --     buffer_name = "[No Name]#" .. buffer
-      -- end
-    end
-  end
-
-  return count_non_empty
-end
-
 -- check if must open nvdash
 M.show_dashboard = function()
-  local count = M.get_non_empty_buffers()
-  -- if count > 1 then
-  --     require("neo-tree").close_all()
-  -- end
-
-  if count == 0 then
-    local buf = vim.api.nvim_create_buf(false, true)
-    vim.bo.buflisted = true
-    require("nvchad.nvdash").open(buf)
+  local bufs = vim.t.bufs
+  if #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
+    vim.cmd "Nvdash"
   end
 end
 

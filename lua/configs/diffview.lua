@@ -158,5 +158,13 @@ return {
       -- TODO: Create a tab rename feature
       -- vim.cmd ":TabRename diff"
     end,
+
+    view_enter = function(_)
+      vim.o.showtabline = 0
+    end,
+
+    view_leave = function(_)
+      vim.o.showtabline = 2
+    end,
   },
 }

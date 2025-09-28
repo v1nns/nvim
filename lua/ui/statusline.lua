@@ -20,6 +20,16 @@ return {
   },
 
   modules = {
+    file = function()
+      local x = utils.file()
+      if string.find(x[2], "NvimTree") then
+        return "%#StText# "
+      end
+
+      local name = " " .. x[2] .. " "
+      return "%#StText# " .. x[1] .. name
+    end,
+
     git = function()
       if not vim.b[utils.stbufnr()].gitsigns_head or vim.b[utils.stbufnr()].gitsigns_git_status then
         return ""

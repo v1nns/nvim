@@ -4,19 +4,25 @@ return {
     { ft = "qf", title = "QuickFix" },
     {
       ft = "help",
-      size = { height = 20 },
+      size = { height = 0.3 },
       -- only show help buffers
       filter = function(buf)
         return vim.bo[buf].buftype == "help"
       end,
     },
-    { ft = "spectre_panel", size = { height = 0.4 } },
+    {
+      title = "Search panel",
+      ft = "spectre_panel",
+      size = { height = 0.4 },
+    },
   },
   left = {
     {
-      title = "NvimTree",
       ft = "NvimTree",
       pinned = true,
+      wo = {
+        winbar = false,
+      },
     },
   },
   right = {
@@ -25,7 +31,7 @@ return {
     -- },
     {
       ft = "trouble",
-      filter = function(_buf, win)
+      filter = function(_, win)
         return vim.w[win].trouble
           and vim.w[win].trouble.position == "right"
           and vim.w[win].trouble.type == "split"

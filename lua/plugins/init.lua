@@ -6,7 +6,6 @@ return {
     enabled = false,
   },
 
-
   -- replace UI for messages, cmdline and the popupmenu
   {
     "folke/noice.nvim",
@@ -28,14 +27,7 @@ return {
   -- use default file explorer again
   {
     "nvim-tree/nvim-tree.lua",
-    cmd = {
-      "NvimTreeToggle",
-      "NvimTreeFocus",
-      "NvimTreeOpen",
-      "NvimTreeClose",
-      "NvimTreeFindFile",
-      "NvimTreeFindFileToggle",
-    },
+    lazy = false,
     version = "*",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
@@ -443,5 +435,12 @@ return {
     "kevinhwang91/nvim-bqf",
     event = "VeryLazy",
     ft = "qf",
+  },
+
+  -- search panel
+  {
+    "nvim-pack/nvim-spectre",
+    event = "VeryLazy",
+    opts = true,
   },
 }
