@@ -197,6 +197,7 @@ return {
     dependencies = "SmiteshP/nvim-navic",
     event = "VeryLazy",
     config = function()
+      -- incline must be configured like this because it is using some util methods from it
       local opt = require "configs.incline"
       require("incline").setup(opt)
     end,
@@ -214,7 +215,7 @@ return {
     "danymat/neogen",
     cmd = "Neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    init = function()
+    config = function()
       require("neogen").setup {
         snippet_engine = "luasnip",
         languages = {

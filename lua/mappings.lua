@@ -24,7 +24,12 @@ map("n", "<A-Right>", "<C-I>zz", { desc = "jumplist move forward" })
 
 -- buffer
 map("n", "<C-n>", "<cmd> enew <CR>", { desc = "buffer new buffer" })
-map("n", "<C-x>", '<cmd> lua require("nvchad.tabufline").close_buffer() <CR>', { desc = "buffer close current buffer" })
+map(
+  "n",
+  "<leader>x",
+  '<cmd> lua require("nvchad.tabufline").close_buffer() <CR>',
+  { desc = "buffer close current buffer" }
+)
 map("n", "<Tab>", '<cmd> lua require("nvchad.tabufline").next() <CR>', { desc = "buffer focus next buffer" })
 map("n", "<S-Tab>", '<cmd> lua require("nvchad.tabufline").prev() <CR>', { desc = "buffer focus previous buffer" })
 map(
@@ -39,7 +44,7 @@ map("n", "<leader>cb", "<cmd> ZenMode <CR>", { desc = "buffer center current buf
 for i = 1, 9, 1 do
   map("n", string.format("<A-%s>", i), function()
     vim.api.nvim_set_current_buf(vim.t.bufs[i])
-  end, { desc = string.format("buffer focus buffer %s", i)})
+  end, { desc = string.format("buffer focus buffer %s", i) })
 end
 
 -- window adjusts (for kitty)
@@ -78,7 +83,7 @@ end, { desc = "window select window via picker" })
 -- tab navigation
 map("n", "<leader>ta", "<cmd> $tabnew <CR>", { desc = "tab add new tab" })
 map("n", "<leader>tc", function()
-  -- vim.cmd "windo bd"
+  -- TODO: check if contain more than one tab page
   vim.cmd "tabclose"
 end, { desc = "tab close tab" })
 map("n", "<leader>to", "<cmd> tabonly <CR>", { desc = "tab close other tabs except current" })
@@ -144,9 +149,9 @@ map("n", "<leader>g", function()
 end, { desc = "git toggle diff view" })
 
 -- LSP
-map("n", "<F2>", function()
-  require "ui.renamer"()
-end, { desc = "LSP rename symbol" })
+-- map("n", "<F2>", function()
+--   require "ui.renamer"()
+-- end, { desc = "LSP rename symbol" })
 map("n", "<leader>ld", function()
   vim.diagnostic.enable(false)
 end, { desc = "LSP disable lsp diagnostics" })
