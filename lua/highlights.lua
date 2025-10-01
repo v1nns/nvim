@@ -129,6 +129,28 @@ M.add = {
   -- noice
   NoiceCmdlinePopupBorder = { fg = "#7dcfff" },
   NoiceCmdlinePopupTitle = { fg = "#7dcfff", bold = true },
+
+  -- dashboard
+  SnacksDashboardIcon = {
+    fg = "#7dcfff",
+  },
+  SnacksDashboardDesc = {
+    -- fg = "#7dcfff",
+    fg = "#c0caf5",
+  },
+  SnacksDashboardKey = {
+    fg = "#bb9af7",
+    bold = true,
+    -- underline = true,
+  },
+
+  -- gradient colors for dashboard header
+  DashboardHeader1 = { bg = "#303148", fg = "#666fa9" },
+  DashboardHeader2 = { bg = "#303148", fg = "#7aa2f7" },
+  DashboardHeader3 = { bg = "#303148", fg = "#7dcfff" },
+  DashboardHeader4 = { bg = "#303148", fg = "#b4f9f8" },
+  DashboardHeader5 = { bg = "#303148", fg = "#7dcfff" },
+  DashboardHeader6 = { bg = "#303148", fg = "#7aa2f7" },
 }
 
 M.override = {
@@ -236,6 +258,13 @@ M.override = {
   NavicIconsOperator = { bg = "none" },
   NavicIconsTypeParameter = { bg = "none" },
   NavicSeparator = { bg = "none" },
+
+  -- add bold style for startup footer on dashboard
+  Special = {
+    -- fg = "#7dcfff",
+    -- fg = "#c0caf5",
+    bold = true,
+  },
 }
 
 M.changed_themes = {

@@ -231,6 +231,7 @@ return {
     main = "ibl",
     tag = "v3.8.2",
     opts = {
+      exclude = { filetypes = { "snacks_dashboard" } },
       indent = { char = "▏", highlight = "IblChar" },
       scope = { char = "▏", highlight = "IblScopeChar" },
     },
@@ -442,5 +443,14 @@ return {
     "nvim-pack/nvim-spectre",
     event = "VeryLazy",
     opts = true,
+  },
+
+  -- collection of utilities (dashboard, ...)
+  {
+    "folke/snacks.nvim",
+    lazy = false,
+    opts = {
+      dashboard = require "configs.dashboard",
+    },
   },
 }
