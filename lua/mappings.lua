@@ -24,28 +24,11 @@ map("n", "<A-Right>", "<C-I>zz", { desc = "jumplist move forward" })
 
 -- buffer
 map("n", "<C-n>", "<cmd> enew <CR>", { desc = "buffer new buffer" })
-map(
-  "n",
-  "<leader>x",
-  '<cmd> lua require("nvchad.tabufline").close_buffer() <CR>',
-  { desc = "buffer close current buffer" }
-)
-map("n", "<Tab>", '<cmd> lua require("nvchad.tabufline").next() <CR>', { desc = "buffer focus next buffer" })
-map("n", "<S-Tab>", '<cmd> lua require("nvchad.tabufline").prev() <CR>', { desc = "buffer focus previous buffer" })
-map(
-  "n",
-  "<C-w>a",
-  '<cmd> lua require("nvchad.tabufline").closeAllBufs(true) <CR>',
-  { desc = "buffer close all buffers" }
-)
+map("n", "<leader>x", "<cmd> bd <CR>", { desc = "buffer close current buffer" })
+map("n", "<Tab>", "<cmd> bn <CR>", { desc = "buffer focus next buffer" })
+map("n", "<S-Tab>", "<cmd> bp <CR>", { desc = "buffer focus previous buffer" })
+map("n", "<C-w>a", "<cmd> bufdo bd <CR>", { desc = "buffer close all buffers" })
 map("n", "<leader>cb", "<cmd> ZenMode <CR>", { desc = "buffer center current buffer" })
-
--- buffer navigation
-for i = 1, 9, 1 do
-  map("n", string.format("<A-%s>", i), function()
-    vim.api.nvim_set_current_buf(vim.t.bufs[i])
-  end, { desc = string.format("buffer focus buffer %s", i) })
-end
 
 -- window adjusts (for kitty)
 -- TODO: create function for width based on window position

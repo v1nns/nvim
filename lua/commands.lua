@@ -358,10 +358,10 @@ end
 
 -- check if must open nvdash
 M.show_dashboard = function()
-  local bufs = vim.t.bufs
-  if #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
-    vim.cmd "Nvdash"
-  end
+  -- local bufs = vim.api.nvim_list_bufs()
+  -- if #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
+  --   require("nvchad.nvdash").open()
+  -- end
 end
 
 return M

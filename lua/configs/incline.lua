@@ -7,7 +7,7 @@ return {
     padding = 0,
     margin = { horizontal = 0, vertical = 0 },
     overlap = {
-      borders = true,
+      borders = false,
       statusline = false,
       tabline = false,
       winbar = false,
@@ -27,15 +27,20 @@ return {
     local modified = vim.bo[props.buf].modified
     local res = {
       ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or "",
-      " ",
-      { filename, gui = modified and "underline" or "" },
+      {
+        " " .. filename .. (modified and " " or ""),
+        guibg = modified and "#e0af68" or "",
+        guifg = modified and "#060606" or "",
+      },
+      -- modified and { "  ", guibg = "#e0af68", guifg= " #992975" } or "",
       guibg = "#24283b",
     }
 
+    local first = true
     if props.focused then
       for _, item in ipairs(navic.get_data(props.buf) or {}) do
         table.insert(res, {
-          { " > ", group = "NavicSeparator" },
+          { first and modified and "> " or " > ", group = "NavicSeparator" },
           { item.icon, group = "NavicIcons" .. item.type },
           { item.name, group = "NavicText" },
         })

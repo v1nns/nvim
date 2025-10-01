@@ -256,7 +256,6 @@ return {
   -- tab navigation
   {
     "nanozuki/tabby.nvim",
-    enabled = false,
     init = function()
       require("ui.tabby").setup()
     end,

@@ -15,7 +15,7 @@ M.ui = {
   statusline = require "ui.statusline",
 
   tabufline = {
-    enabled = true,
+    enabled = false,
     order = { "treeOffset", "buffers", "tabs" },
     modules = {
       -- TODO: move to separate file and create logic to control tab naming
