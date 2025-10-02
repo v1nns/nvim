@@ -290,17 +290,6 @@ return {
     opts = require "configs.trouble",
   },
 
-  -- smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    enabled = not vim.g.neovide and true or false,
-    keys = { "<C-d>", "<C-u>", "zt", "zz", "zb" },
-    config = function()
-      local opt = require "configs.neoscroll"
-      require("neoscroll").setup(opt)
-    end,
-  },
-
   -- word motion using search
   {
     "folke/flash.nvim",
@@ -334,29 +323,6 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
-  },
-
-  -- dim unfocused code
-  {
-    "folke/twilight.nvim",
-    cmd = "Twilight",
-    opts = {},
-  },
-
-  -- zen mode (center current buffer)
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    opts = {
-      plugins = {
-        options = {
-          enabled = true,
-        },
-        twilight = {
-          enabled = true,
-        },
-      },
-    },
   },
 
   -- line motion using marks
@@ -451,6 +417,10 @@ return {
     lazy = false,
     opts = {
       dashboard = require "configs.dashboard",
+      -- TODO: change animation time for scroll
+      scroll = { enabled = true },
+      words = { enabled = true },
+      zen = { enabled = true },
     },
   },
 }

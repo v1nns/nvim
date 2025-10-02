@@ -24,11 +24,18 @@ map("n", "<A-Right>", "<C-I>zz", { desc = "jumplist move forward" })
 
 -- buffer
 map("n", "<C-n>", "<cmd> enew <CR>", { desc = "buffer new buffer" })
-map("n", "<leader>x", "<cmd> bd <CR>", { desc = "buffer close current buffer" })
+map(
+  "n",
+  "<leader>x",
+  '<cmd>lua require("snacks").bufdelete.delete({force = true}) <CR>',
+  { desc = "buffer close current buffer" }
+)
 map("n", "<Tab>", "<cmd> bn <CR>", { desc = "buffer focus next buffer" })
 map("n", "<S-Tab>", "<cmd> bp <CR>", { desc = "buffer focus previous buffer" })
-map("n", "<C-w>a", "<cmd> bufdo bd <CR>", { desc = "buffer close all buffers" })
-map("n", "<leader>cb", "<cmd> ZenMode <CR>", { desc = "buffer center current buffer" })
+map("n", "<C-w>a", "<cmd> CloseAllBuffers <CR>", { desc = "buffer close all buffers" })
+map("n", "<leader>bc", '<cmd> lua require("snacks").zen.zen()<CR>', { desc = "buffer center current buffer" })
+-- TODO: hide incline on zoom
+map("n", "<leader>bf", '<cmd> lua require("snacks").zen.zoom()<CR>', { desc = "buffer zoom current buffer" })
 
 -- window adjusts (for kitty)
 -- TODO: create function for width based on window position
@@ -132,9 +139,6 @@ map("n", "<leader>g", function()
 end, { desc = "git toggle diff view" })
 
 -- LSP
--- map("n", "<F2>", function()
---   require "ui.renamer"()
--- end, { desc = "LSP rename symbol" })
 map("n", "<leader>ld", function()
   vim.diagnostic.enable(false)
 end, { desc = "LSP disable lsp diagnostics" })
@@ -146,6 +150,8 @@ map("n", "<leader>fm", function()
 end, { desc = "LSP format code" })
 map("v", "<leader>fm", "gq", { desc = "LSP format code selection" })
 map("n", "<C-S-o>", "<cmd> Telescope lsp_document_symbols <CR>", { desc = "LSP list all symbols " })
+map({ "n", "t" }, "]]", '<cmd> lua require( "snacks" ).words.jump(vim.v.count1) <CR>', { desc = "LSP next reference" })
+map({ "n", "t" }, "[[", '<cmd> lua require( "snacks" ).words.jump(-vim.v.count1) <CR>', { desc = "LSP prev reference" })
 
 -- Trouble
 map("n", "<leader>cd", "<cmd> Trouble diagnostics toggle <CR>", { desc = "trouble show diagnostics" })
@@ -196,7 +202,6 @@ map("n", "<A-Down>", "<cmd> :m .+1 <CR>==", { desc = "text move line upwards" })
 map("n", "<A-Up>", "<cmd> :m .-2 <CR>==", { desc = "text move line downwards" })
 map("n", "<leader>fw", "<cmd> WrapTextAtColumn <CR>", { desc = "text wrap paragraph" })
 map("v", "<leader>fw", "<cmd> WrapTextAtColumn <CR>", { desc = "text wrap text selection" })
-map("n", "<leader>tt", "<cmd> Twilight <CR>", { desc = "text toggle code dimming" })
 map("i", "<C-BS>", "<C-W>", { desc = "text delete previous word" })
 
 -- neotree
@@ -217,12 +222,6 @@ map(
 map("n", "<A-p>", "<cmd> Telescope find_files prompt_title=Open\\ file <CR>", { desc = "telescope open file" })
 map("n", "<C-S-b>", "<cmd> Telescope marks <CR>", { desc = "telescope open bookmarks" })
 map("n", "<C-S-f>", "<cmd> Telescope live_grep prompt_title=Search\\ all <CR>", { desc = "telescope search all" })
-map(
-  "n",
-  "<leader>b",
-  "<cmd> Telescope buffers show_all_buffers=true sort_mru=true<CR>",
-  { desc = "telescope find buffers" }
-)
 map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "telescope search all" })
 map("n", "<C-g>c", "<cmd> Telescope git_commits <CR>", { desc = "telescope git show commits" })
 map("n", "<C-g>t", "<cmd> Telescope git_status <CR>", { desc = "telescope git show status" })

@@ -56,7 +56,7 @@ for _, lsp in ipairs(servers) do
       end
 
       -- enable symbol highlight
-      symbol_highlight(client, bufnr)
+      -- symbol_highlight(client, bufnr)
     end,
     on_init = on_init,
     capabilities = capabilities,

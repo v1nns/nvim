@@ -28,12 +28,13 @@ M.setup_autocommands = function()
     end,
   })
 
-  -- open nvdash on startup
-  autocmd({ "UIEnter", "BufDelete" }, {
-    callback = function()
-      M.show_dashboard()
-    end,
-  })
+  -- TODO: fix
+  -- open dashboard on startup
+  -- autocmd({ "UIEnter", "BufDelete" }, {
+  --   callback = function()
+  --     M.show_dashboard()
+  --   end,
+  -- })
 
   -- auto-wrap comments, don't auto insert comment on o/O and enter
   autocmd("FileType", {
@@ -185,6 +186,19 @@ end
 M.setup_commands = function()
   local cmd = vim.api.nvim_create_user_command
 
+  -- close all opened buffers
+  cmd("CloseAllBuffers", function()
+    vim.cmd "NvimTreeClose"
+
+    local count = #vim.api.nvim_list_tabpages()
+    if count == 1 then
+      vim.cmd "%bd"
+      M.show_dashboard()
+    else
+      vim.cmd "windo bd"
+    end
+  end, {})
+
   -- remove trailing spaces from current buffer
   cmd("RemoveTrailingSpace", function()
     vim.cmd [[%s/\s\+$//e | nohlsearch]]
@@ -221,19 +235,6 @@ M.setup_commands = function()
       vim.api.nvim_feedkeys("gq", "v", false)
     end
   end, { nargs = "?" })
-
-  -- find all matches
-  cmd("Find", function(opts)
-    if opts.args == nil then
-      return
-    end
-    vim.cmd "tabnew"
-    -- TODO: Create a tab rename feature
-    -- vim.cmd "TabRename search all"
-    vim.cmd("term rg --no-ignore --hidden -g=!.git " .. tostring(opts.args))
-    vim.cmd(string.format([[match Search /%s/]], tostring(opts.args)))
-    -- to clear: match none
-  end, { nargs = 1 })
 
   -- create command for comment divider snippets
   -- TODO: maybe split to another lua file like utils or something like that
@@ -358,10 +359,7 @@ end
 
 -- check if must open nvdash
 M.show_dashboard = function()
-  -- local bufs = vim.api.nvim_list_bufs()
-  -- if #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
-  --   require("nvchad.nvdash").open()
-  -- end
+  require("snacks").dashboard.open()
 end
 
 return M
