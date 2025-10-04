@@ -154,10 +154,10 @@ map({ "n", "t" }, "]]", '<cmd> lua require( "snacks" ).words.jump(vim.v.count1) 
 map({ "n", "t" }, "[[", '<cmd> lua require( "snacks" ).words.jump(-vim.v.count1) <CR>', { desc = "LSP prev reference" })
 
 -- Trouble
-map("n", "<leader>cd", "<cmd> Trouble diagnostics toggle <CR>", { desc = "trouble show diagnostics" })
+map("n", "<leader>cD", "<cmd> Trouble diagnostics toggle <CR>", { desc = "trouble show diagnostics" })
 map(
   "n",
-  "<leader>cD",
+  "<leader>cd",
   "<cmd> Trouble diagnostics toggle filter.buf=0 pinned=true <CR>",
   { desc = "trouble show diagnostics per buffer" }
 )

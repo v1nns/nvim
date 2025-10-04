@@ -4,7 +4,7 @@ return {
     { ft = "qf", title = "QuickFix" },
     {
       ft = "help",
-      size = { height = 0.3 },
+      size = { height = 0.4 },
       -- only show help buffers
       filter = function(buf)
         return vim.bo[buf].buftype == "help"

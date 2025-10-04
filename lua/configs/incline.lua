@@ -5,7 +5,7 @@ local devicons = require "nvim-web-devicons"
 return {
   window = {
     padding = 0,
-    margin = { horizontal = 0, vertical = 0 },
+    margin = { horizontal = 1, vertical = 0 },
     overlap = {
       borders = false,
       statusline = false,
