@@ -181,6 +181,7 @@ map(
 )
 map("n", "<leader>co", "<cmd> Trouble loclist toggle <CR>", { desc = "trouble show location list" })
 map("n", "<leader>cq", "<cmd> Trouble qflist toggle <CR>", { desc = "trouble show quickfix list" })
+map("n", "<leader>ct", "<cmd> Trouble tests toggle <CR>", { desc = "trouble show unit tests" })
 
 -- search utils
 map(
