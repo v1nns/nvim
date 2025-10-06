@@ -122,7 +122,7 @@ return {
   -- language server protocol
   {
     "neovim/nvim-lspconfig",
-    event = "VeryLazy",
+    event = "User FilePost",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
@@ -295,17 +295,6 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
-    keys = {
-      {
-        "s",
-        mode = { "n", "x", "o" },
-        function()
-          -- default options: exact mode, multi window, all directions, with a backdrop
-          require("flash").jump { prompt = { enabled = false } }
-        end,
-        desc = "Flash",
-      },
-    },
   },
 
   -- scrollbar

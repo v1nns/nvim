@@ -16,6 +16,11 @@ map("n", "<A-l>", "w", { desc = "navigation move cursor forward a word" })
 map("v", "j", "gj", { desc = "navigation move cursor to line downward" })
 map("v", "k", "gk", { desc = "navigation move cursor to line upward" })
 
+-- word motion
+-- stylua: ignore start
+map({ "n", "x", "o" }, "s", function() require("flash").jump { prompt = { enabled = false } } end, { desc = "flash jump" })
+-- stylua: ignore end
+
 -- jumplist
 map("n", "<A-Left>", "<C-O>zz", { desc = "jumplist move back" })
 map("n", "<A-Right>", "<C-I>zz", { desc = "jumplist move forward" })
@@ -23,19 +28,13 @@ map("n", "<A-Right>", "<C-I>zz", { desc = "jumplist move forward" })
 -- map("n","<A-l", "<C-I>zz", {desc ="move forward" })
 
 -- buffer
+-- stylua: ignore start
 map("n", "<C-n>", "<cmd> enew <CR>", { desc = "buffer new buffer" })
-map(
-  "n",
-  "<leader>x",
-  '<cmd>lua require("snacks").bufdelete.delete({force = true}) <CR>',
-  { desc = "buffer close current buffer" }
-)
-map("n", "<Tab>", "<cmd> bn <CR>", { desc = "buffer focus next buffer" })
-map("n", "<S-Tab>", "<cmd> bp <CR>", { desc = "buffer focus previous buffer" })
+map( "n", "<leader>x", '<cmd>lua require("snacks").bufdelete.delete({force = true}) <CR>', { desc = "buffer close current buffer" })
 map("n", "<C-w>a", "<cmd> CloseAllBuffers <CR>", { desc = "buffer close all buffers" })
 map("n", "<leader>bc", '<cmd> lua require("snacks").zen.zen()<CR>', { desc = "buffer center current buffer" })
--- TODO: hide incline on zoom
 map("n", "<leader>bf", '<cmd> lua require("snacks").zen.zoom()<CR>', { desc = "buffer zoom current buffer" })
+-- stylua: ignore end
 
 -- window adjusts (for kitty)
 -- TODO: create function for width based on window position
@@ -88,33 +87,17 @@ local goto_tab = function(id)
   end
 end
 
-map("n", "<leader>1", function()
-  goto_tab(1)
-end, { desc = "tab go to tab 1" })
-map("n", "<leader>2", function()
-  goto_tab(2)
-end, { desc = "tab go to tab 2" })
-map("n", "<leader>3", function()
-  goto_tab(3)
-end, { desc = "tab go to tab 3" })
-map("n", "<leader>4", function()
-  goto_tab(4)
-end, { desc = "tab go to tab 4" })
-map("n", "<leader>5", function()
-  goto_tab(5)
-end, { desc = "tab go to tab 5" })
-map("n", "<leader>6", function()
-  goto_tab(6)
-end, { desc = "tab go to tab 6" })
-map("n", "<leader>7", function()
-  goto_tab(7)
-end, { desc = "tab go to tab 7" })
-map("n", "<leader>8", function()
-  goto_tab(8)
-end, { desc = "tab go to tab 8" })
-map("n", "<leader>9", function()
-  goto_tab(9)
-end, { desc = "tab go to tab 9" })
+-- stylua: ignore start
+map("n", "<leader>1", function() goto_tab(1) end, { desc = "tab go to tab 1" })
+map("n", "<leader>2", function() goto_tab(2) end, { desc = "tab go to tab 2" })
+map("n", "<leader>3", function() goto_tab(3) end, { desc = "tab go to tab 3" })
+map("n", "<leader>4", function() goto_tab(4) end, { desc = "tab go to tab 4" })
+map("n", "<leader>5", function() goto_tab(5) end, { desc = "tab go to tab 5" })
+map("n", "<leader>6", function() goto_tab(6) end, { desc = "tab go to tab 6" })
+map("n", "<leader>7", function() goto_tab(7) end, { desc = "tab go to tab 7" })
+map("n", "<leader>8", function() goto_tab(8) end, { desc = "tab go to tab 8" })
+map("n", "<leader>9", function() goto_tab(9) end, { desc = "tab go to tab 9" })
+-- stylua: ignore end
 
 -- git integration
 map("n", "<C-g>b", "<cmd> Gitsigns toggle_current_line_blame <CR>", { desc = "git toggle blame" })
@@ -139,64 +122,34 @@ map("n", "<leader>g", function()
 end, { desc = "git toggle diff view" })
 
 -- LSP
-map("n", "<leader>ld", function()
-  vim.diagnostic.enable(false)
-end, { desc = "LSP disable lsp diagnostics" })
-map("n", "<leader>le", function()
-  vim.diagnostic.enable()
-end, { desc = "LSP enable lsp diagnostics" })
-map("n", "<leader>fm", function()
-  require("conform").format { async = true, lsp_fallback = true }
-end, { desc = "LSP format code" })
+-- stylua: ignore start
+map("n", "<leader>ld", function() vim.diagnostic.enable(false) end, { desc = "LSP disable lsp diagnostics" })
+map("n", "<leader>le", function() vim.diagnostic.enable() end, { desc = "LSP enable lsp diagnostics" })
+map("n", "<leader>fm", function() require("conform").format { async = true, lsp_fallback = true } end, { desc = "LSP format code" })
 map("v", "<leader>fm", "gq", { desc = "LSP format code selection" })
 map("n", "<C-S-o>", "<cmd> Telescope lsp_document_symbols <CR>", { desc = "LSP list all symbols " })
 map({ "n", "t" }, "]]", '<cmd> lua require( "snacks" ).words.jump(vim.v.count1) <CR>', { desc = "LSP next reference" })
 map({ "n", "t" }, "[[", '<cmd> lua require( "snacks" ).words.jump(-vim.v.count1) <CR>', { desc = "LSP prev reference" })
+-- stylua: ignore end
 
 -- Trouble
+-- stylua: ignore start
 map("n", "<leader>cD", "<cmd> Trouble diagnostics toggle <CR>", { desc = "trouble show diagnostics" })
-map(
-  "n",
-  "<leader>cd",
-  "<cmd> Trouble diagnostics toggle filter.buf=0 pinned=true <CR>",
-  { desc = "trouble show diagnostics per buffer" }
-)
-map(
-  "n",
-  "<leader>cs",
-  "<cmd> Trouble symbols toggle focus=true pinned=true <CR>",
-  { desc = "trouble lsp show symbols" }
-)
-map(
-  "n",
-  "<leader>cr",
-  "<cmd> Trouble lsp_references toggle focus=true pinned=true <CR>",
-  { desc = "trouble list all symbol references" }
-)
-map(
-  "n",
-  "<leader>cl",
-  "<cmd> Trouble lsp toggle focus=true pinned=true win.position=right <CR>",
-  { desc = "trouble toggle lsp menu" }
-)
+map("n", "<leader>cd", "<cmd> Trouble diagnostics toggle filter.buf=0 pinned=true <CR>", { desc = "trouble show diagnostics per buffer" })
+map("n", "<leader>cs", "<cmd> Trouble symbols toggle focus=true pinned=true <CR>", { desc = "trouble lsp show symbols" })
+map("n", "<leader>cr", "<cmd> Trouble lsp_references toggle focus=true pinned=true <CR>", { desc = "trouble list all symbol references" })
+map("n", "<leader>cl", "<cmd> Trouble lsp toggle focus=true pinned=true win.position=right <CR>", { desc = "trouble toggle lsp menu" })
 map("n", "<leader>co", "<cmd> Trouble loclist toggle <CR>", { desc = "trouble show location list" })
 map("n", "<leader>cq", "<cmd> Trouble qflist toggle <CR>", { desc = "trouble show quickfix list" })
 map("n", "<leader>ct", "<cmd> Trouble tests toggle <CR>", { desc = "trouble show unit tests" })
+-- stylua: ignore end
 
 -- search utils
-map(
-  "n",
-  "n",
-  "<cmd>execute('normal! ' . v:count1 . 'n')<CR><cmd>lua require('hlslens').start()<CR>",
-  { desc = "search repeat last search" }
-)
-map(
-  "n",
-  "N",
-  "<cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
-  { desc = "search repeat last search (in opposite direction)" }
-)
+-- stylua: ignore start
+map( "n", "n", "<cmd>execute('normal! ' . v:count1 . 'n')<CR><cmd>lua require('hlslens').start()<CR>", { desc = "search repeat last search" })
+map( "n", "N", "<cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>", { desc = "search repeat last search (reverse)" })
 map("n", "<A-s>", '<cmd>lua require("spectre").toggle()<CR>', { desc = "search toggle search panel" })
+-- stylua: ignore end
 
 -- text actions
 map("n", "<A-Down>", "<cmd> :m .+1 <CR>==", { desc = "text move line upwards" })
@@ -214,24 +167,16 @@ map("i", "<C-BS>", "<C-W>", { desc = "text delete previous word" })
 map("n", "<leader>e", "<cmd> NvimTreeFindFileToggle <CR>", { desc = "nvim-tree toggle file tree" })
 
 -- telescope
-map(
-  "n",
-  "<A-o>",
-  "<cmd> Telescope file_browser path=$HOME prompt_title=Open\\ folder <CR>",
-  { desc = "telescope open folder" }
-)
+-- stylua: ignore start
+map( "n", "<A-o>", "<cmd> Telescope file_browser path=$HOME prompt_title=Open\\ folder <CR>", { desc = "telescope open folder" })
 map("n", "<A-p>", "<cmd> Telescope find_files prompt_title=Open\\ file <CR>", { desc = "telescope open file" })
 map("n", "<C-S-b>", "<cmd> Telescope marks <CR>", { desc = "telescope open bookmarks" })
 map("n", "<C-S-f>", "<cmd> Telescope live_grep prompt_title=Search\\ all <CR>", { desc = "telescope search all" })
 map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "telescope search all" })
 map("n", "<C-g>c", "<cmd> Telescope git_commits <CR>", { desc = "telescope git show commits" })
 map("n", "<C-g>t", "<cmd> Telescope git_status <CR>", { desc = "telescope git show status" })
-map(
-  "n",
-  ";",
-  "<cmd> MarksListAll <CR><cmd>lcl<CR><cmd>Telescope loclist prompt_title=Marks<CR>",
-  { desc = "telescope show all marks" }
-)
+map("n", ";", "<cmd> MarksListAll <CR><cmd>lcl<CR><cmd>Telescope loclist prompt_title=Marks<CR>", { desc = "telescope show all marks" })
+-- stylua: ignore end
 
 -- comment divider
 map("n", "<A-y>", "<cmd> InsertCommentDivider <CR>", { desc = "divider add line" })
@@ -254,7 +199,6 @@ map("n", "<leader>cc", "<cmd> CodeCompanionChat toggle <CR>", { desc = "code tog
 
 -- disable mappings
 local nomap = vim.keymap.del
--- nomap("n", "<leader>b")
 
 nomap("n", "<C-c>") -- disable default keybind from NvChad
 map("n", "<C-c>", function()
@@ -276,20 +220,12 @@ map("v", "<C-e>", "<End>", { desc = "navigation move end of line" })
 -- mapping based on filetype
 local autocmd = vim.api.nvim_create_autocmd
 
+-- stylua: ignore start
 autocmd("FileType", {
   pattern = "qf",
   callback = function(event)
-    map(
-      "n",
-      "<C-n>",
-      "<cmd>cn | wincmd p<CR>",
-      { desc = "navigation move to next reference", buffer = event.buf, silent = true }
-    )
-    map(
-      "n",
-      "<C-p>",
-      "<cmd>cN | wincmd p<CR>",
-      { desc = "navigation move to previous reference", buffer = event.buf, silent = true }
-    )
+    map( "n", "<C-n>", "<cmd>cn | wincmd p<CR>", { desc = "navigation move to next reference", buffer = event.buf, silent = true })
+    map( "n", "<C-p>", "<cmd>cN | wincmd p<CR>", { desc = "navigation move to previous reference", buffer = event.buf, silent = true })
   end,
 })
+-- stylua: ignore end
