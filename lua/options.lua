@@ -1,6 +1,6 @@
 require "nvchad.options"
 
--- to enable cursorline!
+-- to enable cursorline
 vim.opt.cursorlineopt = "both"
 
 -- enable title

@@ -135,14 +135,6 @@ return {
     -- event = { "BufWritePre" }, -- uncomment for format on save
     cmd = { "ConformInfo" },
     opts = require "configs.conform",
-    -- TODO: maybe remove all this comment
-    -- config = function()
-    --   local opts = require "configs.conform"
-    --   require("conform").setup(opts)
-    --
-    --   -- Set formatexpr
-    --   vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    -- end,
   },
 
   -- code comment
@@ -405,20 +397,6 @@ return {
     "folke/snacks.nvim",
     lazy = false,
     dependencies = "b0o/incline.nvim",
-    opts = {
-      dashboard = require "configs.dashboard",
-      -- TODO: change animation time for scroll
-      scroll = { enabled = true },
-      words = { enabled = true },
-      zen = {
-        enabled = true,
-        on_open = function()
-          require("incline").disable()
-        end,
-        on_close = function()
-          require("incline").enable()
-        end,
-      },
-    },
+    opts = require "configs.snacks",
   },
 }

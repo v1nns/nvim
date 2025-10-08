@@ -1,5 +1,4 @@
 local helpers = require "incline.helpers"
-local navic = require "nvim-navic"
 local devicons = require "nvim-web-devicons"
 
 return {
@@ -35,17 +34,6 @@ return {
       -- modified and { "  ", guibg = "#e0af68", guifg= " #992975" } or "",
       guibg = "#24283b",
     }
-
-    local first = true
-    if props.focused then
-      for _, item in ipairs(navic.get_data(props.buf) or {}) do
-        table.insert(res, {
-          { first and modified and "> " or " > ", group = "NavicSeparator" },
-          { item.icon, group = "NavicIcons" .. item.type },
-          { item.name, group = "NavicText" },
-        })
-      end
-    end
 
     table.insert(res, " ")
     return res

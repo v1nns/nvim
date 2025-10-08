@@ -1,4 +1,5 @@
 local utils = require "nvchad.stl.utils"
+local navic = require "nvim-navic"
 
 return {
   theme = "vscode_colored",
@@ -12,6 +13,7 @@ return {
     "lsp_msg",
     "%=",
     "llm",
+    "breadcrumb",
     "cursor",
     "diagnostics",
     "lsp",
@@ -60,6 +62,10 @@ return {
       end
 
       return "%#String#" .. " recording to " .. reg .. "%#StText#"
+    end,
+
+    breadcrumb = function()
+      return navic.is_available() and navic.get_location() or ""
     end,
 
     llm = function()
