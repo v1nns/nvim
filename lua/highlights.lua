@@ -151,6 +151,13 @@ M.add = {
   DashboardHeader4 = { bg = "#303148", fg = "#b4f9f8" },
   DashboardHeader5 = { bg = "#303148", fg = "#7dcfff" },
   DashboardHeader6 = { bg = "#303148", fg = "#7aa2f7" },
+
+  -- buffer list (check ui)
+  BufferListKey = { fg = "#7dcfff", bold = true },
+  BufferListBracket = { fg = "#565f89" },
+  BufferListPath = { fg = "#c0caf5" },
+  BufferListModified = { fg = "#e0af68", bold = true },
+  BufferListCurrent = { fg = "#9ece6a", bold = true },
 }
 
 M.override = {
