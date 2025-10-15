@@ -142,7 +142,7 @@ map("n", "<leader>cr", "<cmd> Trouble lsp_references toggle focus=true pinned=tr
 map("n", "<leader>cl", "<cmd> Trouble lsp toggle focus=true pinned=true win.position=right <CR>", { desc = "trouble toggle lsp menu" })
 map("n", "<leader>co", "<cmd> Trouble loclist toggle <CR>", { desc = "trouble show location list" })
 map("n", "<leader>cq", "<cmd> Trouble qflist toggle <CR>", { desc = "trouble show quickfix list" })
-map("n", "<leader>ct", "<cmd> Trouble tests toggle <CR>", { desc = "trouble show unit tests" })
+map("n", "<leader>ct", "<cmd> Trouble tests toggle focus=true pinned=true <CR>", { desc = "trouble show unit tests" })
 -- stylua: ignore end
 
 -- search utils

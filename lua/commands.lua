@@ -16,6 +16,9 @@ M.setup_autocommands = function()
 
       -- force highlights reload
       require("base46").load_all_highlights()
+
+      -- clear jumplist to avoid jumping to old files
+      vim.cmd "tabdo windo clearjumps"
     end,
   })
 
