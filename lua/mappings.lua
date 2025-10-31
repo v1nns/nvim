@@ -12,6 +12,8 @@ map("n", "<A-j>", "5gj", { desc = "navigation move cursor to line 5x downward" }
 map("n", "<A-k>", "5gk", { desc = "navigation move cursor to line 5x upward" })
 map("n", "<A-h>", "b", { desc = "navigation move cursor back a word" })
 map("n", "<A-l>", "w", { desc = "navigation move cursor forward a word" })
+map("n", "<C-d>", "<C-d>zz", { desc = "navigation scroll cursor downward" })
+map("n", "<C-u>", "<C-u>zz", { desc = "navigation scroll cursor upward" })
 
 map("v", "j", "gj", { desc = "navigation move cursor to line downward" })
 map("v", "k", "gk", { desc = "navigation move cursor to line upward" })

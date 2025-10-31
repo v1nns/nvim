@@ -41,7 +41,7 @@ return {
   },
 
   -- TODO: change animation time for scroll
-  scroll = { enabled = true },
+  scroll = { enabled = false },
 
   words = { enabled = true },
 
