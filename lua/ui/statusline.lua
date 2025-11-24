@@ -13,7 +13,6 @@ return {
     "lsp_msg",
     "%=",
     "llm",
-    "breadcrumb",
     "cursor",
     "diagnostics",
     "lsp",
