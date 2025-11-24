@@ -186,6 +186,7 @@ return {
   },
   {
     "b0o/incline.nvim",
+    enabled = false,
     dependencies = "SmiteshP/nvim-navic",
     event = "VeryLazy",
     config = function()

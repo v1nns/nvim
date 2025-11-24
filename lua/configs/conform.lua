@@ -16,7 +16,7 @@ return {
   -- Customize formatters
   formatters = {
     autopep8 = {
-      prepend_args = { "--max-line-length", "100" },
+      prepend_args = { "--max-line-length", "100", "--experimental" },
     },
     clang_format = {
       prepend_args = {

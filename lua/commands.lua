@@ -44,6 +44,19 @@ M.setup_autocommands = function()
     command = "set formatoptions-=cro",
   })
 
+  -- set winbar with breadcrumbs and file path
+  autocmd({
+    "CursorMoved",
+    "BufWinEnter",
+    "BufFilePost",
+    "InsertEnter",
+    "BufWritePost",
+  }, {
+    callback = function()
+      require("ui.winbar").setup()
+    end,
+  })
+
   -- enable line number in telescope previewer
   autocmd("User", { pattern = "TelescopePreviewerLoaded", command = "setlocal number" })
 
@@ -198,6 +211,7 @@ M.setup_commands = function()
       vim.cmd "%bd"
       M.show_dashboard()
     else
+      vim.cmd [[Tabby rename_tab ]]
       vim.cmd "windo bd"
     end
   end, {})
