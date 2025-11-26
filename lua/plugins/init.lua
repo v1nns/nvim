@@ -21,7 +21,7 @@ return {
   {
     "folke/which-key.nvim",
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g", "z" },
-    opts = { preset = "modern", show_help = false },
+    opts = require "configs.whichkey",
   },
 
   -- use default file explorer again
