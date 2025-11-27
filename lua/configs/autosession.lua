@@ -20,5 +20,6 @@ return {
     "Lazy",
     "help",
     "toggleterm",
+    "snacks_dashboard"
   },
 }

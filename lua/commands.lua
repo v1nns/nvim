@@ -31,14 +31,6 @@ M.setup_autocommands = function()
     end,
   })
 
-  -- TODO: fix
-  -- open dashboard on startup
-  -- autocmd({ "UIEnter", "BufDelete" }, {
-  --   callback = function()
-  --     M.show_dashboard()
-  --   end,
-  -- })
-
   -- auto-wrap comments, don't auto insert comment on o/O and enter
   autocmd("FileType", {
     command = "set formatoptions-=cro",
@@ -205,14 +197,30 @@ M.setup_commands = function()
   -- close all opened buffers
   cmd("CloseAllBuffers", function()
     vim.cmd "NvimTreeClose"
+    vim.cmd "Tabby rename_tab "
 
-    local count = #vim.api.nvim_list_tabpages()
-    if count == 1 then
-      vim.cmd "%bd"
-      M.show_dashboard()
-    else
-      vim.cmd [[Tabby rename_tab ]]
-      vim.cmd "windo bd"
+    local scope_core = require "scope.core"
+    local current_tab = vim.api.nvim_get_current_tabpage()
+    local tab_buffers = scope_core.cache[current_tab] or {}
+
+    -- Create empty buffer FIRST to prevent tab from closing
+    local new_buf = vim.api.nvim_create_buf(true, false)
+    vim.api.nvim_win_set_buf(0, new_buf)
+
+    -- Close all tab-scoped buffers (except the new one)
+    for _, buf in ipairs(tab_buffers) do
+      if vim.api.nvim_buf_is_valid(buf) and buf ~= new_buf then
+        require("snacks").bufdelete.delete { buf = buf, force = true }
+      end
+    end
+
+    -- Update scope cache for current tab
+    scope_core.cache[current_tab] = { new_buf }
+
+    -- Show dashboard only if there's a single tab (dashboard hides tabline anyway)
+    local tab_count = #vim.api.nvim_list_tabpages()
+    if tab_count == 1 then
+      require("snacks").dashboard.open { buf = new_buf }
     end
   end, {})
 
@@ -377,11 +385,6 @@ M.setup_commands = function()
   cmd("BufferList", function()
     require("ui.bufferlist").pick_buffer()
   end, {})
-end
-
--- check if must open nvdash
-M.show_dashboard = function()
-  require("snacks").dashboard.open()
 end
 
 return M

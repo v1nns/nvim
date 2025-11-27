@@ -17,6 +17,7 @@ M.pick_window = function()
       and ft ~= "noice"
       and ft ~= "notify"
       and ft ~= "scrollview"
+      and ft ~= "snacks_dashboard"
     then
       count = count + 1
     end
@@ -45,6 +46,7 @@ M.pick_window = function()
           "notify",
           "quickfix",
           "*Telescope*",
+          "snacks_dashboard",
           -- "nvdash", -- we can't filter nvdash...
         },
 
@@ -73,7 +75,7 @@ M.pick_window = function()
 
   local window_id = require("window-picker").pick_window(options)
 
-  if not window_id then
+  if window_id == false then
     return false
   end
 

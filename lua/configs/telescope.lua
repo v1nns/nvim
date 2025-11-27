@@ -1,7 +1,7 @@
 local actions = require "telescope.actions"
 local previewers = require "telescope.previewers"
-local sorters = require("telescope.sorters")
-local state = require("telescope.actions.state")
+local sorters = require "telescope.sorters"
+local state = require "telescope.actions.state"
 
 return {
   defaults = {
@@ -118,7 +118,15 @@ return {
 
             local is_window_picked = require("configs.windowpicker").pick_window()
 
-            if is_window_picked then
+            if is_window_picked ~= false then
+              -- Close dashboard if it's open in current window
+              local current_buf = vim.api.nvim_get_current_buf()
+              local ft = vim.api.nvim_get_option_value("filetype", { buf = current_buf })
+
+              if ft == "snacks_dashboard" then
+                vim.cmd("bd " .. current_buf)
+              end
+
               vim.cmd("edit " .. vim.fn.fnameescape(entry.path))
             end
           end,
