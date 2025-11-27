@@ -158,6 +158,8 @@ M.add = {
   BufferListPath = { fg = "#c0caf5" },
   BufferListModified = { fg = "#e0af68", bold = true },
   BufferListCurrent = { fg = "#9ece6a", bold = true },
+  BufferListFilename = { fg = "#c0caf5" },
+  BufferListEntry = { fg = "#565f89" },
 }
 
 M.override = {

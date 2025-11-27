@@ -35,31 +35,38 @@ local function apply_buffer_highlights(buf, lines, buffer_list)
     local path_end = #line_text
 
     -- Check if there's a modified indicator
-    if buf_info.modified then
-      local modified_start = #line_text - 3 -- " [+]" is 4 characters
-      -- Highlight the file path (excluding the modified indicator)
+    local modified_start = buf_info.modified and (#line_text - 3) or path_end
+
+    -- Extract filename from path for bold highlighting
+    local path_text = line_text:sub(path_start + 1, modified_start)
+    local filename_start_idx = path_text:match "^.*()/" -- Find last slash
+    local filename_start = filename_start_idx and (path_start + filename_start_idx) or path_start
+
+    -- Apply dim effect to non-current buffers
+    if not buf_info.current then
       vim.api.nvim_buf_set_extmark(buf, ns_id, line_idx, path_start, {
         end_col = modified_start,
-        hl_group = "BufferListPath",
-      })
-      -- Highlight the modified indicator
-      vim.api.nvim_buf_set_extmark(buf, ns_id, line_idx, modified_start, {
-        end_col = path_end,
-        hl_group = "BufferListModified",
+        hl_group = "BufferListEntry",
       })
     else
-      -- Highlight the entire file path
+      -- Highlight the file path normally for current buffer
       vim.api.nvim_buf_set_extmark(buf, ns_id, line_idx, path_start, {
-        end_col = path_end,
-        hl_group = "BufferListPath",
+        end_col = modified_start,
+        hl_group = buf_info.current and "BufferListCurrent" or "BufferListPath",
       })
     end
 
-    -- If this is the current buffer, add an additional overlay highlight
-    if buf_info.current then
-      vim.api.nvim_buf_set_extmark(buf, ns_id, line_idx, path_start, {
+    -- Apply bold to filename only
+    vim.api.nvim_buf_set_extmark(buf, ns_id, line_idx, filename_start, {
+      end_col = modified_start,
+      hl_group = buf_info.current and "BufferListCurrent" or "BufferListFilename",
+    })
+
+    -- Highlight the modified indicator
+    if buf_info.modified then
+      vim.api.nvim_buf_set_extmark(buf, ns_id, line_idx, modified_start, {
         end_col = path_end,
-        hl_group = "BufferListCurrent",
+        hl_group = "BufferListModified",
       })
     end
   end
@@ -158,7 +165,7 @@ local function create_floating_window(buf, width, height, row, col)
     col = col,
     style = "minimal",
     border = "rounded",
-    title = " Buffer List ",
+    title = " Buffers ",
     title_pos = "left",
     noautocmd = true,
   })
@@ -419,6 +426,9 @@ M.pick_buffer = function()
     return
   end
 
+  -- TODO:
+  -- - define max columns for buffer filepath
+  -- - refresh window when buffer with extensive filepath gets deleted (may not need if first one is implemented)
   local lines, letter_map, line_to_bufnr = format_buffer_lines(buffer_list)
   local float_buf = create_float_buffer(lines, buffer_list)
   local width, height = calculate_window_dimensions(lines)
