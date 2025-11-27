@@ -3,6 +3,7 @@ local M = {}
 local LETTERS = "1234567890abcdefgimnoprstuvwxyz"
 local LETTER_COLUMN = 2
 local FIRST_BUFFER_LINE = 2
+local MAX_DISPLAY_LENGTH = 60
 
 -- Apply syntax highlighting to buffer lines
 local function apply_buffer_highlights(buf, lines, buffer_list)
@@ -82,6 +83,37 @@ local function get_buffer_list(original_current_buf)
     if vim.fn.buflisted(buf) == 1 then
       local name = vim.api.nvim_buf_get_name(buf)
       local display_name = name ~= "" and vim.fn.fnamemodify(name, ":~:.") or "[No Name]"
+
+      -- Truncate long paths while keeping filename visible
+      if #display_name > MAX_DISPLAY_LENGTH then
+        local filename = display_name:match "([^/]+)$" or display_name
+        local filename_len = #filename
+
+        -- If even the filename is too long, just truncate it
+        if filename_len >= MAX_DISPLAY_LENGTH - 3 then
+          display_name = "..." .. filename:sub(-(MAX_DISPLAY_LENGTH - 3))
+        else
+          -- Calculate how much space we have for the path
+          local available_space = MAX_DISPLAY_LENGTH - filename_len - 4 -- 4 for ".../'"
+          local path_part = display_name:sub(1, -(filename_len + 2)) -- Exclude "/" and filename
+
+          -- Find the first directory to keep after ellipsis
+          local truncated_path = path_part
+          if #path_part > available_space then
+            -- Start from the end and work backwards to keep as much as possible
+            local remaining = path_part:sub(-available_space)
+            -- Find the first complete directory after the cut
+            local first_slash = remaining:find "/"
+            if first_slash then
+              truncated_path = remaining:sub(first_slash + 1)
+            else
+              truncated_path = remaining
+            end
+          end
+
+          display_name = "..." .. truncated_path .. "/" .. filename
+        end
+      end
 
       table.insert(buffer_list, {
         bufnr = buf,
@@ -427,7 +459,6 @@ M.pick_buffer = function()
   end
 
   -- TODO:
-  -- - define max columns for buffer filepath
   -- - refresh window when buffer with extensive filepath gets deleted (may not need if first one is implemented)
   local lines, letter_map, line_to_bufnr = format_buffer_lines(buffer_list)
   local float_buf = create_float_buffer(lines, buffer_list)
