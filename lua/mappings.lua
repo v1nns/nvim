@@ -21,6 +21,7 @@ map("v", "k", "gk", { desc = "navigation move cursor to line upward" })
 -- word motion
 -- stylua: ignore start
 map({ "n", "x", "o" }, "s", function() require("flash").jump { prompt = { enabled = false } } end, { desc = "flash jump" })
+map("n", ";", "<cmd> MarksQFListAll <CR>", { desc = "marks show all marks" })
 -- stylua: ignore end
 
 -- jumplist
@@ -178,7 +179,6 @@ map("n", "<C-S-f>", "<cmd> Telescope live_grep prompt_title=Search\\ all <CR>", 
 map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "telescope search all" })
 map("n", "<C-g>c", "<cmd> Telescope git_commits <CR>", { desc = "telescope git show commits" })
 map("n", "<C-g>t", "<cmd> Telescope git_status <CR>", { desc = "telescope git show status" })
-map("n", ";", "<cmd> MarksListAll <CR><cmd>lcl<CR><cmd>Telescope loclist prompt_title=Marks<CR>", { desc = "telescope show all marks" })
 -- stylua: ignore end
 
 -- comment divider

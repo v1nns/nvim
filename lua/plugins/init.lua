@@ -310,9 +310,8 @@ return {
   -- line motion using marks
   {
     "chentoast/marks.nvim",
-    init = function()
-      require("marks").setup()
-    end,
+    event = "VeryLazy",
+    opts = {},
   },
 
   -- disable certain features on big files
