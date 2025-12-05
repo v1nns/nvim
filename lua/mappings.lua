@@ -21,7 +21,7 @@ map("v", "k", "gk", { desc = "navigation move cursor to line upward" })
 -- word motion
 -- stylua: ignore start
 map({ "n", "x", "o" }, "s", function() require("flash").jump { prompt = { enabled = false } } end, { desc = "flash jump" })
-map("n", ";", "<cmd> MarksQFListAll <CR>", { desc = "marks show all marks" })
+map("n", ";", "<cmd> BookmarksQFListAll <CR>", { desc = "bookmark show all bookmarks" })
 -- stylua: ignore end
 
 -- jumplist
@@ -33,7 +33,7 @@ map("n", "<A-Right>", "<C-I>zz", { desc = "jumplist move forward" })
 -- buffer
 -- stylua: ignore start
 map("n", "<C-n>", "<cmd> enew <CR>", { desc = "buffer new buffer" })
-map("n", "<leader>x", '<cmd>lua require("snacks").bufdelete.delete({force = true}) <CR>', { desc = "buffer close current buffer" })
+map("n", "<leader>x", '<cmd>lua require("scope.core").close_buffer() <CR>', { desc = "buffer close current buffer" })
 map("n", "<C-w>a", "<cmd> CloseAllBuffers <CR>", { desc = "buffer close all buffers" })
 map("n", "<leader>bc", '<cmd> lua require("snacks").zen.zen() <CR>', { desc = "buffer center current buffer" })
 map("n", "<leader>bf", '<cmd> lua require("snacks").zen.zoom() <CR>', { desc = "buffer zoom current buffer" })

@@ -210,7 +210,7 @@ M.setup_commands = function()
     -- Close all tab-scoped buffers (except the new one)
     for _, buf in ipairs(tab_buffers) do
       if vim.api.nvim_buf_is_valid(buf) and buf ~= new_buf then
-        require("snacks").bufdelete.delete { buf = buf, force = true }
+        scope_core.close_buffer { buf = buf }
       end
     end
 

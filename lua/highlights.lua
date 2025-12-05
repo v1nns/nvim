@@ -160,6 +160,9 @@ M.add = {
   BufferListCurrent = { fg = "#9ece6a", bold = true },
   BufferListFilename = { fg = "#c0caf5" },
   BufferListEntry = { fg = "#565f89" },
+
+  -- bookmarks icon
+  MarkSignHL = { fg = "#ff9e64", bold = true },
 }
 
 M.override = {
