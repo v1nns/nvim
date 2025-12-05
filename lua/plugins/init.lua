@@ -62,6 +62,7 @@ return {
   -- syntax highlight for coding
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
     opts = require "configs.treesitter",
   },
 
@@ -172,8 +173,12 @@ return {
     dependencies = {
       {
         "tiagovla/scope.nvim",
-        opts = {},
+        lazy = false,
+        config = function()
+          require("scope").setup {}
+        end,
       },
+      { "nvim-lua/plenary.nvim", lazy = true },
     },
     opts = require "configs.autosession",
   },
@@ -250,7 +255,8 @@ return {
   -- tab navigation
   {
     "nanozuki/tabby.nvim",
-    init = function()
+    lazy = false,
+    config = function()
       require("ui.tabby").setup()
     end,
   },
@@ -259,7 +265,7 @@ return {
   {
     "kevinhwang91/nvim-hlslens",
     keys = { "/", "?", "n", "N" },
-    init = function()
+    config = function()
       require("hlslens").setup()
     end,
   },
@@ -294,7 +300,7 @@ return {
   {
     "dstein64/nvim-scrollview",
     event = "VeryLazy",
-    init = function()
+    config = function()
       require("scrollview").setup()
     end,
   },
