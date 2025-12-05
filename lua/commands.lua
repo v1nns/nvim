@@ -385,6 +385,41 @@ M.setup_commands = function()
   cmd("BufferList", function()
     require("ui.bufferlist").pick_buffer()
   end, {})
+
+  -- Stop specific LSP client (filter by name or stop all)
+  cmd("LspStop", function(opts)
+    local client_name = opts.args
+    if client_name == "" then
+      local clients = vim.lsp.get_clients()
+      for _, client in ipairs(clients) do
+        vim.lsp.stop_client(client.id)
+      end
+
+      vim.notify("Stopped " .. #clients .. " LSP client(s)")
+      return
+    end
+
+    local clients = vim.lsp.get_clients { name = client_name }
+    if #clients == 0 then
+      vim.notify("No LSP client named '" .. client_name .. "' found", vim.log.levels.WARN)
+      return
+    end
+
+    for _, client in ipairs(clients) do
+      vim.lsp.stop_client(client.id)
+    end
+    vim.notify("Stopped LSP client: " .. client_name)
+  end, {
+    nargs = "?",
+    complete = function()
+      local clients = vim.lsp.get_clients()
+      local names = {}
+      for _, client in ipairs(clients) do
+        table.insert(names, client.name)
+      end
+      return names
+    end,
+  })
 end
 
 return M
