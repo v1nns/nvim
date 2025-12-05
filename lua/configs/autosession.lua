@@ -2,7 +2,8 @@ return {
   cwd_change_handling = true,
   suppressed_dirs = { "~/", "~/projects", "~/Downloads", "/", "/tmp" },
 
-  pre_save_cmds = { "DiffviewClose", "NvimTreeClose", "ScopeSaveState" },
+  pre_save_cmds = { "ScopeSaveState" },
+
   post_restore_cmds = { "ScopeLoadState" },
 
   close_filetypes_on_save = {
@@ -20,6 +21,7 @@ return {
     "Lazy",
     "help",
     "toggleterm",
-    "snacks_dashboard"
+    "snacks_dashboard",
+    "sidekick_terminal",
   },
 }
