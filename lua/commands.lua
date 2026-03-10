@@ -19,6 +19,10 @@ M.setup_autocommands = function()
 
       -- clear jumplist to avoid jumping to old files
       vim.cmd "tabdo windo clearjumps"
+
+      -- load bookmarks from project directory
+      local bookmarks_dir = vim.fn.getcwd() .. "/.bookmarks/"
+      require("haunt.api").change_data_dir(bookmarks_dir)
     end,
   })
 

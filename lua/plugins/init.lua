@@ -405,4 +405,10 @@ return {
     dependencies = "b0o/incline.nvim",
     opts = require "configs.snacks",
   },
+
+  -- inline bookmarks
+  {
+    "TheNoeTrevino/haunt.nvim",
+    opts = true,
+  },
 }

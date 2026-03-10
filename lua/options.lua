@@ -1,5 +1,8 @@
 require "nvchad.options"
 
+-- use ZSH as default
+vim.opt.shell = "/usr/bin/zsh"
+
 -- to enable cursorline
 vim.opt.cursorlineopt = "both"
 

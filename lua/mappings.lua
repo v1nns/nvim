@@ -21,8 +21,15 @@ map("v", "k", "gk", { desc = "navigation move cursor to line upward" })
 -- word motion
 -- stylua: ignore start
 map({ "n", "x", "o" }, "s", function() require("flash").jump { prompt = { enabled = false } } end, { desc = "flash jump" })
-map("n", ";", "<cmd> BookmarksQFListAll <CR>", { desc = "bookmark show all bookmarks" })
+-- map("n", ";", "<cmd> BookmarksQFListAll <CR>", { desc = "bookmark show all bookmarks" })
 -- stylua: ignore end
+
+-- bookmark with inline annotation
+map("n", "ma", "<cmd>HauntAnnotate<CR>", { desc = "bookmark annotate current line" })
+map("n", "mt", "<cmd>HauntToggle<CR>", { desc = "bookmark toggle annotation" })
+map("n", "da", "<cmd>HauntDelete<CR>", { desc = "bookmark delete annotation" })
+map("n", "dA", "<cmd>HauntClearAll<CR>", { desc = "bookmark clear all annotations" })
+map("n", ";", "<cmd>HauntQfAll<CR>", { desc = "bookmark show all annotations in quickfix" })
 
 -- jumplist
 map("n", "<A-Left>", "<C-O>zz", { desc = "jumplist move back" })

@@ -106,8 +106,8 @@ return {
           ["<CR>"] = function(prompt_bufnr)
             local entry = state.get_selected_entry()
 
-            -- Use default action if entry does not contain a path
-            if not entry.path then
+            -- Use default action if entry does not contain a valid path
+            if not entry.path or type(entry.path) ~= "string" then
               actions.select_default(prompt_bufnr)
               return
             end
