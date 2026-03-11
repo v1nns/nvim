@@ -24,11 +24,22 @@ map({ "n", "x", "o" }, "s", function() require("flash").jump { prompt = { enable
 -- map("n", ";", "<cmd> BookmarksQFListAll <CR>", { desc = "bookmark show all bookmarks" })
 -- stylua: ignore end
 
+-- unit testing motion (GTest)
+local gtest_pattern = "^TEST\\(_F\\|_P\\)\\?("
+
+map("n", "]t", function()
+  vim.fn.search(gtest_pattern, "W")
+end, { desc = "navigation move cursor to next unit test" })
+
+map("n", "[t", function()
+  vim.fn.search(gtest_pattern, "Wb")
+end, { desc = "navigation move cursor to previous unit test" })
+
 -- bookmark with inline annotation
 map("n", "ma", "<cmd>HauntAnnotate<CR>", { desc = "bookmark annotate current line" })
 map("n", "mt", "<cmd>HauntToggle<CR>", { desc = "bookmark toggle annotation" })
-map("n", "da", "<cmd>HauntDelete<CR>", { desc = "bookmark delete annotation" })
-map("n", "dA", "<cmd>HauntClearAll<CR>", { desc = "bookmark clear all annotations" })
+map("n", "dma", "<cmd>HauntDelete<CR>", { desc = "bookmark delete annotation" })
+map("n", "dmA", "<cmd>HauntClearAll<CR>", { desc = "bookmark clear all annotations" })
 map("n", ";", "<cmd>HauntQfAll<CR>", { desc = "bookmark show all annotations in quickfix" })
 
 -- jumplist
