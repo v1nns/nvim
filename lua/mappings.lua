@@ -29,10 +29,12 @@ local gtest_pattern = "^TEST\\(_F\\|_P\\)\\?("
 
 map("n", "]t", function()
   vim.fn.search(gtest_pattern, "W")
+  vim.cmd "zz"
 end, { desc = "navigation move cursor to next unit test" })
 
 map("n", "[t", function()
   vim.fn.search(gtest_pattern, "Wb")
+  vim.cmd "zz"
 end, { desc = "navigation move cursor to previous unit test" })
 
 -- bookmark with inline annotation

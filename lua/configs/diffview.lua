@@ -155,7 +155,7 @@ return {
       view.emitter:on("post_layout", post_layout)
       post_layout()
 
-      vim.cmd ":TabRename diff"
+      vim.cmd "Tabby rename_tab diff"
     end,
 
     -- view_enter = function(_)

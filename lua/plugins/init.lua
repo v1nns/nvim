@@ -313,12 +313,6 @@ return {
     opts = {},
   },
 
-  -- line motion using marks
-  {
-    "chentoast/marks.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
 
   -- disable certain features on big files
   {

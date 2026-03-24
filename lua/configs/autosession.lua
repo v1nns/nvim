@@ -2,7 +2,7 @@ return {
   cwd_change_handling = true,
   suppressed_dirs = { "~/", "~/projects", "~/Downloads", "/", "/tmp" },
 
-  pre_save_cmds = { "ScopeSaveState" },
+  pre_save_cmds = { "DiffviewClose", "ScopeSaveState" },
 
   post_restore_cmds = { "ScopeLoadState" },
 
@@ -24,4 +24,6 @@ return {
     "snacks_dashboard",
     "sidekick_terminal",
   },
+
+  close_unsupported_windows = true,
 }

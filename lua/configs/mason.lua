@@ -28,10 +28,11 @@ return {
     -- cpp
     "clangd",
     "clang-format",
+    "cpplint",
 
     -- python
     "autopep8",
-    "python-lsp-server",
+    "pyright",
 
     -- rust
     "rust-analyzer",
