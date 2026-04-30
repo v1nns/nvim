@@ -92,14 +92,14 @@ return {
   -- builtins
   pickers = {
     find_files = {
-      -- find_command = { "rg", "--files", "--sort", "path", "-F" },
-      find_command = {
-        "fd",
-        "--type",
-        "file",
-        "--hidden",
-        "--strip-cwd-prefix",
-      },
+      find_command = { "rg", "--files", "--sort", "path"--[[ , "-F"  ]]},
+      -- find_command = {
+      --   "fd",
+      --   "--type",
+      --   "file",
+      --   "--hidden",
+      --   "--strip-cwd-prefix",
+      -- },
       hidden = true,
       mappings = {
         i = {
