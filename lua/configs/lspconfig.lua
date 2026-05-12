@@ -40,3 +40,6 @@ for _, lsp in ipairs(servers) do
   })
   vim.lsp.enable(lsp)
 end
+
+-- enable it without any custom config
+vim.lsp.enable "copilot"

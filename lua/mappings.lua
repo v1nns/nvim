@@ -220,6 +220,24 @@ end, { desc = "noice dismiss popups" })
 -- code assistant
 map("n", "<leader>cc", "<cmd> CodeCompanionChat toggle <CR>", { desc = "code toggle code assistant chat" })
 
+-- AI with sidekick
+-- stylua: ignore start
+map({ "i", "n" }, "<Tab>", function()
+  -- if there is a next edit, jump to it, otherwise apply it if any
+  if require("sidekick").nes_jump_or_apply() then
+    return
+  end
+
+  -- fall back to normal tab
+  return "<tab>"
+end, { expr = true, desc = "sidekick next edit suggestion or fallback" })
+map("n", "<leader>aa", function() require("sidekick.cli").toggle { name = "copilot", focus = true } end, { desc = "sidekick toggle CLI" })
+map({ "n", "x" }, "<leader>at", function() require("sidekick.cli").send { msg = "{this}" } end, { desc = "sidekick send this" })
+map({ "x" }, "<leader>av", function() require("sidekick.cli").send { msg = "{selection}" } end, { desc = "sidekick send visual selection" })
+map({ "n", "x" }, "<leader>ap", function() require("sidekick.cli").prompt() end, { desc = "sidekick select prompt" })
+map({ "n", "x", "i", "t" }, "<C-.>", function() require("sidekick.cli").focus { name = "copilot", focus = true } end, { desc = "sidekick switch focus" })
+-- stylua: ignore end
+
 -- disable mappings
 local nomap = vim.keymap.del
 

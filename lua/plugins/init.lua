@@ -81,6 +81,11 @@ return {
   { import = "nvchad.blink.lazyspec" },
   {
     "Saghen/blink.cmp",
+    dependencies = {
+      {
+        "fang2hou/blink-copilot",
+      },
+    },
     opts = require "configs.blink",
   },
 
@@ -404,5 +409,39 @@ return {
   {
     "TheNoeTrevino/haunt.nvim",
     opts = true,
+  },
+
+  -- AI integration (inline completion)
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup {
+        panel = { enabled = false },
+        suggestion = { enabled = false },
+        filetypes = {
+          markdown = true,
+          help = true,
+        },
+      }
+    end,
+  },
+
+  -- AI integration (NES)
+  {
+    "folke/sidekick.nvim",
+    lazy = false,
+    opts = {
+      nes = {
+        enabled = false,
+      },
+      cli = {
+        mux = {
+          backend = "zellij",
+          enabled = true,
+        },
+      },
+    },
   },
 }

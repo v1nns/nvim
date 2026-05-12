@@ -2,7 +2,7 @@ return {
   cwd_change_handling = true,
   suppressed_dirs = { "~/", "~/projects", "~/Downloads", "/", "/tmp" },
 
-  pre_save_cmds = { "DiffviewClose", "ScopeSaveState" },
+  pre_save_cmds = { "Sidekick cli close", "DiffviewClose", "ScopeSaveState" },
 
   post_restore_cmds = { "ScopeLoadState" },
 
