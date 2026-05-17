@@ -318,7 +318,6 @@ return {
     opts = {},
   },
 
-
   -- disable certain features on big files
   {
     "LunarVim/bigfile.nvim",
@@ -408,7 +407,10 @@ return {
   -- inline bookmarks
   {
     "TheNoeTrevino/haunt.nvim",
-    opts = true,
+    lazy = false,
+    opts = {
+      data_dir = vim.fn.stdpath "data" .. "/haunt",
+    },
   },
 
   -- AI integration (inline completion)

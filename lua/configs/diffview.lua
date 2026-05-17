@@ -154,16 +154,16 @@ return {
 
       view.emitter:on("post_layout", post_layout)
       post_layout()
+    end,
 
+    view_enter = function(_)
+      -- vim.o.showtabline = 0
       vim.cmd "Tabby rename_tab diff"
     end,
 
-    -- view_enter = function(_)
-    --   vim.o.showtabline = 0
-    -- end,
-    --
-    -- view_leave = function(_)
-    --   vim.o.showtabline = 2
-    -- end,
+    view_leave = function(_)
+      --   vim.o.showtabline = 2
+      vim.cmd "Tabby rename_tab "
+    end,
   },
 }
