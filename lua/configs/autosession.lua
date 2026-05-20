@@ -4,7 +4,13 @@ return {
 
   pre_save_cmds = { "Sidekick cli close", "DiffviewClose", "ScopeSaveState" },
 
-  post_restore_cmds = { "ScopeLoadState" },
+  post_restore_cmds = {
+    function()
+      vim.schedule(function()
+        vim.cmd "ScopeLoadState"
+      end)
+    end,
+  },
 
   close_filetypes_on_save = {
     "checkhealth",

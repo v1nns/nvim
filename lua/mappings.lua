@@ -188,7 +188,12 @@ map("i", "<C-BS>", "<C-W>", { desc = "text delete previous word" })
 -- map("n", "<leader>g", "<cmd>Neotree git_status toggle left <CR>", { desc = "neotree toggle git status tree" })
 
 -- nvim-tree
-map("n", "<leader>e", "<cmd> NvimTreeFindFileToggle <CR>", { desc = "nvim-tree toggle file tree" })
+-- map("n", "<leader>e", "<cmd> NvimTreeFindFileToggle <CR>", { desc = "nvim-tree toggle file tree" })
+
+-- Toggle Snacks Explorer
+map("n", "<leader>e", function()
+  require("snacks").explorer()
+end, { desc = "explorer toggle snacks explorer" })
 
 -- telescope
 -- stylua: ignore start

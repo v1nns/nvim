@@ -27,6 +27,7 @@ return {
   -- use default file explorer again
   {
     "nvim-tree/nvim-tree.lua",
+    enabled = false,
     lazy = false,
     version = "*",
     dependencies = {

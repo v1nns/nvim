@@ -87,6 +87,11 @@ M.add = {
     underline = true,
     bold = true,
   },
+  TabLineExplorer = {
+    bg = "#16161e",
+    fg = "#7dcfff",
+    bold = true,
+  },
 
   -- hlslens
   HlSearchLens = {
@@ -142,6 +147,21 @@ M.add = {
     fg = "#bb9af7",
     bold = true,
     -- underline = true,
+  },
+
+  -- explorer
+  SnacksPickerDir = {
+    fg = "#7dcfff",
+  },
+  SnacksPickerDirectory = {
+    fg = "#7dcfff",
+  },
+  SnacksPickerPathIgnored = {
+    fg = "#787c99",
+    -- italic = true,
+  },
+  SnacksPickerTotals = {
+    fg = "#e0af68",
   },
 
   -- gradient colors for dashboard header

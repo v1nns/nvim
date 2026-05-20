@@ -21,6 +21,7 @@ return {
     "yang",
     "query",
     "doxygen",
+    "rust"
   },
 
   highlight = {

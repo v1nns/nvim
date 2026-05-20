@@ -40,6 +40,92 @@ return {
     -- stylua: ignore end
   },
 
+  explorer = {},
+  picker = {
+    enabled = true,
+    actions = {
+      pick_win_custom = function(picker)
+        if not picker.layout.split then
+          picker.layout:hide()
+        end
+        local ok = require("configs.windowpicker").pick_window()
+        if not ok then
+          if not picker.layout.split then
+            picker.layout:unhide()
+          end
+          return true
+        end
+        picker.main = vim.api.nvim_get_current_win()
+        if not picker.layout.split then
+          vim.defer_fn(function()
+            if not picker.closed then
+              picker.layout:unhide()
+            end
+          end, 100)
+        end
+      end,
+      toggle_dir = function(picker, item, _)
+        if not item then
+          return
+        end
+        if item.dir then
+          picker:action "confirm"
+        end
+      end,
+      toggle_or_open = function(picker, item, _)
+        if not item then
+          return
+        end
+        if item.dir then
+          picker:action "confirm"
+        else
+          picker:action { "pick_win_custom", "jump" }
+        end
+      end,
+    },
+    sources = {
+      explorer = {
+        enabled = true,
+        hidden = true,
+        ignored = true,
+        auto_close = false,
+        follow_file = false,
+        transform = function(item)
+          if not item.ignored then
+            if item.dir then
+              item.filename_hl = "SnacksPickerDirectory"
+            else
+              item.filename_hl = "SnacksPickerFile"
+            end
+          end
+        end,
+        layout = {
+          config = function(layout)
+            for _, box in ipairs(layout.layout) do
+              if box.win == "input" then
+                box.border = "bottom"
+                box.wo = { winhighlight = "FloatBorder:SnacksPicker" }
+                break
+              end
+            end
+            return layout
+          end,
+        },
+        win = {
+          list = {
+            keys = {
+              ["."] = { "nop", mode = { "n", "i" } },
+              ["l"] = { "toggle_dir", mode = { "n", "i" } },
+              ["o"] = { "toggle_or_open", mode = { "n", "i" } },
+              ["O"] = { "toggle_or_open", mode = { "n", "i" } },
+              ["<CR>"] = { "toggle_or_open", mode = { "n", "i" } },
+            },
+          },
+        },
+      },
+    },
+  },
+
   -- TODO: change animation time for scroll
   scroll = { enabled = false },
 

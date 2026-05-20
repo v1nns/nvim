@@ -18,6 +18,8 @@ M.pick_window = function()
       and ft ~= "notify"
       and ft ~= "scrollview"
       and ft ~= "snacks_dashboard"
+      and ft ~= "snacks_picker_input"
+      and ft ~= "snacks_picker_list"
     then
       count = count + 1
     end
@@ -47,6 +49,8 @@ M.pick_window = function()
           "quickfix",
           "*Telescope*",
           "snacks_dashboard",
+          "snacks_picker_input",
+          "snacks_picker_list",
           -- "nvdash", -- we can't filter nvdash...
         },
 

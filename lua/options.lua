@@ -9,6 +9,9 @@ vim.opt.cursorlineopt = "both"
 -- enable title
 vim.opt.title = true
 
+-- show tab bar permanently
+vim.opt.showtabline = 2
+
 -- set window border
 vim.opt.winborder = "rounded"
 
@@ -124,7 +127,7 @@ vim.filetype.add {
 -- )
 
 -- to stabilize buffer content on windows (this change breaks :Telescope highlight)
-vim.opt.splitkeep="screen"
+vim.opt.splitkeep = "screen"
 
 -- to debug lspconfig, use this below and :LspLog
 -- vim.lsp.set_log_level("debug")
