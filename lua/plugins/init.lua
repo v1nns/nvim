@@ -322,7 +322,7 @@ return {
   -- disable certain features on big files
   {
     "LunarVim/bigfile.nvim",
-    event = "VeryLazy",
+    lazy = false,
     opts = {},
   },
 

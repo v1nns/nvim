@@ -89,7 +89,7 @@ return {
         hidden = true,
         ignored = true,
         auto_close = false,
-        follow_file = false,
+        follow_file = true,
         transform = function(item)
           if not item.ignored then
             if item.dir then

@@ -31,8 +31,8 @@ vim.opt.virtualedit = "all"
 -- use built-in LSP folding
 -- vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
 
--- enable treesitter-based folding
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- native API; nvim-treesitter main branch removed nvim_treesitter#foldexpr()
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldmethod = "expr"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = -1
