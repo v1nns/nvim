@@ -1,15 +1,5 @@
 return {
-  sources = {
-    default = { "copilot" },
-    providers = {
-      copilot = {
-        name = "copilot",
-        module = "blink-copilot",
-        score_offset = 100,
-        async = true,
-      },
-    },
-  },
+  sources = {},
   keymap = {
     preset = "default",
     ["<CR>"] = false,

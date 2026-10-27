@@ -147,6 +147,7 @@ end, { desc = "git toggle diff view" })
 
 -- LSP
 -- stylua: ignore start
+map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
 map("n", "<leader>ld", function() vim.diagnostic.enable(false) end, { desc = "LSP disable lsp diagnostics" })
 map("n", "<leader>le", function() vim.diagnostic.enable() end, { desc = "LSP enable lsp diagnostics" })
 map("n", "<leader>fm", function() require("conform").format { async = true, lsp_fallback = true } end, { desc = "LSP format code" })
@@ -236,11 +237,11 @@ map({ "i", "n" }, "<Tab>", function()
   -- fall back to normal tab
   return "<tab>"
 end, { expr = true, desc = "sidekick next edit suggestion or fallback" })
-map("n", "<leader>aa", function() require("sidekick.cli").toggle { name = "copilot", focus = true } end, { desc = "sidekick toggle CLI" })
+map("n", "<leader>aa", function() require("sidekick.cli").toggle { name = "claude", focus = true } end, { desc = "sidekick toggle CLI" })
 map({ "n", "x" }, "<leader>at", function() require("sidekick.cli").send { msg = "{this}" } end, { desc = "sidekick send this" })
 map({ "x" }, "<leader>av", function() require("sidekick.cli").send { msg = "{selection}" } end, { desc = "sidekick send visual selection" })
 map({ "n", "x" }, "<leader>ap", function() require("sidekick.cli").prompt() end, { desc = "sidekick select prompt" })
-map({ "n", "x", "i", "t" }, "<C-.>", function() require("sidekick.cli").focus { name = "copilot", focus = true } end, { desc = "sidekick switch focus" })
+map({ "n", "x", "i", "t" }, "<C-.>", function() require("sidekick.cli").focus { name = "claude", focus = true } end, { desc = "sidekick switch focus" })
 -- stylua: ignore end
 
 -- disable mappings
