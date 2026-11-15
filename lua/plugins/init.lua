@@ -24,32 +24,8 @@ return {
     opts = require "configs.whichkey",
   },
 
-  -- use default file explorer again
-  {
-    "nvim-tree/nvim-tree.lua",
-    enabled = false,
-    lazy = false,
-    version = "*",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = require "configs.nvimtree",
-  },
-
-  -- disable neo-tree (performance issues...)
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    enabled = false,
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-      "s1n7ax/nvim-window-picker",
-    },
-    cmd = "Neotree",
-    opts = require "configs.neotree",
-  },
+  -- disable nvim-tree shipped by NvChad (snacks explorer is used instead)
+  { "nvim-tree/nvim-tree.lua", enabled = false },
 
   -- select window to open new buffer
   {
@@ -67,11 +43,7 @@ return {
     opts = require "configs.treesitter",
   },
 
-  -- code completion (currently testing blink.cmp instead of nvim-cmp)
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = require "configs.cmp",
-  -- },
+  -- code completion
   {
     "nvchad/base46",
     branch = "v3.0",
@@ -121,6 +93,17 @@ return {
     opts = require "configs.mason",
   },
 
+  -- lua_ls support for the neovim runtime and plugin APIs
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
   -- language server protocol
   {
     "neovim/nvim-lspconfig",
@@ -137,22 +120,6 @@ return {
     -- event = { "BufWritePre" }, -- uncomment for format on save
     cmd = { "ConformInfo" },
     opts = require "configs.conform",
-  },
-
-  -- code comment
-  {
-    "numToStr/Comment.nvim",
-    keys = {
-      { "gcc", mode = "n", desc = "comment toggle current line" },
-      { "gc", mode = { "n", "o" }, desc = "comment toggle linewise" },
-      { "gc", mode = "x", desc = "comment toggle linewise (visual)" },
-      { "gbc", mode = "n", desc = "comment toggle current block" },
-      { "gb", mode = { "n", "o" }, desc = "comment toggle blockwise" },
-      { "gb", mode = "x", desc = "comment toggle blockwise (visual)" },
-    },
-    config = function(_, opts)
-      require("Comment").setup(opts)
-    end,
   },
 
   -- telescope (ui for pickers: open files, search files, ...)
@@ -224,17 +191,8 @@ return {
     end,
   },
 
-  -- change char for indent and scope
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    tag = "v3.8.2",
-    opts = {
-      exclude = { filetypes = { "snacks_dashboard" } },
-      indent = { char = "▏", highlight = "IblChar" },
-      scope = { char = "▏", highlight = "IblScopeChar" },
-    },
-  },
+  -- disable indent-blankline shipped by NvChad (snacks.indent is used instead)
+  { "lukas-reineke/indent-blankline.nvim", enabled = false },
 
   -- surround text selections
   {
@@ -314,13 +272,6 @@ return {
     opts = {},
   },
 
-  -- disable certain features on big files
-  {
-    "LunarVim/bigfile.nvim",
-    lazy = false,
-    opts = {},
-  },
-
   -- -- debug applications
   -- {mfussenegger/nvim-dap",
   -- },
@@ -328,10 +279,8 @@ return {
   -- flutter utilities
   {
     "akinsho/flutter-tools.nvim",
-    after = "nvim-lspconfig",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
     opts = require "configs.fluttertools",
   },
@@ -373,7 +322,6 @@ return {
     dependencies = {
       { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
       { "nvim-lua/plenary.nvim" },
-      { "hrsh7th/nvim-cmp" },
     },
     opts = require "configs.codecompanion",
   },
@@ -381,15 +329,14 @@ return {
   -- better quickfix window
   {
     "kevinhwang91/nvim-bqf",
-    event = "VeryLazy",
     ft = "qf",
   },
 
-  -- search panel
+  -- search and replace panel
   {
-    "nvim-pack/nvim-spectre",
-    event = "VeryLazy",
-    opts = true,
+    "MagicDuck/grug-far.nvim",
+    cmd = { "GrugFar", "GrugFarWithin" },
+    opts = {},
   },
 
   -- collection of utilities (dashboard, ...)
@@ -420,9 +367,22 @@ return {
       cli = {
         mux = {
           backend = "tmux",
+          dump = 50000, -- match tmux history-limit
           enabled = true,
+        },
+        win = {
+          keys = {
+            -- leave terminal mode; sidekick then opens the full scrollback
+            stopinsert = { "<c-x>", "stopinsert", mode = "t", desc = "enter normal mode" },
+          },
         },
       },
     },
+  },
+
+  -- markdown support
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
   },
 }

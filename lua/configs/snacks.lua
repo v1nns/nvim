@@ -41,6 +41,13 @@ return {
   },
 
   explorer = {},
+  bigfile = { enabled = true },
+  input = { enabled = true },
+  indent = {
+    enabled = true,
+    indent = { char = "▏" },
+    scope = { char = "▏" },
+  },
   picker = {
     enabled = true,
     actions = {
@@ -100,6 +107,8 @@ return {
           end
         end,
         layout = {
+          -- input stays hidden until focused (e.g. with `/`)
+          auto_hide = { "input" },
           config = function(layout)
             for _, box in ipairs(layout.layout) do
               if box.win == "input" then

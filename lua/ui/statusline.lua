@@ -23,7 +23,7 @@ return {
   modules = {
     file = function()
       local x = utils.file()
-      if string.find(x[2], "NvimTree") then
+      if string.find(x[2], "NvimTree") or x[2] == "Empty" then
         return "%#StText# "
       end
 

@@ -235,10 +235,10 @@ M.setup_commands = function()
     vim.cmd 'noau normal! "vy"'
     local text = vim.fn.getreg "v"
 
-    -- run live_grep picker from telescope
-    require("telescope.builtin").live_grep {
-      prompt_title = "Search all",
-      default_text = text,
+    -- run grep picker from snacks
+    require("snacks").picker.grep {
+      title = "Search all",
+      search = text,
     }
   end, {})
 

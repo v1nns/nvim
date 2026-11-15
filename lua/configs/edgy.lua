@@ -12,7 +12,7 @@ return {
     },
     {
       title = "Search panel",
-      ft = "spectre_panel",
+      ft = "grug-far",
       size = { height = 0.4 },
     },
   },

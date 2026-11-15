@@ -152,7 +152,7 @@ map("n", "<leader>ld", function() vim.diagnostic.enable(false) end, { desc = "LS
 map("n", "<leader>le", function() vim.diagnostic.enable() end, { desc = "LSP enable lsp diagnostics" })
 map("n", "<leader>fm", function() require("conform").format { async = true, lsp_fallback = true } end, { desc = "LSP format code" })
 map("v", "<leader>fm", "gq", { desc = "LSP format code selection" })
-map("n", "<C-S-o>", "<cmd> Telescope lsp_document_symbols <CR>", { desc = "LSP list all symbols " })
+map("n", "<C-S-o>", function() require("snacks").picker.lsp_symbols() end, { desc = "LSP list all symbols " })
 map({ "n", "t" }, "]]", '<cmd> lua require( "snacks" ).words.jump(vim.v.count1) <CR>', { desc = "LSP next reference" })
 map({ "n", "t" }, "[[", '<cmd> lua require( "snacks" ).words.jump(-vim.v.count1) <CR>', { desc = "LSP prev reference" })
 -- stylua: ignore end
@@ -173,7 +173,7 @@ map("n", "<leader>ct", "<cmd> Trouble tests toggle focus=true pinned=true <CR>",
 -- stylua: ignore start
 map( "n", "n", "<cmd>execute('normal! ' . v:count1 . 'n')<CR><cmd>lua require('hlslens').start()<CR>", { desc = "search repeat last search" })
 map( "n", "N", "<cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>", { desc = "search repeat last search (reverse)" })
-map("n", "<A-s>", '<cmd>lua require("spectre").toggle()<CR>', { desc = "search toggle search panel" })
+map("n", "<A-s>", function() require("grug-far").toggle_instance { instanceName = "far", staticTitle = "Find and Replace" } end, { desc = "search toggle search panel" })
 -- stylua: ignore end
 
 -- text actions
@@ -196,15 +196,15 @@ map("n", "<leader>e", function()
   require("snacks").explorer()
 end, { desc = "explorer toggle snacks explorer" })
 
--- telescope
+-- pickers
 -- stylua: ignore start
 map( "n", "<A-o>", "<cmd> Telescope file_browser path=$HOME prompt_title=Open\\ folder <CR>", { desc = "telescope open folder" })
-map("n", "<A-p>", "<cmd> Telescope find_files prompt_title=Open\\ file <CR>", { desc = "telescope open file" })
-map("n", "<C-S-b>", "<cmd> Telescope marks <CR>", { desc = "telescope open bookmarks" })
-map("n", "<C-S-f>", "<cmd> Telescope live_grep prompt_title=Search\\ all <CR>", { desc = "telescope search all" })
-map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "telescope search all" })
-map("n", "<C-g>c", "<cmd> Telescope git_commits <CR>", { desc = "telescope git show commits" })
-map("n", "<C-g>t", "<cmd> Telescope git_status <CR>", { desc = "telescope git show status" })
+map("n", "<A-p>", function() require("snacks").picker.files { title = "Open file" } end, { desc = "picker open file" })
+map("n", "<C-S-b>", function() require("snacks").picker.marks() end, { desc = "picker open bookmarks" })
+map("n", "<C-S-f>", function() require("snacks").picker.grep { title = "Search all" } end, { desc = "picker search all" })
+map("v", "<C-S-f>", "<cmd> SearchForTextSelection <CR>", { desc = "picker search all" })
+map("n", "<C-g>c", function() require("snacks").picker.git_log() end, { desc = "picker git show commits" })
+map("n", "<C-g>t", function() require("snacks").picker.git_status() end, { desc = "picker git show status" })
 -- stylua: ignore end
 
 -- comment divider

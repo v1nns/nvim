@@ -25,8 +25,8 @@ vim.opt.fillchars = { eob = " ", diff = "⣿", foldopen = "", foldclose = "�
 -- set info to be saved with the underlying :mksession
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 
--- allow virtual editing in all modes
-vim.opt.virtualedit = "all"
+-- allow virtual editing in visual block mode
+vim.opt.virtualedit = "block"
 
 -- use built-in LSP folding
 -- vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"

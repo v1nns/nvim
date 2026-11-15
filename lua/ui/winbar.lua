@@ -75,7 +75,7 @@ local get_navic = function()
   end
 
   if not isempty(navic_location) then
-    return "> " .. navic_location
+    return "%#NavicSeparator#> " .. navic_location
   else
     return ""
   end

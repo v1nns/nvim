@@ -23,7 +23,7 @@ M.add = {
 
   -- virt-column color
   VirtColumn = {
-    fg = "#992975",
+    fg = "#2f3549",
   },
 
   -- statusline git-branch color
@@ -150,19 +150,29 @@ M.add = {
   },
 
   -- explorer
+  SnacksPickerFile = {
+    fg = "#a9b1d6",
+  },
   SnacksPickerDir = {
-    fg = "#7dcfff",
+    fg = "#7aa2f7",
   },
   SnacksPickerDirectory = {
-    fg = "#7dcfff",
+    fg = "#7aa2f7",
+  },
+  SnacksPickerTree = {
+    fg = "#40486a",
   },
   SnacksPickerPathIgnored = {
-    fg = "#787c99",
+    fg = "#565f89",
     -- italic = true,
   },
   SnacksPickerTotals = {
     fg = "#e0af68",
   },
+
+  -- indent guides (same colors as NvChad's IblChar / IblScopeChar)
+  SnacksIndent = { fg = "#32333e" },
+  SnacksIndentScope = { fg = "#40486a" },
 
   -- gradient colors for dashboard header
   DashboardHeader1 = { bg = "#303148", fg = "#666fa9" },
@@ -263,33 +273,33 @@ M.override = {
 
   -- navic breadcrumb
   NavicText = { bg = "none", fg = "#b4f9f8" },
-  NavicIconsFile = { bg = "none" },
-  NavicIconsModule = { bg = "none" },
-  NavicIconsNamespace = { bg = "none" },
-  NavicIconsPackage = { bg = "none" },
-  NavicIconsClass = { bg = "none" },
-  NavicIconsMethod = { bg = "none" },
-  NavicIconsProperty = { bg = "none" },
-  NavicIconsField = { bg = "none" },
-  NavicIconsConstructor = { bg = "none" },
-  NavicIconsEnum = { bg = "none" },
-  NavicIconsInterface = { bg = "none" },
-  NavicIconsFunction = { bg = "none" },
-  NavicIconsVariable = { bg = "none" },
-  NavicIconsConstant = { bg = "none" },
-  NavicIconsString = { bg = "none" },
-  NavicIconsNumber = { bg = "none" },
-  NavicIconsBoolean = { bg = "none" },
-  NavicIconsArray = { bg = "none" },
-  NavicIconsObject = { bg = "none" },
-  NavicIconsKey = { bg = "none" },
-  NavicIconsNull = { bg = "none" },
-  NavicIconsEnumMember = { bg = "none" },
-  NavicIconsStruct = { bg = "none" },
-  NavicIconsEvent = { bg = "none" },
-  NavicIconsOperator = { bg = "none" },
-  NavicIconsTypeParameter = { bg = "none" },
-  NavicSeparator = { bg = "none" },
+  NavicIconsFile = { bg = "none", fg = "#565f89" },
+  NavicIconsModule = { bg = "none", fg = "#565f89" },
+  NavicIconsNamespace = { bg = "none", fg = "#565f89" },
+  NavicIconsPackage = { bg = "none", fg = "#565f89" },
+  NavicIconsClass = { bg = "none", fg = "#565f89" },
+  NavicIconsMethod = { bg = "none", fg = "#565f89" },
+  NavicIconsProperty = { bg = "none", fg = "#565f89" },
+  NavicIconsField = { bg = "none", fg = "#565f89" },
+  NavicIconsConstructor = { bg = "none", fg = "#565f89" },
+  NavicIconsEnum = { bg = "none", fg = "#565f89" },
+  NavicIconsInterface = { bg = "none", fg = "#565f89" },
+  NavicIconsFunction = { bg = "none", fg = "#565f89" },
+  NavicIconsVariable = { bg = "none", fg = "#565f89" },
+  NavicIconsConstant = { bg = "none", fg = "#565f89" },
+  NavicIconsString = { bg = "none", fg = "#565f89" },
+  NavicIconsNumber = { bg = "none", fg = "#565f89" },
+  NavicIconsBoolean = { bg = "none", fg = "#565f89" },
+  NavicIconsArray = { bg = "none", fg = "#565f89" },
+  NavicIconsObject = { bg = "none", fg = "#565f89" },
+  NavicIconsKey = { bg = "none", fg = "#565f89" },
+  NavicIconsNull = { bg = "none", fg = "#565f89" },
+  NavicIconsEnumMember = { bg = "none", fg = "#565f89" },
+  NavicIconsStruct = { bg = "none", fg = "#565f89" },
+  NavicIconsEvent = { bg = "none", fg = "#565f89" },
+  NavicIconsOperator = { bg = "none", fg = "#565f89" },
+  NavicIconsTypeParameter = { bg = "none", fg = "#565f89" },
+  NavicSeparator = { bg = "none", fg = "#565f89" },
 
   -- add bold style for startup footer on dashboard
   Special = {

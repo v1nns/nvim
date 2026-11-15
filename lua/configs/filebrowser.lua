@@ -36,11 +36,11 @@ return {
           telescope.extensions.file_browser.actions.change_cwd(prompt_bufnr)
           telescope.actions.close(prompt_bufnr)
 
-          -- vim.cmd ":Neotree close"
-          vim.cmd ":NvimTreeClose"
+          for _, explorer in ipairs(require("snacks").picker.get { source = "explorer" }) do
+            explorer:close()
+          end
           vim.cmd "bufdo bd"
-          -- vim.cmd ":Neotree show"
-          vim.cmd ":NvimTreeOpen"
+          require("snacks").explorer()
         end
       end,
 
