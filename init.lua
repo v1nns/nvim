@@ -38,6 +38,9 @@ require "nvchad.autocmds"
 require("commands").setup_autocommands()
 require("commands").setup_commands()
 
+-- light sweep animation on dashboard header
+require("ui.dashboard_sweep").setup()
+
 vim.schedule(function()
   require "mappings"
 end)

@@ -182,6 +182,11 @@ M.add = {
   DashboardHeader5 = { bg = "#303148", fg = "#7dcfff" },
   DashboardHeader6 = { bg = "#303148", fg = "#7aa2f7" },
 
+  -- light sweep over dashboard header (check ui/dashboard_sweep.lua)
+  DashboardSweepEdge = { fg = "#b4f9f8" },
+  DashboardSweepGlow = { fg = "#c0caf5" },
+  DashboardSweepCenter = { fg = "#d5d6db", bold = true },
+
   -- buffer list (check ui)
   BufferListKey = { fg = "#7dcfff", bold = true },
   BufferListBracket = { fg = "#565f89" },
