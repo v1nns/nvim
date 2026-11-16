@@ -91,6 +91,9 @@ return {
       end,
     },
     sources = {
+      grep = {
+        hidden = true,
+      },
       explorer = {
         enabled = true,
         hidden = true,
