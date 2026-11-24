@@ -94,6 +94,10 @@ return {
       grep = {
         hidden = true,
       },
+      files = {
+        hidden = true,
+        ignored = true,
+      },
       explorer = {
         enabled = true,
         hidden = true,
